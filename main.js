@@ -1,9 +1,10 @@
-import { drawSprite } from "./src/graphics.js";
-import { TILE_SPRITES, loadSprites } from "./src/sprites.js";
+import { drawMap, drawSprite } from "./src/graphics.js";
+import { Map } from "./src/map.js";
+import { loadSprites, TILE_SPRITES } from "./src/sprites.js";
 
 (async() => {
     await loadSprites();
-    drawSprite(TILE_SPRITES, [0,0])
+    drawMap(new Map(4,8));
 })();
 
 window.addEventListener('touchmove', function (e) {
