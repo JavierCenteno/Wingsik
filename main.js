@@ -1,162 +1,45 @@
 import { drawFrame, getWindowSize, setCanvasSize } from "./src/graphics.js";
-import { Map, ORIENTATION } from "./src/map.js";
+import { Map } from "./src/map.js";
+import { View, ORIENTATION } from "./src/view.js"
 import { loadSprites } from "./src/sprites.js";
 
-const map = new Map(10,16);
+const view = new View(new Map(10,16));
 
 (async() => {
     await loadSprites();
-    drawFrame(map);
+    drawFrame(view);
 })();
 
 window.addEventListener('resize', (event) => {
   setCanvasSize(getWindowSize());
-  drawFrame(map);
+  drawFrame(view);
 }, true);
 
 document.addEventListener('keyup', (e) => {
   switch(e.key) {
     case 's':
-      // move view down
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-      }
+      view.moveDown();
+      drawFrame(view);
       break;
     case 'w':
-      // move view up
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-      }
+      view.moveUp();
+      drawFrame(view);
       break;
     case 'a':
-      // move view left
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-      }
+      view.moveLeft();
+      drawFrame(view);
       break;
     case 'd':
-      // move view right
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] += 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.centerTile[0] -= 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.centerTile[0] += 1;
-          map.centerTile[1] -= 1;
-          drawFrame(map);
-          break;
-      }
+      view.moveRight();
+      drawFrame(view);
       break;
     case 'q':
-      // rotate view clockwise
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.orientation = ORIENTATION.SOUTH_EAST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.orientation = ORIENTATION.NORTH_EAST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.orientation = ORIENTATION.SOUTH_WEST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.orientation = ORIENTATION.NORTH_WEST;
-          drawFrame(map);
-          break;
-      }
+      view.rotateClockwise();
+      drawFrame(view);
       break;
     case 'e':
-      // rotate view counterclockwise
-      switch(map.orientation) {
-        case ORIENTATION.NORTH_EAST:
-          map.orientation = ORIENTATION.NORTH_WEST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.NORTH_WEST:
-          map.orientation = ORIENTATION.SOUTH_WEST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_EAST:
-          map.orientation = ORIENTATION.NORTH_EAST;
-          drawFrame(map);
-          break;
-        case ORIENTATION.SOUTH_WEST:
-          map.orientation = ORIENTATION.SOUTH_EAST;
-          drawFrame(map);
-          break;
-      }
+      view.rotateCounterclockwise();
+      drawFrame(view);
       break;
   }
 })

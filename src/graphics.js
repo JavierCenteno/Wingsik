@@ -1,5 +1,5 @@
 import { TILE_SPRITES } from "./sprites.js";
-import { ORIENTATION } from "./map.js";
+import { ORIENTATION } from "./view.js";
 
 // Constants
 
@@ -66,20 +66,20 @@ export const drawTile = (tileType, [x, y]) => {
     );
 }
 
-export const drawMap = (map) => {
-    let reverseX = map.orientation === ORIENTATION.SOUTH_EAST || map.orientation === ORIENTATION.NORTH_EAST;
-    let reverseY = map.orientation === ORIENTATION.NORTH_WEST || map.orientation === ORIENTATION.NORTH_EAST;
-    const centerTileRelativeCanvasCoordinates = tileCoordinatesToCanvasCoordinates(map.centerTile, reverseX, reverseY);
+export const drawView = (view) => {
+    let reverseX = view.orientation === ORIENTATION.SOUTH_EAST || view.orientation === ORIENTATION.NORTH_EAST;
+    let reverseY = view.orientation === ORIENTATION.NORTH_WEST || view.orientation === ORIENTATION.NORTH_EAST;
+    const centerTileRelativeCanvasCoordinates = tileCoordinatesToCanvasCoordinates(view.centerTile, reverseX, reverseY);
     const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
-    for(let j = 0; j < map.tiles.length; ++j) {
-        for(let i = 0; i < map.tiles[j].length; ++i) {
+    for(let j = 0; j < view.map.tiles.length; ++j) {
+        for(let i = 0; i < view.map.tiles[j].length; ++i) {
             const tileCanvasCoordinates = tileCoordinatesToCanvasCoordinates([i, j], reverseX, reverseY);
             drawTile(2, [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]]);
         }
     }
 }
 
-export const drawFrame = (map) => {
+export const drawFrame = (view) => {
     clear();
-    drawMap(map);
+    drawView(view);
 }

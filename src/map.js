@@ -1,20 +1,5 @@
-export const ORIENTATION = {
-    NORTH_EAST: 'NE',
-    NORTH_WEST: 'NW',
-    SOUTH_EAST: 'SE',
-    SOUTH_WEST: 'SW'
-}
-
 export class Map {
     tiles;
-    /**
-     * Current orientation of the view.
-     */
-    orientation = ORIENTATION.NORTH_EAST;
-    /**
-     * In which tile the view is currently centered.
-     */
-    centerTile = [0, 0];
 
     /**
      * 
