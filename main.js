@@ -166,12 +166,12 @@ document.addEventListener('keyup', (e) => {
           drawMap(map);
           break;
         case ORIENTATION.SOUTH_EAST:
-          map.orientation = ORIENTATION.NORTH_WEST;
+          map.orientation = ORIENTATION.NORTH_EAST;
           clear();
           drawMap(map);
           break;
         case ORIENTATION.SOUTH_WEST:
-          map.orientation = ORIENTATION.NORTH_EAST;
+          map.orientation = ORIENTATION.SOUTH_EAST;
           clear();
           drawMap(map);
           break;
