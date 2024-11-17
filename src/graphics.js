@@ -1,12 +1,9 @@
 import { TILE_SPRITES } from "./sprites.js";
+import { ORIENTATION } from "./map.js";
 
 // Constants
 
 export const CANVAS = document.querySelector('canvas');
-
-let screenResolution = [window.screen.width, window.screen.height];
-CANVAS.width = screenResolution[0];
-CANVAS.height = screenResolution[1];
 
 export const CONTEXT = CANVAS.getContext('2d');
 CONTEXT.imageSmoothingEnabled = false;
@@ -14,17 +11,22 @@ CONTEXT.imageSmoothingEnabled = false;
 export const TILE_WIDTH = 32;
 export const TILE_HEIGHT = 16;
 
-export const ORIENTATION = {
-    NORTH_EAST: 'NE',
-    NORTH_WEST: 'NW',
-    SOUTH_EAST: 'SE',
-    SOUTH_WEST: 'SW'
-}
-
 // Draw methods
 
+export const getWindowSize = () => {
+    return [window.innerWidth, window.innerHeight]
+}
+
+export const setCanvasSize = ([width, height]) => {
+    CANVAS.width = width;
+    CANVAS.height = height;
+}
+
+setCanvasSize(getWindowSize());
+
 export const clear = () => {
-    CONTEXT.clearRect(0, 0, CANVAS.width, CANVAS.height);
+    CONTEXT.fillStyle = "#000000";
+    CONTEXT.fillRect(0, 0, CANVAS.width, CANVAS.height);
 }
 
 export const drawSprite = (image, [x, y]) => {
@@ -72,7 +74,12 @@ export const drawMap = (map) => {
     for(let j = 0; j < map.tiles.length; ++j) {
         for(let i = 0; i < map.tiles[j].length; ++i) {
             const tileCanvasCoordinates = tileCoordinatesToCanvasCoordinates([i, j], reverseX, reverseY);
-            drawTile((i + j) % 6, [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]]);
+            drawTile(2, [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]]);
         }
     }
+}
+
+export const drawFrame = (map) => {
+    clear();
+    drawMap(map);
 }

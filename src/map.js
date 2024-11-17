@@ -1,4 +1,9 @@
-import { ORIENTATION } from "./graphics.js";
+export const ORIENTATION = {
+    NORTH_EAST: 'NE',
+    NORTH_WEST: 'NW',
+    SOUTH_EAST: 'SE',
+    SOUTH_WEST: 'SW'
+}
 
 export class Map {
     tiles;

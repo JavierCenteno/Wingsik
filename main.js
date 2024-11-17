@@ -1,13 +1,18 @@
-import { drawMap, clear, ORIENTATION } from "./src/graphics.js";
-import { Map } from "./src/map.js";
-import { loadSprites, TILE_SPRITES } from "./src/sprites.js";
+import { drawFrame, getWindowSize, setCanvasSize } from "./src/graphics.js";
+import { Map, ORIENTATION } from "./src/map.js";
+import { loadSprites } from "./src/sprites.js";
 
-const map = new Map(4,8);
+const map = new Map(10,16);
 
 (async() => {
     await loadSprites();
-    drawMap(map);
+    drawFrame(map);
 })();
+
+window.addEventListener('resize', (event) => {
+  setCanvasSize(getWindowSize());
+  drawFrame(map);
+}, true);
 
 document.addEventListener('keyup', (e) => {
   switch(e.key) {
@@ -17,26 +22,22 @@ document.addEventListener('keyup', (e) => {
         case ORIENTATION.NORTH_EAST:
           map.centerTile[0] -= 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.centerTile[0] -= 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.centerTile[0] += 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.centerTile[0] += 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
@@ -46,26 +47,22 @@ document.addEventListener('keyup', (e) => {
         case ORIENTATION.NORTH_EAST:
           map.centerTile[0] += 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.centerTile[0] += 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.centerTile[0] -= 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.centerTile[0] -= 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
@@ -75,26 +72,22 @@ document.addEventListener('keyup', (e) => {
         case ORIENTATION.NORTH_EAST:
           map.centerTile[0] -= 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.centerTile[0] -= 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.centerTile[0] += 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.centerTile[0] -= 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
@@ -104,26 +97,22 @@ document.addEventListener('keyup', (e) => {
         case ORIENTATION.NORTH_EAST:
           map.centerTile[0] += 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.centerTile[0] += 1;
           map.centerTile[1] += 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.centerTile[0] -= 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.centerTile[0] += 1;
           map.centerTile[1] -= 1;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
@@ -132,23 +121,19 @@ document.addEventListener('keyup', (e) => {
       switch(map.orientation) {
         case ORIENTATION.NORTH_EAST:
           map.orientation = ORIENTATION.SOUTH_EAST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.orientation = ORIENTATION.NORTH_EAST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.orientation = ORIENTATION.SOUTH_WEST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.orientation = ORIENTATION.NORTH_WEST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
@@ -157,23 +142,19 @@ document.addEventListener('keyup', (e) => {
       switch(map.orientation) {
         case ORIENTATION.NORTH_EAST:
           map.orientation = ORIENTATION.NORTH_WEST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.NORTH_WEST:
           map.orientation = ORIENTATION.SOUTH_WEST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_EAST:
           map.orientation = ORIENTATION.NORTH_EAST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
         case ORIENTATION.SOUTH_WEST:
           map.orientation = ORIENTATION.SOUTH_EAST;
-          clear();
-          drawMap(map);
+          drawFrame(map);
           break;
       }
       break;
