@@ -1,7 +1,15 @@
-
+import { ORIENTATION } from "./graphics.js";
 
 export class Map {
     tiles;
+    /**
+     * Current orientation of the view.
+     */
+    orientation = ORIENTATION.NORTH_EAST;
+    /**
+     * In which tile the view is currently centered.
+     */
+    centerTile = [0, 0];
 
     /**
      * 

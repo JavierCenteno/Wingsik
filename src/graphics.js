@@ -21,13 +21,6 @@ export const ORIENTATION = {
     SOUTH_WEST: 'SW'
 }
 
-// Variables
-
-const viewOrientation = ORIENTATION.NORTH_EAST;
-const reverseX = viewOrientation === ORIENTATION.SOUTH_EAST || viewOrientation === ORIENTATION.NORTH_EAST;
-const reverseY = viewOrientation === ORIENTATION.NORTH_WEST || viewOrientation === ORIENTATION.NORTH_EAST;
-const viewOffset = [160, 160];
-
 // Draw methods
 
 export const clear = () => {
@@ -48,12 +41,12 @@ export const drawSprite = (image, [x, y]) => {
     );
 }
 
-const tileCoordinatesToCanvasCoordinates = ([x, y]) => {
+const tileCoordinatesToCanvasCoordinates = ([x, y], reverseX, reverseY) => {
     const reverseXMultiplier = reverseX ? -1 : 1;
     const reverseYMultiplier = reverseY ? -1 : 1;
     return [
-        reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x) + viewOffset[0],
-        reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) + viewOffset[1]
+        reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x),
+        reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x)
     ];
 }
 
@@ -72,9 +65,14 @@ export const drawTile = (tileType, [x, y]) => {
 }
 
 export const drawMap = (map) => {
+    let reverseX = map.orientation === ORIENTATION.SOUTH_EAST || map.orientation === ORIENTATION.NORTH_EAST;
+    let reverseY = map.orientation === ORIENTATION.NORTH_WEST || map.orientation === ORIENTATION.NORTH_EAST;
+    const centerTileRelativeCanvasCoordinates = tileCoordinatesToCanvasCoordinates(map.centerTile, reverseX, reverseY);
+    const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
     for(let j = 0; j < map.tiles.length; ++j) {
         for(let i = 0; i < map.tiles[j].length; ++i) {
-            drawTile((i + j) % 6, tileCoordinatesToCanvasCoordinates([i, j]));
+            const tileCanvasCoordinates = tileCoordinatesToCanvasCoordinates([i, j], reverseX, reverseY);
+            drawTile((i + j) % 6, [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]]);
         }
     }
 }
