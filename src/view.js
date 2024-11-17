@@ -5,6 +5,9 @@ export const ORIENTATION = {
     SOUTH_WEST: 'SW'
 }
 
+/**
+ * A view of a map.
+ */
 export class View {
     /**
      * Current map on display.
