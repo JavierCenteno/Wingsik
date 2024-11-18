@@ -20,7 +20,7 @@ export class View {
     /**
      * In which tile of the map the view is currently centered.
      */
-    centerTile = [0, 0];
+    centerTile = [0, 0, 0];
 
     /**
      * 
@@ -31,86 +31,86 @@ export class View {
         this.map = map;
     }
 
-    moveDown() {
+    moveDown(rate = 1) {
         switch(this.orientation) {
             case ORIENTATION.NORTH_EAST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.SOUTH_EAST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] += rate;
                 break;
           }
     }
 
-    moveUp() {
+    moveUp(rate = 1) {
         switch(this.orientation) {
             case ORIENTATION.NORTH_EAST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.SOUTH_EAST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] -= rate;
                 break;
           }
     }
 
-    moveLeft() {
+    moveLeft(rate = 1) {
         switch(this.orientation) {
             case ORIENTATION.NORTH_EAST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.SOUTH_EAST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
         }
     }
 
-    moveRight() {
+    moveRight(rate = 1) {
         switch(this.orientation) {
             case ORIENTATION.NORTH_EAST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
           case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] += 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] += rate;
                 break;
           case ORIENTATION.SOUTH_EAST:
-                this.centerTile[0] -= 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] -= rate;
                 break;
           case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] += 1;
-                this.centerTile[1] -= 1;
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
         }
     }

@@ -14,9 +14,13 @@ const imageLoadPromise = (image) => {
 export const TILE_SPRITES = new Image();
 TILE_SPRITES.src = "assets/sprites/tile.png";
 
+export const TERRAIN_SPRITES = new Image();
+TERRAIN_SPRITES.src = "assets/sprites/terrain.png";
+
 /**
  * Ensures all sprites are loaded by awaiting their load asynchronously.
  */
 export const loadSprites = async () => {
     await imageLoadPromise(TILE_SPRITES);
+    await imageLoadPromise(TERRAIN_SPRITES);
 }
