@@ -1,9 +1,16 @@
+import { TERRAIN_SPRITES } from "./sprites.js";
+import { CANVAS, drawSprite } from "./graphics.js";
+
 export const ORIENTATION = {
     NORTH_EAST: 'NE',
     NORTH_WEST: 'NW',
     SOUTH_EAST: 'SE',
     SOUTH_WEST: 'SW'
 }
+
+export const TILE_WIDTH = 32;
+export const TILE_HEIGHT = 16;
+export const BLOCK_HEIGHT = 8;
 
 /**
  * A view of a map.
@@ -132,23 +139,6 @@ export class View {
         }
     }
 
-    rotateClockwise() {
-        switch(this.orientation) {
-            case ORIENTATION.NORTH_EAST:
-                this.orientation = ORIENTATION.SOUTH_EAST;
-                break;
-            case ORIENTATION.NORTH_WEST:
-                this.orientation = ORIENTATION.NORTH_EAST;
-                break;
-            case ORIENTATION.SOUTH_EAST:
-                this.orientation = ORIENTATION.SOUTH_WEST;
-                break;
-            case ORIENTATION.SOUTH_WEST:
-                this.orientation = ORIENTATION.NORTH_WEST;
-                break;
-        }
-    }
-
     rotateCounterclockwise() {
         switch(this.orientation) {
             case ORIENTATION.NORTH_EAST:
@@ -164,5 +154,64 @@ export class View {
                 this.orientation = ORIENTATION.SOUTH_EAST;
                 break;
           }
+    }
+
+    tileCoordinatesToCanvasCoordinates([x, y, k], reverseX, reverseY) {
+        const reverseXMultiplier = reverseX ? -1 : 1;
+        const reverseYMultiplier = reverseY ? -1 : 1;
+        return [
+            reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x),
+            reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT)
+        ];
+    }
+    
+    drawTile(tileType, [x, y]) {
+        drawSprite(TERRAIN_SPRITES, [tileType * TILE_WIDTH, 0], [TILE_WIDTH, TILE_HEIGHT + 8], [x, y]) 
+    }
+
+    draw() {
+        let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
+        let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
+        const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, reverseX, reverseY);
+        const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
+        for(let j = 0; j < this.map.x; ++j) {
+            for(let i = 0; i < this.map.y; ++i) {
+                const k = Math.min(this.map.heights[j][i], this.map.heights[j][i + 1], this.map.heights[j + 1][i], this.map.heights[j + 1][i + 1]);
+                let spriteIndex = 0;
+                switch(this.orientation) {
+                    case ORIENTATION.NORTH_EAST:
+                        spriteIndex =
+                            1 * (this.map.heights[j + 1][i + 1] - k) +
+                            4 * (this.map.heights[j + 1][i] - k) +
+                            2 * (this.map.heights[j][i + 1] - k) +
+                            8 * (this.map.heights[j][i] - k);
+                        break;
+                    case ORIENTATION.NORTH_WEST:
+                        spriteIndex =
+                            2 * (this.map.heights[j + 1][i + 1] - k) +
+                            1 * (this.map.heights[j + 1][i] - k) +
+                            8 * (this.map.heights[j][i + 1] - k) +
+                            4 * (this.map.heights[j][i] - k);
+                        break;
+                    case ORIENTATION.SOUTH_EAST:
+                        spriteIndex =
+                            4 * (this.map.heights[j + 1][i + 1] - k) +
+                            8 * (this.map.heights[j + 1][i] - k) +
+                            1 * (this.map.heights[j][i + 1] - k) +
+                            2 * (this.map.heights[j][i] - k);
+                        break;
+                    case ORIENTATION.SOUTH_WEST:
+                        spriteIndex =
+                            8 * (this.map.heights[j + 1][i + 1] - k) +
+                            2 * (this.map.heights[j + 1][i] - k) +
+                            4 * (this.map.heights[j][i + 1] - k) +
+                            1 * (this.map.heights[j][i] - k);
+                        break;
+                }
+                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([i, j, k], reverseX, reverseY);
+                const tileCanvasLocation = [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]];
+                this.drawTile(spriteIndex, tileCanvasLocation);
+            }
+        }
     }
 }
