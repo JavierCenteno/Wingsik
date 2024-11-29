@@ -1,7 +1,7 @@
 import { TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 import { Map } from './map.js';
-import { clear } from './graphics.js';
-import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, updateEvents } from './input.js';
+import { clear, getWindowSize, setCanvasSize } from './graphics.js';
+import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents } from './input.js';
 
 const FRAMES_PER_SECOND = 10;
 const FRAME_TIME_MS = 1000 / FRAMES_PER_SECOND;
@@ -29,9 +29,9 @@ export const game = async () => {
 /**
  * Draw a new frame.
  */
-const frame = () => {
-    clear();
+export const frame = () => {
     processEvents();
+    clear();
     view.draw();
     updateEvents();
 }
@@ -68,5 +68,8 @@ const processEvents = () => {
     if(CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
         view.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / TILE_WIDTH);
         view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / TILE_HEIGHT);
+    }
+    if(RESIZED) {
+        setCanvasSize(getWindowSize());
     }
 }

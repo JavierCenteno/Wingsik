@@ -1,3 +1,5 @@
+import { frame } from "./game.js";
+
 export const KEY_BINDINGS = {
     MOVE_DOWN: 's',
     MOVE_UP: 'w',
@@ -31,6 +33,10 @@ export let CLICK_CURRENT = undefined;
  * At which coordinates of the screen the last click ended.
  */
 export let CLICK_ENDED = undefined;
+/**
+ * Whether the window has been resized since the last frame.
+ */
+export let RESIZED = false;
 
 export const updateEvents = () => {
     KEYS_PRESSED = {};
@@ -44,6 +50,7 @@ export const updateEvents = () => {
             CLICK_ENDED = undefined;
         }
     }
+    RESIZED = false;
 }
 
 document.addEventListener('keydown', (event) => {
@@ -73,3 +80,7 @@ document.addEventListener('mousemove', (event) => {
         CLICK_CURRENT = [event.pageX, event.pageY];
     }
 })
+
+window.addEventListener('resize', (event) => {
+    RESIZED = true;
+}, true);
