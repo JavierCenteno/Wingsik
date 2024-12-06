@@ -7,11 +7,12 @@
       content="default-src 'self' 'unsafe-inline';"
     />
     <link rel="icon" href="assets/favicon.ico" />
+    <meta name="theme-color" content="#00007F" />
     <script type="module" src="main.js" defer></script>
     <style>
       html,
       body,
-      canvas {
+      #display {
         margin: 0;
         display: block;
         overflow: hidden;
@@ -25,6 +26,7 @@
     </style>
   </head>
   <body>
-    <canvas></canvas>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <canvas id="display"></canvas>
   </body>
 </html>

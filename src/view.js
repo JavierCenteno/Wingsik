@@ -28,6 +28,10 @@ export class View {
      * In which tile of the map the view is currently centered.
      */
     centerTile = [0, 0, 0];
+    /**
+     * In which order the objects in the view are rendered for each orientation.
+     */
+    renderOrder;
 
     /**
      * 
@@ -36,6 +40,11 @@ export class View {
      */
     constructor(map) {
         this.map = map;
+        this.renderOrder = {};
+        this.renderOrder[ORIENTATION.NORTH_EAST] = [];
+        this.renderOrder[ORIENTATION.NORTH_WEST] = [];
+        this.renderOrder[ORIENTATION.SOUTH_EAST] = [];
+        this.renderOrder[ORIENTATION.SOUTH_WEST] = [];
     }
 
     moveDown(rate = 1) {
@@ -164,9 +173,9 @@ export class View {
             reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT)
         ];
     }
-    
+
     drawTile(tileType, [x, y]) {
-        drawSprite(TERRAIN_SPRITES, [tileType * TILE_WIDTH, 0], [TILE_WIDTH, TILE_HEIGHT + 8], [x, y]) 
+        return drawSprite(TERRAIN_SPRITES, [tileType * TILE_WIDTH, 0], [TILE_WIDTH, TILE_HEIGHT + 8], [x, y], false);
     }
 
     draw() {
@@ -174,8 +183,18 @@ export class View {
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, reverseX, reverseY);
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
-        for(let j = 0; j < this.map.x; ++j) {
-            for(let i = 0; i < this.map.y; ++i) {
+        // render the tiles
+        // we start rendering from the top corner in the view
+        for(
+            let j = reverseY ? this.map.y - 1 : 0;
+            reverseY ? j >= 0 : j < this.map.y;
+            j += reverseY ? -1 : 1
+        ) {
+            for(
+                let i = reverseX ? this.map.x - 1 : 0;
+                reverseX ? i >= 0 : i < this.map.x;
+                i += reverseX ? -1 : 1
+            ) {
                 const k = Math.min(this.map.heights[j][i], this.map.heights[j][i + 1], this.map.heights[j + 1][i], this.map.heights[j + 1][i + 1]);
                 let spriteIndex = 0;
                 switch(this.orientation) {

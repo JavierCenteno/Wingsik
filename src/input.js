@@ -1,5 +1,3 @@
-import { frame } from "./game.js";
-
 export const KEY_BINDINGS = {
     MOVE_DOWN: 's',
     MOVE_UP: 'w',

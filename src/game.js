@@ -3,13 +3,15 @@ import { Map } from './map.js';
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents } from './input.js';
 
-const FRAMES_PER_SECOND = 10;
-const FRAME_TIME_MS = 1000 / FRAMES_PER_SECOND;
+/**
+ * How many milliseconds a frame lasts.
+ */
+const FRAME_DURATION_MS = 50;
 
 /**
  * Current map view.
  */
-let view = new View(new Map(10,16));
+let view = new View(new Map(6,8));
 
 /**
  * Main game loop function.
@@ -18,7 +20,7 @@ export const game = async () => {
     while(true) {
         const timeAtStartOfFrameMs = Date.now();
         frame();
-        const timeToNextFrameMs = timeAtStartOfFrameMs + FRAME_TIME_MS - Date.now();
+        const timeToNextFrameMs = timeAtStartOfFrameMs + FRAME_DURATION_MS - Date.now();
         if(timeToNextFrameMs > 0) {
             // wait timeToNextFrameMs milliseconds until the next iteration
             await new Promise(resolve => setTimeout(resolve, timeToNextFrameMs));
@@ -29,10 +31,13 @@ export const game = async () => {
 /**
  * Draw a new frame.
  */
-export const frame = () => {
+const frame = () => {
     processEvents();
-    clear();
-    view.draw();
+    // No need to render the frame if the user isn't looking at the tab
+    if(!document.hidden) {
+      clear();
+      view.draw();
+    }
     updateEvents();
 }
 

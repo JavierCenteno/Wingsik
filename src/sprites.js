@@ -11,16 +11,25 @@ const imageLoadPromise = (image) => {
     });
 }
 
-export const TILE_SPRITES = new Image();
-TILE_SPRITES.src = "assets/sprites/tile.png";
-
-export const TERRAIN_SPRITES = new Image();
-TERRAIN_SPRITES.src = "assets/sprites/terrain.png";
-
 /**
- * Ensures all sprites are loaded by awaiting their load asynchronously.
+ * Creates a sprite object from the given image source and optionally adds a canvas object to it.
+ * A canvas object should be added if it is needed to access the image data of the sprite.
  */
-export const loadSprites = async () => {
-    await imageLoadPromise(TILE_SPRITES);
-    await imageLoadPromise(TERRAIN_SPRITES);
+export const loadSprite = async (source, createCanvas) => {
+    const sprite = {};
+    sprite.source = source;
+    sprite.image = new Image();
+    sprite.image.src = source;
+    await imageLoadPromise(sprite.image);
+    // sprite.bitmap = createImageBitmap(sprite.image);
+    if(createCanvas) {
+        sprite.canvas = new OffscreenCanvas(sprite.image.width, sprite.image.height);
+        sprite.context = sprite.canvas.getContext('2d', { willReadFrequently: true });
+        sprite.context.imageSmoothingEnabled = false;
+        sprite.context.drawImage(sprite.image, 0, 0);
+    }
+    return sprite;
 }
+
+export const TILE_SPRITES = await loadSprite("assets/sprites/tile.png", true);
+export const TERRAIN_SPRITES = await loadSprite("assets/sprites/terrain.png", true);

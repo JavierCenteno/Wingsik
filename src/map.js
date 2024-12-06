@@ -18,5 +18,6 @@ export class Map {
                 this.heights[j].push(0);
             }
         }
+        this.heights[1][1] = 1;
     }
 }
