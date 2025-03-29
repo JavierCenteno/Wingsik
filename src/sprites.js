@@ -33,3 +33,4 @@ export const loadSprite = async (source, createCanvas) => {
 
 export const TILE_SPRITES = await loadSprite("assets/sprites/tile.png", true);
 export const TERRAIN_SPRITES = await loadSprite("assets/sprites/terrain.png", true);
+export const TREE_SPRITES = await loadSprite("assets/sprites/tree.png", true);

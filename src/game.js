@@ -1,7 +1,7 @@
-import { TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
-import { Map } from './map.js';
+import { ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents } from './input.js';
+import { TreeFeature } from './map/feature.js'
 
 /**
  * How many milliseconds a frame lasts.
@@ -11,7 +11,11 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(new Map(6,8));
+let view = new View(6,8);
+view.map.addFeature(new TreeFeature(1,1,ORIENTATION.NORTH_EAST))
+view.map.addFeature(new TreeFeature(2,2,ORIENTATION.NORTH_EAST))
+view.map.addFeature(new TreeFeature(1,2,ORIENTATION.NORTH_EAST))
+view.map.addFeature(new TreeFeature(2,1,ORIENTATION.NORTH_EAST))
 
 /**
  * Main game loop function.

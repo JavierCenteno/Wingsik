@@ -1,5 +1,7 @@
-import { TERRAIN_SPRITES } from "./sprites.js";
 import { CANVAS, drawSprite } from "./graphics.js";
+import { Map } from './map/map.js';
+import { TERRAIN_SPRITES } from "./sprites.js";
+import { binaryInsert, removeIfExists } from "./util/list-util.js";
 
 export const ORIENTATION = {
     NORTH_EAST: 'NE',
@@ -30,16 +32,18 @@ export class View {
     centerTile = [0, 0, 0];
     /**
      * In which order the objects in the view are rendered for each orientation.
+     * 
+     * @type { [orientation: ORIENTATION]: Placeable[] }
      */
     renderOrder;
 
     /**
      * 
-     * @param {*} x Number of tiles along the x (west-east) axis. Positive x is east while negative x is west.
-     * @param {*} y Number of tiles along the y (south-north) axis. Positive y is north while negative y is south.
+     * @param {number} x Number of tiles along the x (west-east) axis. Positive x is east while negative x is west.
+     * @param {number} y Number of tiles along the y (south-north) axis. Positive y is north while negative y is south.
      */
-    constructor(map) {
-        this.map = map;
+    constructor(x, y) {
+        this.map = new Map(this, x, y);
         this.renderOrder = {};
         this.renderOrder[ORIENTATION.NORTH_EAST] = [];
         this.renderOrder[ORIENTATION.NORTH_WEST] = [];
@@ -165,6 +169,36 @@ export class View {
           }
     }
 
+    addToView(placeable) {
+        this.renderOrder[ORIENTATION.NORTH_EAST] = binaryInsert(
+            this.renderOrder[ORIENTATION.NORTH_EAST],
+            placeable,
+            RENDER_ORDER_COMPARATOR_NE
+        );
+        this.renderOrder[ORIENTATION.NORTH_WEST] = binaryInsert(
+            this.renderOrder[ORIENTATION.NORTH_WEST],
+            placeable,
+            RENDER_ORDER_COMPARATOR_NW
+        );
+        this.renderOrder[ORIENTATION.SOUTH_EAST] = binaryInsert(
+            this.renderOrder[ORIENTATION.SOUTH_EAST],
+            placeable,
+            RENDER_ORDER_COMPARATOR_SE
+        );
+        this.renderOrder[ORIENTATION.SOUTH_WEST] = binaryInsert(
+            this.renderOrder[ORIENTATION.SOUTH_WEST],
+            placeable,
+            RENDER_ORDER_COMPARATOR_SW
+        );
+    }
+
+    removeFromView(placeable) {
+        removeIfExists(this.renderOrder[ORIENTATION.NORTH_EAST], placeable);
+        removeIfExists(this.renderOrder[ORIENTATION.NORTH_WEST], placeable);
+        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_EAST], placeable);
+        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], placeable);
+    }
+
     tileCoordinatesToCanvasCoordinates([x, y, k], reverseX, reverseY) {
         const reverseXMultiplier = reverseX ? -1 : 1;
         const reverseYMultiplier = reverseY ? -1 : 1;
@@ -172,10 +206,6 @@ export class View {
             reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x),
             reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT)
         ];
-    }
-
-    drawTile(tileType, [x, y]) {
-        return drawSprite(TERRAIN_SPRITES, [tileType * TILE_WIDTH, 0], [TILE_WIDTH, TILE_HEIGHT + 8], [x, y], false);
     }
 
     draw() {
@@ -228,9 +258,107 @@ export class View {
                         break;
                 }
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([i, j, k], reverseX, reverseY);
-                const tileCanvasLocation = [tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0], tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]];
-                this.drawTile(spriteIndex, tileCanvasLocation);
+                const tileCanvasLocation =
+                    [
+                        tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - TERRAIN_SPRITES.image.height
+                    ];
+                drawSprite(
+                    TERRAIN_SPRITES,
+                    [spriteIndex * TILE_WIDTH, 0],
+                    [TILE_WIDTH, TERRAIN_SPRITES.image.height],
+                    tileCanvasLocation,
+                    false
+                );
             }
         }
+        // render the objects in the view
+        for(let o of this.renderOrder[this.orientation]) {
+            //
+            let spriteIndex = 0;
+            switch(this.orientation) {
+                case ORIENTATION.NORTH_EAST:
+                    spriteIndex = 0;
+                    break;
+                case ORIENTATION.NORTH_WEST:
+                    spriteIndex = 1;
+                    break;
+                case ORIENTATION.SOUTH_EAST:
+                    spriteIndex = 3;
+                    break;
+                case ORIENTATION.SOUTH_WEST:
+                    spriteIndex = 2;
+                    break;
+            }
+            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([o.x, o.y, this.map.heights[o.x][o.y]], reverseX, reverseY);
+            const tileCanvasLocation =
+                [
+                    tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
+                    tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - o.type.sprite.image.height
+                ];
+            drawSprite(
+                o.type.sprite,
+                [spriteIndex * TILE_WIDTH, 0],
+                [TILE_WIDTH, o.type.sprite.image.height],
+                tileCanvasLocation,
+                false
+            );
+        }
     }
+}
+
+/**
+ * Given two placeable objects A and B and assuming that the orientation is north east, returns:
+ * - -1 if A should be rendered before B
+ * - +1 if B should be rendered before A
+ * - 0 if it doesn't matter.
+ * 
+ * @param {Placeable} a
+ * @param {Placeable} b
+ * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
+ */
+const RENDER_ORDER_COMPARATOR_NE = (a, b) => {
+    return (b.maxX < a.minX || b.maxY < a.minY) * -1 + (a.maxX < b.minX || a.maxY < b.minY) * 1;
+}
+
+/**
+ * Given two placeable objects A and B and assuming that the orientation is north west, returns:
+ * - -1 if A should be rendered before B
+ * - +1 if B should be rendered before A
+ * - 0 if it doesn't matter.
+ * 
+ * @param {Placeable} a 
+ * @param {Placeable} b 
+ * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
+ */
+const RENDER_ORDER_COMPARATOR_NW = (a, b) => {
+    return (a.maxX < b.minX || b.maxY < a.minY) * -1 + (b.maxX < a.minX || a.maxY < b.minY) * 1;
+}
+
+/**
+ * Given two placeable objects A and B and assuming that the orientation is south east, returns:
+ * - -1 if A should be rendered before B
+ * - +1 if B should be rendered before A
+ * - 0 if it doesn't matter.
+ * 
+ * @param {Placeable} a 
+ * @param {Placeable} b 
+ * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
+ */
+const RENDER_ORDER_COMPARATOR_SE = (a, b) => {
+    return (b.maxX < a.minX || a.maxY < b.minY) * -1 + (a.maxX < b.minX || b.maxY < a.minY) * 1;
+}
+
+/**
+ * Given two placeable objects A and B and assuming that the orientation is south west, returns:
+ * - -1 if A should be rendered before B
+ * - +1 if B should be rendered before A
+ * - 0 if it doesn't matter.
+ * 
+ * @param {Placeable} a 
+ * @param {Placeable} b 
+ * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
+ */
+const RENDER_ORDER_COMPARATOR_SW = (a, b) => {
+    return (a.maxX < b.minX || a.maxY < b.minY) * -1 + (b.maxX < a.minX || b.maxY < a.minY) * 1;
 }

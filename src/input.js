@@ -53,7 +53,7 @@ export const updateEvents = () => {
 
 document.addEventListener('keydown', (event) => {
     KEYS_PRESSED[event.key] = (KEYS_PRESSED[event.key] || 0) + 1;
-    KEYS_HELD_DOWN[event.key] = 1;
+    KEYS_HELD_DOWN[event.key] = (KEYS_HELD_DOWN[event.key] || 0) + 1;
 })
 
 document.addEventListener('keyup', (event) => {
@@ -77,6 +77,10 @@ document.addEventListener('mousemove', (event) => {
     if(CLICK_STARTED) {
         CLICK_CURRENT = [event.pageX, event.pageY];
     }
+})
+
+document.addEventListener('wheel', (event) => {
+    // TODO: if event.deltaY > 0, increase zoom level; if event.deltaY < 0; decrease zoom level
 })
 
 window.addEventListener('resize', (event) => {
