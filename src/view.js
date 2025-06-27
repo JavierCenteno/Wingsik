@@ -58,12 +58,12 @@ export class View {
                 this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] -= rate;
-                this.centerTile[1] += rate;
-                break;
-            case ORIENTATION.SOUTH_EAST:
                 this.centerTile[0] += rate;
                 this.centerTile[1] -= rate;
+                break;
+            case ORIENTATION.SOUTH_EAST:
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
                 this.centerTile[0] += rate;
@@ -79,12 +79,12 @@ export class View {
                 this.centerTile[1] += rate;
                 break;
             case ORIENTATION.NORTH_WEST:
-                this.centerTile[0] += rate;
-                this.centerTile[1] -= rate;
-                break;
-            case ORIENTATION.SOUTH_EAST:
                 this.centerTile[0] -= rate;
                 this.centerTile[1] += rate;
+                break;
+            case ORIENTATION.SOUTH_EAST:
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
                 this.centerTile[0] -= rate;
@@ -108,8 +108,8 @@ export class View {
                 this.centerTile[1] += rate;
                 break;
             case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] -= rate;
-                this.centerTile[1] += rate;
+                this.centerTile[0] += rate;
+                this.centerTile[1] -= rate;
                 break;
         }
     }
@@ -129,8 +129,8 @@ export class View {
                 this.centerTile[1] -= rate;
                 break;
           case ORIENTATION.SOUTH_WEST:
-                this.centerTile[0] += rate;
-                this.centerTile[1] -= rate;
+                this.centerTile[0] -= rate;
+                this.centerTile[1] += rate;
                 break;
         }
     }

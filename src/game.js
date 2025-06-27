@@ -49,9 +49,8 @@ const frame = () => {
  * Process all the events that are pending to be processed.
  */
 const processEvents = () => {
-    const keysPressedOrHeldDown = { ...KEYS_PRESSED, ...KEYS_HELD_DOWN };
-    for(const key in keysPressedOrHeldDown) {
-        if(keysPressedOrHeldDown[key] > 0) {
+    for(const key in KEYS_PRESSED) {
+        if(KEYS_PRESSED[key] > 0) {
             switch(key) {
                 case KEY_BINDINGS.MOVE_DOWN:
                   view.moveDown();
@@ -70,6 +69,24 @@ const processEvents = () => {
                   break;
                 case KEY_BINDINGS.ROTATE_COUNTERCLOCKWISE:
                   view.rotateCounterclockwise();
+                  break;
+              }
+        }
+    }
+    for(const key in KEYS_HELD_DOWN) {
+        if(KEYS_HELD_DOWN[key] > 0) {
+            switch(key) {
+                case KEY_BINDINGS.MOVE_DOWN:
+                  view.moveDown();
+                  break;
+                case KEY_BINDINGS.MOVE_UP:
+                  view.moveUp();
+                  break;
+                case KEY_BINDINGS.MOVE_LEFT:
+                  view.moveLeft();
+                  break;
+                case KEY_BINDINGS.MOVE_RIGHT:
+                  view.moveRight();
                   break;
               }
         }

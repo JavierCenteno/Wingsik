@@ -52,12 +52,14 @@ export const updateEvents = () => {
 }
 
 document.addEventListener('keydown', (event) => {
+    if (event.repeat) {
+        return;
+    }
     KEYS_PRESSED[event.key] = (KEYS_PRESSED[event.key] || 0) + 1;
     KEYS_HELD_DOWN[event.key] = (KEYS_HELD_DOWN[event.key] || 0) + 1;
 })
 
 document.addEventListener('keyup', (event) => {
-    KEYS_PRESSED[event.key] = (KEYS_PRESSED[event.key] || 0) + 1;
     KEYS_HELD_DOWN[event.key] = 0;
 })
 
