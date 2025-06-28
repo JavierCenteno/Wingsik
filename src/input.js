@@ -35,6 +35,10 @@ export let CLICK_ENDED = undefined;
  * Whether the window has been resized since the last frame.
  */
 export let RESIZED = false;
+/**
+ * How much the mouse wheel has scrolled in or out since the last frame.
+ */
+export let WHEEL = 0;
 
 export const updateEvents = () => {
     KEYS_PRESSED = {};
@@ -49,6 +53,7 @@ export const updateEvents = () => {
         }
     }
     RESIZED = false;
+    WHEEL = 0;
 }
 
 document.addEventListener('keydown', (event) => {
@@ -82,7 +87,7 @@ document.addEventListener('mousemove', (event) => {
 })
 
 document.addEventListener('wheel', (event) => {
-    // TODO: if event.deltaY > 0, increase zoom level; if event.deltaY < 0; decrease zoom level
+    WHEEL += event.deltaY;
 })
 
 window.addEventListener('resize', (event) => {

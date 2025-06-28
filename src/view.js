@@ -30,6 +30,8 @@ export class View {
      * In which tile of the map the view is currently centered.
      */
     centerTile = [0, 0, 0];
+
+    zoomLevel = 1;
     /**
      * In which order the objects in the view are rendered for each orientation.
      * 
@@ -199,19 +201,19 @@ export class View {
         removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], placeable);
     }
 
-    tileCoordinatesToCanvasCoordinates([x, y, k], reverseX, reverseY) {
+    tileCoordinatesToCanvasCoordinates([x, y, k], zoomLevel, reverseX, reverseY) {
         const reverseXMultiplier = reverseX ? -1 : 1;
         const reverseYMultiplier = reverseY ? -1 : 1;
         return [
-            reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x),
-            reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT)
+            zoomLevel * (reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x)),
+            zoomLevel * (reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT))
         ];
     }
 
     draw() {
         let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
-        const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, reverseX, reverseY);
+        const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
         // render the tiles
         // we start rendering from the top corner in the view
@@ -257,17 +259,18 @@ export class View {
                             1 * (this.map.heights[j][i] - k);
                         break;
                 }
-                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([i, j, k], reverseX, reverseY);
+                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([i, j, k], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
-                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - TERRAIN_SPRITES.image.height
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * TERRAIN_SPRITES.image.height
                     ];
                 drawSprite(
                     TERRAIN_SPRITES,
                     [spriteIndex * TILE_WIDTH, 0],
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     tileCanvasLocation,
+                    [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
                     false
                 );
             }
@@ -290,17 +293,18 @@ export class View {
                     spriteIndex = 2;
                     break;
             }
-            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([o.x, o.y, this.map.heights[o.x][o.y]], reverseX, reverseY);
+            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([o.x, o.y, this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
             const tileCanvasLocation =
                 [
                     tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
-                    tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - o.type.sprite.image.height
+                    tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
                 ];
             drawSprite(
                 o.type.sprite,
                 [spriteIndex * TILE_WIDTH, 0],
                 [TILE_WIDTH, o.type.sprite.image.height],
                 tileCanvasLocation,
+                [TILE_WIDTH * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                 false
             );
         }

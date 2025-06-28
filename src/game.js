@@ -1,6 +1,6 @@
 import { ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
-import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents } from './input.js';
+import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TreeFeature } from './map/feature.js'
 
 /**
@@ -92,10 +92,19 @@ const processEvents = () => {
         }
     }
     if(CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
-        view.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / TILE_WIDTH);
-        view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / TILE_HEIGHT);
+        view.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / (TILE_WIDTH * view.zoomLevel));
+        view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * view.zoomLevel));
     }
     if(RESIZED) {
         setCanvasSize(getWindowSize());
+    }
+    if(WHEEL != 0) {
+      view.zoomLevel = view.zoomLevel - Math.floor(WHEEL / 100);
+      if(view.zoomLevel < 1) {
+        view.zoomLevel = 1;
+      }
+      if(view.zoomLevel > 4) {
+        view.zoomLevel = 4;
+      }
     }
 }

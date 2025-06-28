@@ -29,7 +29,7 @@ export const clear = () => {
  * Draws a sprite to the canvas.
  * @returns Whether the sprite has been clicked on if it's clickable
  */
-export const drawSprite = (sprite, [fromX, fromY], [width, height], [toX, toY], clickable) => {
+export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX, toY], [toWidth, toHeight], clickable) => {
     let hasClickedOnSprite = false;
     // check whether the sprite has been clicked on if it's clickable
     if(
@@ -53,12 +53,12 @@ export const drawSprite = (sprite, [fromX, fromY], [width, height], [toX, toY], 
         sprite.canvas,
         fromX,
         fromY,
-        width,
-        height,
+        fromWidth,
+        fromHeight,
         toX,
         toY,
-        width,
-        height
+        toWidth,
+        toHeight
     );
     return hasClickedOnSprite;
 }
