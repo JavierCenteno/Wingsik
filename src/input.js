@@ -32,6 +32,10 @@ export let CLICK_CURRENT = undefined;
  */
 export let CLICK_ENDED = undefined;
 /**
+ * At which coordinates of the screen the cursor is.
+ */
+export let CURSOR_CURRENT = undefined;
+/**
  * Whether the window has been resized since the last frame.
  */
 export let RESIZED = false;
@@ -72,18 +76,21 @@ document.addEventListener('mousedown', (event) => {
     CLICK_STARTED = [event.pageX, event.pageY];
     CLICK_LAST_FRAME = [event.pageX, event.pageY];
     CLICK_CURRENT = [event.pageX, event.pageY];
+    CURSOR_CURRENT = [event.pageX, event.pageY];
 })
 
 document.addEventListener('mouseup', (event) => {
     if(CLICK_STARTED) {
         CLICK_ENDED = [event.pageX, event.pageY];
     }
+    CURSOR_CURRENT = [event.pageX, event.pageY];
 })
 
 document.addEventListener('mousemove', (event) => {
     if(CLICK_STARTED) {
         CLICK_CURRENT = [event.pageX, event.pageY];
     }
+    CURSOR_CURRENT = [event.pageX, event.pageY];
 })
 
 document.addEventListener('wheel', (event) => {

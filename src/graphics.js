@@ -1,4 +1,4 @@
-import { CLICK_CURRENT } from "./input.js";
+import { CLICK_CURRENT, CURSOR_CURRENT } from "./input.js";
 
 // Constants
 
@@ -27,25 +27,40 @@ export const clear = () => {
 
 /**
  * Draws a sprite to the canvas.
- * @returns Whether the sprite has been clicked on if it's clickable
  */
-export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX, toY], [toWidth, toHeight], clickable) => {
-    let hasClickedOnSprite = false;
-    // check whether the sprite has been clicked on if it's clickable
+export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX, toY], [toWidth, toHeight], clickCallback, hoverCallback) => {
+    // check whether the sprite has been clicked on if there is a click callback
     if(
-        clickable &&
+        clickCallback &&
         CLICK_CURRENT &&
         toX < CLICK_CURRENT[0] &&
-        CLICK_CURRENT[0] < toX + width &&
+        CLICK_CURRENT[0] < toX + toWidth &&
         toY < CLICK_CURRENT[1] &&
-        CLICK_CURRENT[1] < toY + height
+        CLICK_CURRENT[1] < toY + toHeight
     ) {
         // RGBA values for the pixel of the sprite that the user clicked on
         const spriteImageDataAtClickLocation =
-            sprite.context.getImageData(CLICK_CURRENT[0] - toX + fromX, CLICK_CURRENT[1] - toY + fromY, 1, 1).data;
+            sprite.context.getImageData(fromWidth * (CLICK_CURRENT[0] - toX) / toWidth + fromX, fromHeight * (CLICK_CURRENT[1] - toY) / toHeight + fromY, 1, 1).data;
         // alpha channel
         if(spriteImageDataAtClickLocation[3] > 0) {
-            hasClickedOnSprite = true;
+            clickCallback();
+        }
+    }
+    // check whether the sprite is being hovered over if there is a hover callback
+    if(
+        hoverCallback &&
+        CURSOR_CURRENT &&
+        toX < CURSOR_CURRENT[0] &&
+        CURSOR_CURRENT[0] < toX + toWidth &&
+        toY < CURSOR_CURRENT[1] &&
+        CURSOR_CURRENT[1] < toY + toHeight
+    ) {
+        // RGBA values for the pixel of the sprite that the user clicked on
+        const spriteImageDataAtClickLocation =
+            sprite.context.getImageData(fromWidth * (CURSOR_CURRENT[0] - toX) / toWidth + fromX, fromHeight * (CURSOR_CURRENT[1] - toY) / toHeight + fromY, 1, 1).data;
+        // alpha channel
+        if(spriteImageDataAtClickLocation[3] > 0) {
+            hoverCallback();
         }
     }
     CONTEXT.drawImage(
@@ -60,5 +75,4 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
         toWidth,
         toHeight
     );
-    return hasClickedOnSprite;
 }

@@ -271,7 +271,8 @@ export class View {
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     tileCanvasLocation,
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
-                    false
+                    undefined,
+                    undefined
                 );
             }
         }
@@ -305,7 +306,8 @@ export class View {
                 [TILE_WIDTH, o.type.sprite.image.height],
                 tileCanvasLocation,
                 [TILE_WIDTH * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                false
+                undefined,
+                undefined
             );
         }
     }
