@@ -81,6 +81,12 @@ const processEvents = () => {
                 case KEY_BINDINGS.ROTATE_COUNTERCLOCKWISE:
                   view.rotateCounterclockwise();
                   break;
+                case KEY_BINDINGS.INCREASE_ZOOM:
+                  view.increaseZoom();
+                  break;
+                case KEY_BINDINGS.DECREASE_ZOOM:
+                  view.decreaseZoom();
+                  break;
               }
         }
     }
@@ -110,12 +116,6 @@ const processEvents = () => {
         setCanvasSize(getWindowSize());
     }
     if(WHEEL != 0) {
-      view.zoomLevel = view.zoomLevel - Math.floor(WHEEL / 100);
-      if(view.zoomLevel < 1) {
-        view.zoomLevel = 1;
-      }
-      if(view.zoomLevel > 4) {
-        view.zoomLevel = 4;
-      }
+      view.decreaseZoom(Math.floor(WHEEL / 100));
     }
 }

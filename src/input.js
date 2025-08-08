@@ -4,7 +4,9 @@ export const KEY_BINDINGS = {
     MOVE_LEFT: 'a',
     MOVE_RIGHT: 'd',
     ROTATE_CLOCKWISE: 'q',
-    ROTATE_COUNTERCLOCKWISE: 'e'
+    ROTATE_COUNTERCLOCKWISE: 'e',
+    INCREASE_ZOOM: '+',
+    DECREASE_ZOOM: '-'
 }
 
 /**

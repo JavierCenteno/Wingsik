@@ -171,6 +171,26 @@ export class View {
           }
     }
 
+    increaseZoom(rate = 1) {
+        this.zoomLevel = this.zoomLevel + rate;
+        if(this.zoomLevel < 1) {
+            this.zoomLevel = 1;
+        }
+        if(this.zoomLevel > 4) {
+            this.zoomLevel = 4;
+        }
+    }
+
+    decreaseZoom(rate = 1) {
+        this.zoomLevel = this.zoomLevel - rate;
+        if(this.zoomLevel < 1) {
+            this.zoomLevel = 1;
+        }
+        if(this.zoomLevel > 4) {
+            this.zoomLevel = 4;
+        }
+    }
+
     addToView(placeable) {
         this.renderOrder[ORIENTATION.NORTH_EAST] = binaryInsert(
             this.renderOrder[ORIENTATION.NORTH_EAST],
