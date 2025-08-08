@@ -22,7 +22,7 @@ export const loadSprite = async (source, createCanvas) => {
     sprite.image.src = source;
     await imageLoadPromise(sprite.image);
     // sprite.bitmap = createImageBitmap(sprite.image);
-    if(createCanvas) {
+    if (createCanvas) {
         sprite.canvas = new OffscreenCanvas(sprite.image.width, sprite.image.height);
         sprite.context = sprite.canvas.getContext('2d', { willReadFrequently: true });
         sprite.context.imageSmoothingEnabled = false;

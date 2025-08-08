@@ -1,4 +1,4 @@
-import { CLICK_CURRENT, CURSOR_CURRENT } from "./input.js";
+import { CLICK_CURRENT, CLICK_ENDED, CLICK_STARTED, CURSOR_CURRENT } from "./input.js";
 
 // Constants
 
@@ -30,9 +30,14 @@ export const clear = () => {
  */
 export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX, toY], [toWidth, toHeight], clickCallback, hoverCallback) => {
     // check whether the sprite has been clicked on if there is a click callback
-    if(
+    if (
         clickCallback &&
         CLICK_CURRENT &&
+        // the click is not a drag
+        CLICK_CURRENT[0] === CLICK_STARTED[0] && CLICK_CURRENT[1] === CLICK_STARTED[1] &&
+        // ensure the click has ended
+        CLICK_ENDED &&
+        // the click is within the bounds of the sprite
         toX < CLICK_CURRENT[0] &&
         CLICK_CURRENT[0] < toX + toWidth &&
         toY < CLICK_CURRENT[1] &&
@@ -42,12 +47,12 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
         const spriteImageDataAtClickLocation =
             sprite.context.getImageData(fromWidth * (CLICK_CURRENT[0] - toX) / toWidth + fromX, fromHeight * (CLICK_CURRENT[1] - toY) / toHeight + fromY, 1, 1).data;
         // alpha channel
-        if(spriteImageDataAtClickLocation[3] > 0) {
+        if (spriteImageDataAtClickLocation[3] > 0) {
             clickCallback();
         }
     }
     // check whether the sprite is being hovered over if there is a hover callback
-    if(
+    if (
         hoverCallback &&
         CURSOR_CURRENT &&
         toX < CURSOR_CURRENT[0] &&
@@ -59,7 +64,7 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
         const spriteImageDataAtClickLocation =
             sprite.context.getImageData(fromWidth * (CURSOR_CURRENT[0] - toX) / toWidth + fromX, fromHeight * (CURSOR_CURRENT[1] - toY) / toHeight + fromY, 1, 1).data;
         // alpha channel
-        if(spriteImageDataAtClickLocation[3] > 0) {
+        if (spriteImageDataAtClickLocation[3] > 0) {
             hoverCallback();
         }
     }

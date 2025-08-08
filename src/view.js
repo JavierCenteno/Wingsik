@@ -1,4 +1,5 @@
 import { CANVAS, drawSprite } from "./graphics.js";
+import { CLICK_CURRENT, CLICK_ENDED, CLICK_LAST_FRAME, CLICK_STARTED } from "./input.js";
 import { Map } from './map/map.js';
 import { TERRAIN_SPRITES } from "./sprites.js";
 import { binaryInsert, removeIfExists } from "./util/list-util.js";
@@ -54,7 +55,7 @@ export class View {
     }
 
     moveDown(rate = 1) {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.centerTile[0] -= rate;
                 this.centerTile[1] -= rate;
@@ -75,7 +76,7 @@ export class View {
     }
 
     moveUp(rate = 1) {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.centerTile[0] += rate;
                 this.centerTile[1] += rate;
@@ -96,7 +97,7 @@ export class View {
     }
 
     moveLeft(rate = 1) {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.centerTile[0] -= rate;
                 this.centerTile[1] += rate;
@@ -117,7 +118,7 @@ export class View {
     }
 
     moveRight(rate = 1) {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.centerTile[0] += rate;
                 this.centerTile[1] -= rate;
@@ -138,7 +139,7 @@ export class View {
     }
 
     rotateClockwise() {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.orientation = ORIENTATION.SOUTH_EAST;
                 break;
@@ -155,7 +156,7 @@ export class View {
     }
 
     rotateCounterclockwise() {
-        switch(this.orientation) {
+        switch (this.orientation) {
             case ORIENTATION.NORTH_EAST:
                 this.orientation = ORIENTATION.NORTH_WEST;
                 break;
@@ -173,20 +174,20 @@ export class View {
 
     increaseZoom(rate = 1) {
         this.zoomLevel = this.zoomLevel + rate;
-        if(this.zoomLevel < 1) {
+        if (this.zoomLevel < 1) {
             this.zoomLevel = 1;
         }
-        if(this.zoomLevel > 4) {
+        if (this.zoomLevel > 4) {
             this.zoomLevel = 4;
         }
     }
 
     decreaseZoom(rate = 1) {
         this.zoomLevel = this.zoomLevel - rate;
-        if(this.zoomLevel < 1) {
+        if (this.zoomLevel < 1) {
             this.zoomLevel = 1;
         }
-        if(this.zoomLevel > 4) {
+        if (this.zoomLevel > 4) {
             this.zoomLevel = 4;
         }
     }
@@ -235,21 +236,23 @@ export class View {
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
+        let clickCallback = undefined;
+        let hoverCallback = undefined;
         // render the tiles
         // we start rendering from the top corner in the view
-        for(
+        for (
             let j = reverseY ? this.map.y - 1 : 0;
             reverseY ? j >= 0 : j < this.map.y;
             j += reverseY ? -1 : 1
         ) {
-            for(
+            for (
                 let i = reverseX ? this.map.x - 1 : 0;
                 reverseX ? i >= 0 : i < this.map.x;
                 i += reverseX ? -1 : 1
             ) {
                 const k = Math.min(this.map.heights[j][i], this.map.heights[j][i + 1], this.map.heights[j + 1][i], this.map.heights[j + 1][i + 1]);
                 let spriteIndex = 0;
-                switch(this.orientation) {
+                switch (this.orientation) {
                     case ORIENTATION.NORTH_EAST:
                         spriteIndex =
                             1 * (this.map.heights[j + 1][i + 1] - k) +
@@ -297,12 +300,11 @@ export class View {
             }
         }
         // render the objects in the view
-        for(let o of this.renderOrder[this.orientation]) {
-            //
+        for (let o of this.renderOrder[this.orientation]) {
             let spriteIndex = 0;
-            switch(this.orientation) {
+            switch (this.orientation) {
                 case ORIENTATION.NORTH_EAST:
-                    switch(o.orientation) {
+                    switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 0;
                             break;
@@ -318,7 +320,7 @@ export class View {
                     }
                     break;
                 case ORIENTATION.NORTH_WEST:
-                    switch(o.orientation) {
+                    switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 1;
                             break;
@@ -334,7 +336,7 @@ export class View {
                     }
                     break;
                 case ORIENTATION.SOUTH_EAST:
-                    switch(o.orientation) {
+                    switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 3;
                             break;
@@ -350,7 +352,7 @@ export class View {
                     }
                     break;
                 case ORIENTATION.SOUTH_WEST:
-                    switch(o.orientation) {
+                    switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 2;
                             break;
@@ -378,9 +380,27 @@ export class View {
                 [TILE_WIDTH, o.type.sprite.image.height],
                 tileCanvasLocation,
                 [TILE_WIDTH * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                undefined,
-                undefined
+                () => {
+                    /* TODO
+                    make clickCallback whathever function needs to be called when clicking on this thing
+                    */
+                    clickCallback = undefined;
+                },
+                () => {
+                    /* TODO
+                    make hoverCallback whathever function needs to be called when clicking on this thing
+                    */
+                    hoverCallback = undefined;
+                },
             );
+        }
+        if (clickCallback !== undefined) {
+            clickCallback();
+            clickCallback = undefined;
+        }
+        if (hoverCallback !== undefined) {
+            hoverCallback();
+            hoverCallback = undefined;
         }
     }
 }

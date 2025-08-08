@@ -31,9 +31,9 @@ export class Map {
         this.x = x;
         this.y = y;
         this.heights = [];
-        for(let j = 0; j < y + 1; ++j) {
+        for (let j = 0; j < y + 1; ++j) {
             this.heights.push([]);
-            for(let i = 0; i < x + 1; ++i) {
+            for (let i = 0; i < x + 1; ++i) {
                 this.heights[j].push(0);
             }
         }

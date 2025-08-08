@@ -48,10 +48,10 @@ export let WHEEL = 0;
 
 export const updateEvents = () => {
     KEYS_PRESSED = {};
-    if(CLICK_STARTED) {
+    if (CLICK_STARTED) {
         CLICK_LAST_FRAME = CLICK_CURRENT;
         // only clear click events if the click is finished
-        if(CLICK_ENDED !== undefined) {
+        if (CLICK_ENDED !== undefined) {
             CLICK_STARTED = undefined;
             CLICK_LAST_FRAME = undefined;
             CLICK_CURRENT = undefined;
@@ -82,14 +82,14 @@ document.addEventListener('mousedown', (event) => {
 })
 
 document.addEventListener('mouseup', (event) => {
-    if(CLICK_STARTED) {
+    if (CLICK_STARTED) {
         CLICK_ENDED = [event.pageX, event.pageY];
     }
     CURSOR_CURRENT = [event.pageX, event.pageY];
 })
 
 document.addEventListener('mousemove', (event) => {
-    if(CLICK_STARTED) {
+    if (CLICK_STARTED) {
         CLICK_CURRENT = [event.pageX, event.pageY];
     }
     CURSOR_CURRENT = [event.pageX, event.pageY];
