@@ -11,22 +11,22 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(10,16);
-for(let j = 2; j < 9; ++j) {
-  for(let i = 2; i < 9; ++i) {
+let view = new View(12,16);
+for(let j = 2; j < 11; ++j) {
+  for(let i = 2; i < 11; ++i) {
     view.map.heights[j][i] = 1;
   }
 }
-for(let j = 3; j < 8; ++j) {
-  for(let i = 3; i < 8; ++i) {
+for(let j = 3; j < 10; ++j) {
+  for(let i = 3; i < 10; ++i) {
     view.map.heights[j][i] = 2;
   }
 }
 
-view.map.addFeature(new TreeFeature(3,3,ORIENTATION.NORTH_EAST))
-view.map.addFeature(new TreeFeature(6,6,ORIENTATION.SOUTH_WEST))
-view.map.addFeature(new TreeFeature(3,6,ORIENTATION.NORTH_WEST))
-view.map.addFeature(new TreeFeature(6,3,ORIENTATION.SOUTH_EAST))
+view.map.addFeature(new TreeFeature(4,4,ORIENTATION.NORTH_EAST))
+view.map.addFeature(new TreeFeature(7,7,ORIENTATION.SOUTH_WEST))
+view.map.addFeature(new TreeFeature(4,7,ORIENTATION.NORTH_WEST))
+view.map.addFeature(new TreeFeature(7,4,ORIENTATION.SOUTH_EAST))
 
 /**
  * Main game loop function.
