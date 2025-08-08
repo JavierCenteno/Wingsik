@@ -63,6 +63,7 @@ export const updateEvents = () => {
 }
 
 document.addEventListener('keydown', (event) => {
+    event.preventDefault();
     if (event.repeat) {
         return;
     }
@@ -71,10 +72,12 @@ document.addEventListener('keydown', (event) => {
 })
 
 document.addEventListener('keyup', (event) => {
+    event.preventDefault();
     KEYS_HELD_DOWN[event.key] = 0;
 })
 
 document.addEventListener('mousedown', (event) => {
+    event.preventDefault();
     CLICK_STARTED = [event.pageX, event.pageY];
     CLICK_LAST_FRAME = [event.pageX, event.pageY];
     CLICK_CURRENT = [event.pageX, event.pageY];
@@ -82,6 +85,7 @@ document.addEventListener('mousedown', (event) => {
 })
 
 document.addEventListener('mouseup', (event) => {
+    event.preventDefault();
     if (CLICK_STARTED) {
         CLICK_ENDED = [event.pageX, event.pageY];
     }
@@ -89,6 +93,7 @@ document.addEventListener('mouseup', (event) => {
 })
 
 document.addEventListener('mousemove', (event) => {
+    event.preventDefault();
     if (CLICK_STARTED) {
         CLICK_CURRENT = [event.pageX, event.pageY];
     }
@@ -96,6 +101,7 @@ document.addEventListener('mousemove', (event) => {
 })
 
 document.addEventListener('wheel', (event) => {
+    event.preventDefault();
     WHEEL += event.deltaY;
 })
 
