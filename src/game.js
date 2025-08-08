@@ -11,11 +11,11 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(6,8);
+let view = new View(6,10);
 view.map.addFeature(new TreeFeature(1,1,ORIENTATION.NORTH_EAST))
-view.map.addFeature(new TreeFeature(2,2,ORIENTATION.NORTH_EAST))
-view.map.addFeature(new TreeFeature(1,2,ORIENTATION.NORTH_EAST))
-view.map.addFeature(new TreeFeature(2,1,ORIENTATION.NORTH_EAST))
+view.map.addFeature(new TreeFeature(4,4,ORIENTATION.SOUTH_WEST))
+view.map.addFeature(new TreeFeature(1,4,ORIENTATION.NORTH_WEST))
+view.map.addFeature(new TreeFeature(4,1,ORIENTATION.SOUTH_EAST))
 
 /**
  * Main game loop function.

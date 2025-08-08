@@ -282,16 +282,68 @@ export class View {
             let spriteIndex = 0;
             switch(this.orientation) {
                 case ORIENTATION.NORTH_EAST:
-                    spriteIndex = 0;
+                    switch(o.orientation) {
+                        case ORIENTATION.NORTH_EAST:
+                            spriteIndex = 0;
+                            break;
+                        case ORIENTATION.NORTH_WEST:
+                            spriteIndex = 1;
+                            break;
+                        case ORIENTATION.SOUTH_EAST:
+                            spriteIndex = 3;
+                            break;
+                        case ORIENTATION.SOUTH_WEST:
+                            spriteIndex = 2;
+                            break;
+                    }
                     break;
                 case ORIENTATION.NORTH_WEST:
-                    spriteIndex = 1;
+                    switch(o.orientation) {
+                        case ORIENTATION.NORTH_EAST:
+                            spriteIndex = 1;
+                            break;
+                        case ORIENTATION.NORTH_WEST:
+                            spriteIndex = 2;
+                            break;
+                        case ORIENTATION.SOUTH_EAST:
+                            spriteIndex = 0;
+                            break;
+                        case ORIENTATION.SOUTH_WEST:
+                            spriteIndex = 3;
+                            break;
+                    }
                     break;
                 case ORIENTATION.SOUTH_EAST:
-                    spriteIndex = 3;
+                    switch(o.orientation) {
+                        case ORIENTATION.NORTH_EAST:
+                            spriteIndex = 3;
+                            break;
+                        case ORIENTATION.NORTH_WEST:
+                            spriteIndex = 0;
+                            break;
+                        case ORIENTATION.SOUTH_EAST:
+                            spriteIndex = 2;
+                            break;
+                        case ORIENTATION.SOUTH_WEST:
+                            spriteIndex = 1;
+                            break;
+                    }
                     break;
                 case ORIENTATION.SOUTH_WEST:
-                    spriteIndex = 2;
+                    switch(o.orientation) {
+                        case ORIENTATION.NORTH_EAST:
+                            spriteIndex = 2;
+                            break;
+                        case ORIENTATION.NORTH_WEST:
+                            spriteIndex = 3;
+                            break;
+                        case ORIENTATION.SOUTH_EAST:
+                            spriteIndex = 1;
+                            break;
+                        case ORIENTATION.SOUTH_WEST:
+                            spriteIndex = 0;
+                            break;
+                    }
                     break;
             }
             const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([o.x, o.y, this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
