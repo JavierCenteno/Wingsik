@@ -115,7 +115,10 @@ const processEvents = () => {
     if(RESIZED) {
         setCanvasSize(getWindowSize());
     }
-    if(WHEEL != 0) {
-      view.decreaseZoom(Math.floor(WHEEL / 100));
+    if(WHEEL < 0) {
+      view.increaseZoom();
+    }
+    if(WHEEL > 0) {
+      view.decreaseZoom();
     }
 }
