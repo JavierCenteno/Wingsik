@@ -1,3 +1,20 @@
+export const KEYS = {
+    ALT: 'Alt',
+    BACKSPACE: 'Backspace',
+    CONTROL: 'Control',
+    DELETE: 'Delete',
+    END: 'End',
+    ENTER: 'Enter',
+    ESCAPE: 'Escape',
+    HOME: 'Home',
+    INSERT: 'Insert',
+    META: 'Meta',
+    PAGE_DOWN: 'PageDown',
+    PAGE_UP: 'PageUp',
+    SHIFT: 'Shift',
+    TAB: 'Tab'
+}
+
 export const KEY_BINDINGS = {
     MOVE_DOWN: 's',
     MOVE_UP: 'w',
