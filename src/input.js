@@ -63,7 +63,6 @@ export const updateEvents = () => {
 }
 
 document.addEventListener('keydown', (event) => {
-    event.preventDefault();
     if (event.repeat) {
         return;
     }
@@ -72,7 +71,6 @@ document.addEventListener('keydown', (event) => {
 })
 
 document.addEventListener('keyup', (event) => {
-    event.preventDefault();
     KEYS_HELD_DOWN[event.key] = 0;
 })
 
@@ -101,7 +99,6 @@ document.addEventListener('mousemove', (event) => {
 })
 
 document.addEventListener('wheel', (event) => {
-    event.preventDefault();
     WHEEL += event.deltaY;
 })
 

@@ -30,10 +30,11 @@ export class Map {
         this.view = view;
         this.x = x;
         this.y = y;
+        // initialize heights to a bidimensional array of dimensions (x + 1), (y + 1)
         this.heights = [];
-        for (let j = 0; j < y + 1; ++j) {
+        for (let j = 0; j <= y; ++j) {
             this.heights.push([]);
-            for (let i = 0; i < x + 1; ++i) {
+            for (let i = 0; i <= x; ++i) {
                 this.heights[j].push(0);
             }
         }
