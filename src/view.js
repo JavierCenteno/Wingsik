@@ -308,39 +308,23 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 0;
-
-                            // CORRECT
-
                             topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            
                             break;
                         case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 1;
-                            
-                            // CORRECT
-
+                            spriteIndex = 3;
                             topTileCoordinates[0] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                             topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-
                             break;
                         case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 3;
-                            
-                            // CORRECT
-
+                            spriteIndex = 1;
                             topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 2;
-                            
-                            // CORRECT
-
                             topTileCoordinates[0] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                             topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-
                             break;
                     }
                     break;
@@ -348,39 +332,23 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 1;
-                            
-                            // CORRECT
-
                             topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-
                             break;
                         case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 2;
-                            
-                            // CORRECT
-
+                            spriteIndex = 0;
                             topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 0;
-                            
-                            // CORRECT
-
+                            spriteIndex = 2;
                             topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 3;
-                            
-                            // CORRECT
-
                             topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-
                             break;
                     }
                     break;
@@ -388,39 +356,23 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 3;
-
-                            // CORRECT
-
                             topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-
                             break;
                         case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 0;
-                            
-                            // CORRECT
-
+                            spriteIndex = 2;
                             topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 2;
-                            
-                            // CORRECT
-
+                            spriteIndex = 0;
                             topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 1;
-                            
-                            // CORRECT
-
                             topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-
                             break;
                     }
                     break;
@@ -428,39 +380,23 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 2;
-                        
-                            // CORRECT
-
                             topTileCoordinates[0] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                             topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            
                             break;
                         case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 3;
-                            
-                            // CORRECT
-
+                            spriteIndex = 1;
                             topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                             topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 1;
-                            
-                            // CORRECT
-
+                            spriteIndex = 3;
                             topTileCoordinates[0] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                             topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 0;
-                            
-                            // CORRECT
-
                             topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                             topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-                            
                             break;
                     }
                     break;
