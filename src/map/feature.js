@@ -1,4 +1,5 @@
 import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_DICE_SPRITES, FEATURE_TEST_SPHERE_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
+import { ORIENTATION } from "../view.js";
 
 export class FeatureType {
     /**
@@ -47,20 +48,44 @@ export class Feature {
     orientation;
 
     get minX() {
-        // TODO: ACCOUNT FOR ORIENTATION HERE!
-        return this.x;
+        switch (this.orientation) {
+            case ORIENTATION.SOUTH_WEST:
+            case ORIENTATION.NORTH_WEST:
+                return this.x - (this.type.sizeX - 1);
+            case ORIENTATION.SOUTH_EAST:
+            case ORIENTATION.NORTH_EAST:
+                return this.x;
+        }
     }
     get maxX() {
-        // TODO: ACCOUNT FOR ORIENTATION HERE!
-        return this.x + this.type.sizeX - 1;
+        switch (this.orientation) {
+            case ORIENTATION.SOUTH_WEST:
+            case ORIENTATION.NORTH_WEST:
+                return this.x;
+            case ORIENTATION.SOUTH_EAST:
+            case ORIENTATION.NORTH_EAST:
+                return this.x + (this.type.sizeX - 1);
+        }
     }
     get minY() {
-        // TODO: ACCOUNT FOR ORIENTATION HERE!
-        return this.y;
+        switch (this.orientation) {
+            case ORIENTATION.SOUTH_WEST:
+            case ORIENTATION.SOUTH_EAST:
+                return this.y - (this.type.sizeY - 1);
+            case ORIENTATION.NORTH_EAST:
+            case ORIENTATION.NORTH_WEST:
+                return this.y;
+        }
     }
     get maxY() {
-        // TODO: ACCOUNT FOR ORIENTATION HERE!
-        return this.x + this.type.sizeY - 1;
+        switch (this.orientation) {
+            case ORIENTATION.SOUTH_WEST:
+            case ORIENTATION.SOUTH_EAST:
+                return this.y;
+            case ORIENTATION.NORTH_EAST:
+            case ORIENTATION.NORTH_WEST:
+                return this.y + (this.type.sizeY - 1);
+        }
     }
 
     /**
