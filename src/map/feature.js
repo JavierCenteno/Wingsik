@@ -1,4 +1,4 @@
-import { FEATURE_ARROW_SPRITES, FEATURE_CHONKY_SQUARE_SPRITES, FEATURE_LONG_ARROW_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
+import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_SPHERE_SPRITES , FEATURE_TREE_SPRITES } from "../sprites.js";
 
 export class FeatureType {
     /**
@@ -24,9 +24,8 @@ export class FeatureType {
 export const FEATURE_TYPES = {};
 
 FEATURE_TYPES.tree = new FeatureType(FEATURE_TREE_SPRITES, 1, 1);
-FEATURE_TYPES.arrow = new FeatureType(FEATURE_ARROW_SPRITES, 2, 3);
-FEATURE_TYPES.long_arrow = new FeatureType(FEATURE_LONG_ARROW_SPRITES, 2, 5);
-FEATURE_TYPES.chonky_square = new FeatureType(FEATURE_CHONKY_SQUARE_SPRITES, 4, 6);
+FEATURE_TYPES.test_cube = new FeatureType(FEATURE_TEST_CUBE_SPRITES, 1, 1);
+FEATURE_TYPES.test_sphere = new FeatureType(FEATURE_TEST_SPHERE_SPRITES, 1, 1);
 
 export class Feature {
     /**
@@ -83,20 +82,14 @@ export class TreeFeature extends Feature {
     }
 }
 
-export class ArrowFeature extends Feature {
+export class TestCubeFeature extends Feature {
     constructor(x, y, orientation) {
-        super(FEATURE_TYPES.arrow, x, y, orientation)
+        super(FEATURE_TYPES.test_cube, x, y, orientation)
     }
 }
 
-export class LongArrowFeature extends Feature {
+export class TestSphereFeature extends Feature {
     constructor(x, y, orientation) {
-        super(FEATURE_TYPES.long_arrow, x, y, orientation)
-    }
-}
-
-export class ChonkySquareFeature extends Feature {
-    constructor(x, y, orientation) {
-        super(FEATURE_TYPES.chonky_square, x, y, orientation)
+        super(FEATURE_TYPES.test_sphere, x, y, orientation)
     }
 }
