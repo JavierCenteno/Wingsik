@@ -1,6 +1,6 @@
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
-import { TestCubeFeature, TestSphereFeature } from './map/feature.js';
+import { TestDiceFeature } from './map/feature.js';
 import { ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 
 /**
@@ -23,9 +23,7 @@ for (let j = 9; j < 16; ++j) {
   }
 }
 
-view.map.addFeature(new TestCubeFeature(1, 1, ORIENTATION.NORTH_EAST));
-view.map.addFeature(new TestCubeFeature(1, 3, ORIENTATION.NORTH_WEST));
-view.map.addFeature(new TestSphereFeature(3, 3, ORIENTATION.NORTH_WEST));
+view.map.addFeature(new TestDiceFeature(1, 1, ORIENTATION.NORTH_EAST));
 
 /**
  * Main game loop function.

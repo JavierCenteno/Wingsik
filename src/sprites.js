@@ -36,4 +36,5 @@ export const TERRAIN_SPRITES = await loadSprite("assets/sprites/terrain.png", tr
 export const FEATURE_TREE_SPRITES = await loadSprite("assets/sprites/feature/tree.png", true);
 export const FEATURE_TEST_CUBE_SPRITES = await loadSprite("assets/sprites/feature/test_cube.png", true);
 export const FEATURE_TEST_SPHERE_SPRITES = await loadSprite("assets/sprites/feature/test_sphere.png", true);
+export const FEATURE_TEST_DICE_SPRITES = await loadSprite("assets/sprites/feature/test_dice.png", true);
 export const BUILDING_FARM_SPRITES = await loadSprite("assets/sprites/building/farm.png", true);

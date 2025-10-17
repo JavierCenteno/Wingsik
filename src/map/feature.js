@@ -1,4 +1,4 @@
-import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_SPHERE_SPRITES , FEATURE_TREE_SPRITES } from "../sprites.js";
+import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_DICE_SPRITES, FEATURE_TEST_SPHERE_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
 
 export class FeatureType {
     /**
@@ -26,6 +26,7 @@ export const FEATURE_TYPES = {};
 FEATURE_TYPES.tree = new FeatureType(FEATURE_TREE_SPRITES, 1, 1);
 FEATURE_TYPES.test_cube = new FeatureType(FEATURE_TEST_CUBE_SPRITES, 1, 1);
 FEATURE_TYPES.test_sphere = new FeatureType(FEATURE_TEST_SPHERE_SPRITES, 1, 1);
+FEATURE_TYPES.test_dice = new FeatureType(FEATURE_TEST_DICE_SPRITES, 2, 2);
 
 export class Feature {
     /**
@@ -91,5 +92,11 @@ export class TestCubeFeature extends Feature {
 export class TestSphereFeature extends Feature {
     constructor(x, y, orientation) {
         super(FEATURE_TYPES.test_sphere, x, y, orientation)
+    }
+}
+
+export class TestDiceFeature extends Feature {
+    constructor(x, y, orientation) {
+        super(FEATURE_TYPES.test_dice, x, y, orientation)
     }
 }
