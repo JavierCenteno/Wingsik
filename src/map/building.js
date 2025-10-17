@@ -1,3 +1,5 @@
+import { BUILDING_FARM_SPRITES } from "../sprites.js";
+
 export class BuildingType {
     /**
      * @type {Sprite}
@@ -21,7 +23,7 @@ export class BuildingType {
 
 export const BUILDING_TYPES = {};
 
-BUILDING_TYPES.farm = new BuildingType(TREE_SPRITES, 2, 3);
+BUILDING_TYPES.farm = new BuildingType(BUILDING_FARM_SPRITES, 2, 3);
 
 export class Building {
     /**
@@ -42,20 +44,24 @@ export class Building {
     orientation;
 
     get minX() {
+        // TODO: ACCOUNT FOR ORIENTATION HERE!
         return this.x;
     }
     get maxX() {
+        // TODO: ACCOUNT FOR ORIENTATION HERE!
         return this.x + this.type.sizeX - 1;
     }
     get minY() {
+        // TODO: ACCOUNT FOR ORIENTATION HERE!
         return this.y;
     }
     get maxY() {
+        // TODO: ACCOUNT FOR ORIENTATION HERE!
         return this.x + this.type.sizeY - 1;
     }
 
     /**
-     * @param {FeatureType} type 
+     * @param {BuildingType} type 
      * @param {number} x 
      * @param {number} y 
      * @param {Orientation} orientation 

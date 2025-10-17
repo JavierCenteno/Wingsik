@@ -1,7 +1,7 @@
 import { ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { KEY_BINDINGS, KEYS_PRESSED, KEYS_HELD_DOWN, CLICK_STARTED, CLICK_LAST_FRAME, CLICK_CURRENT, CLICK_ENDED, RESIZED, updateEvents, WHEEL } from './input.js';
-import { TreeFeature } from './map/feature.js'
+import { ArrowFeature, ChonkySquareFeature, LongArrowFeature, TreeFeature } from './map/feature.js'
 
 /**
  * How many milliseconds a frame lasts.
@@ -11,22 +11,27 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(12,16);
-for (let j = 2; j < 11; ++j) {
-  for (let i = 2; i < 11; ++i) {
+let view = new View(20,32);
+for (let j = 8; j < 17; ++j) {
+  for (let i = 8; i < 17; ++i) {
     view.map.heights[j][i] = 1;
   }
 }
-for (let j = 3; j < 10; ++j) {
-  for (let i = 3; i < 10; ++i) {
+for (let j = 9; j < 16; ++j) {
+  for (let i = 9; i < 16; ++i) {
     view.map.heights[j][i] = 2;
   }
 }
 
-view.map.addFeature(new TreeFeature(4,4,ORIENTATION.NORTH_EAST))
-view.map.addFeature(new TreeFeature(7,7,ORIENTATION.SOUTH_WEST))
-view.map.addFeature(new TreeFeature(4,7,ORIENTATION.NORTH_WEST))
-view.map.addFeature(new TreeFeature(7,4,ORIENTATION.SOUTH_EAST))
+// view.map.addFeature(new LongArrowFeature(0, 0, ORIENTATION.NORTH_EAST));
+// view.map.addFeature(new ArrowFeature(0, 0, ORIENTATION.NORTH_EAST));
+// view.map.addFeature(new ChonkySquareFeature(0, 0, ORIENTATION.NORTH_EAST));
+// view.map.addFeature(new TreeFeature(0, 0, ORIENTATION.NORTH_EAST));
+
+// view.map.addFeature(new ChonkySquareFeature(0, 0, ORIENTATION.NORTH_EAST));
+// view.map.addFeature(new ChonkySquareFeature(0, 0, ORIENTATION.NORTH_WEST));
+// view.map.addFeature(new ChonkySquareFeature(0, 0, ORIENTATION.SOUTH_EAST));
+// view.map.addFeature(new ChonkySquareFeature(0, 0, ORIENTATION.SOUTH_WEST));
 
 /**
  * Main game loop function.

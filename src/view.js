@@ -301,21 +301,46 @@ export class View {
         }
         // render the objects in the view
         for (let o of this.renderOrder[this.orientation]) {
+            const topTileCoordinates = [o.x, o.y];
             let spriteIndex = 0;
             switch (this.orientation) {
                 case ORIENTATION.NORTH_EAST:
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 0;
+
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                            
                             break;
                         case ORIENTATION.NORTH_WEST:
                             spriteIndex = 1;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+
                             break;
                         case ORIENTATION.SOUTH_EAST:
                             spriteIndex = 3;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 2;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+
                             break;
                     }
                     break;
@@ -323,15 +348,39 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 1;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+
                             break;
                         case ORIENTATION.NORTH_WEST:
                             spriteIndex = 2;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
                             spriteIndex = 0;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 3;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+
                             break;
                     }
                     break;
@@ -339,15 +388,39 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 3;
+
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+
                             break;
                         case ORIENTATION.NORTH_WEST:
                             spriteIndex = 0;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
                             spriteIndex = 2;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 1;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+
                             break;
                     }
                     break;
@@ -355,31 +428,56 @@ export class View {
                     switch (o.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             spriteIndex = 2;
+                        
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                            
                             break;
                         case ORIENTATION.NORTH_WEST:
                             spriteIndex = 3;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+                            
                             break;
                         case ORIENTATION.SOUTH_EAST:
                             spriteIndex = 1;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+                            
                             break;
                         case ORIENTATION.SOUTH_WEST:
                             spriteIndex = 0;
+                            
+                            // CORRECT
+
+                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+                            
                             break;
                     }
                     break;
             }
-            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([o.x, o.y, this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
+            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
             const tileCanvasLocation =
                 [
                     tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
                     tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
                 ];
+            const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
             drawSprite(
                 o.type.sprite,
-                [spriteIndex * TILE_WIDTH, 0],
-                [TILE_WIDTH, o.type.sprite.image.height],
+                [spriteIndex * singleSpriteWidth, 0],
+                [singleSpriteWidth, o.type.sprite.image.height],
                 tileCanvasLocation,
-                [TILE_WIDTH * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                 () => {
                     /* TODO
                     make clickCallback whathever function needs to be called when clicking on this thing
