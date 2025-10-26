@@ -1,6 +1,9 @@
 import { CANVAS, drawSprite } from "./graphics.js";
 import { CLICK_CURRENT, CLICK_ENDED, CLICK_LAST_FRAME, CLICK_STARTED } from "./input.js";
+import { Building } from "./map/building.js";
+import { Feature } from "./map/feature.js";
 import { Map } from './map/map.js';
+import { Unit } from "./map/unit.js";
 import { TERRAIN_SPRITES } from "./sprites.js";
 import { binaryInsert, removeIfExists } from "./util/list-util.js";
 
@@ -222,6 +225,11 @@ export class View {
         removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], placeable);
     }
 
+    updateRenderOrderInView(placeable) {
+        this.removeFromView(placeable);
+        this.addToView(placeable);
+    }
+
     tileCoordinatesToCanvasCoordinates([x, y, k], zoomLevel, reverseX, reverseY) {
         const reverseXMultiplier = reverseX ? -1 : 1;
         const reverseYMultiplier = reverseY ? -1 : 1;
@@ -301,132 +309,137 @@ export class View {
         }
         // render the objects in the view
         for (let o of this.renderOrder[this.orientation]) {
-            const topTileCoordinates = [o.x, o.y];
-            let spriteIndex = 0;
-            switch (this.orientation) {
-                case ORIENTATION.NORTH_EAST:
-                    switch (o.orientation) {
-                        case ORIENTATION.NORTH_EAST:
-                            spriteIndex = 0;
-                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            break;
-                        case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 3;
-                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 1;
-                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_WEST:
-                            spriteIndex = 2;
-                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-                            break;
-                    }
-                    break;
-                case ORIENTATION.NORTH_WEST:
-                    switch (o.orientation) {
-                        case ORIENTATION.NORTH_EAST:
-                            spriteIndex = 1;
-                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-                            break;
-                        case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 0;
-                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 2;
-                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            break;
-                        case ORIENTATION.SOUTH_WEST:
-                            spriteIndex = 3;
-                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-                            break;
-                    }
-                    break;
-                case ORIENTATION.SOUTH_EAST:
-                    switch (o.orientation) {
-                        case ORIENTATION.NORTH_EAST:
-                            spriteIndex = 3;
-                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-                            break;
-                        case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 2;
-                            topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            break;
-                        case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 0;
-                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_WEST:
-                            spriteIndex = 1;
-                            topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-                            break;
-                    }
-                    break;
-                case ORIENTATION.SOUTH_WEST:
-                    switch (o.orientation) {
-                        case ORIENTATION.NORTH_EAST:
-                            spriteIndex = 2;
-                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
-                            topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
-                            break;
-                        case ORIENTATION.NORTH_WEST:
-                            spriteIndex = 1;
-                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
-                            topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_EAST:
-                            spriteIndex = 3;
-                            topTileCoordinates[0] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
-                            topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
-                            break;
-                        case ORIENTATION.SOUTH_WEST:
-                            spriteIndex = 0;
-                            topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
-                            topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
-                            break;
-                    }
-                    break;
+            if (o instanceof Building || o instanceof Feature) {
+                const topTileCoordinates = [o.x, o.y];
+                let spriteIndex = 0;
+                switch (this.orientation) {
+                    case ORIENTATION.NORTH_EAST:
+                        switch (o.orientation) {
+                            case ORIENTATION.NORTH_EAST:
+                                spriteIndex = 0;
+                                topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                                break;
+                            case ORIENTATION.NORTH_WEST:
+                                spriteIndex = 3;
+                                topTileCoordinates[0] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                                topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 1;
+                                topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 2;
+                                topTileCoordinates[0] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                                topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.NORTH_WEST:
+                        switch (o.orientation) {
+                            case ORIENTATION.NORTH_EAST:
+                                spriteIndex = 1;
+                                topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+                                break;
+                            case ORIENTATION.NORTH_WEST:
+                                spriteIndex = 0;
+                                topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 2;
+                                topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                                break;
+                            case ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 3;
+                                topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.SOUTH_EAST:
+                        switch (o.orientation) {
+                            case ORIENTATION.NORTH_EAST:
+                                spriteIndex = 3;
+                                topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                                break;
+                            case ORIENTATION.NORTH_WEST:
+                                spriteIndex = 2;
+                                topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                                break;
+                            case ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 0;
+                                topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 1;
+                                topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.SOUTH_WEST:
+                        switch (o.orientation) {
+                            case ORIENTATION.NORTH_EAST:
+                                spriteIndex = 2;
+                                topTileCoordinates[0] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
+                                topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
+                                break;
+                            case ORIENTATION.NORTH_WEST:
+                                spriteIndex = 1;
+                                topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
+                                topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 3;
+                                topTileCoordinates[0] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
+                                topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
+                                break;
+                            case ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 0;
+                                topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
+                                topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
+                                break;
+                        }
+                        break;
+                }
+                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
+                const tileCanvasLocation =
+                    [
+                        tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
+                    ];
+                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
+                drawSprite(
+                    o.type.sprite,
+                    [spriteIndex * singleSpriteWidth, 0],
+                    [singleSpriteWidth, o.type.sprite.image.height],
+                    tileCanvasLocation,
+                    [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    () => {
+                        /* TODO
+                        set clickCallback to the function that needs to be called when clicking on this sprite, if any
+                        */
+                        clickCallback = undefined;
+                    },
+                    () => {
+                        /* TODO
+                        set hoverCallback to the function that needs to be called when hovering over this sprite, if any
+                        */
+                        hoverCallback = undefined;
+                    },
+                );
+            } else if (o instanceof Unit) {
+                // TODO: render unit
+                
             }
-            const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
-            const tileCanvasLocation =
-                [
-                    tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
-                    tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
-                ];
-            const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
-            drawSprite(
-                o.type.sprite,
-                [spriteIndex * singleSpriteWidth, 0],
-                [singleSpriteWidth, o.type.sprite.image.height],
-                tileCanvasLocation,
-                [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                () => {
-                    /* TODO
-                    make clickCallback whathever function needs to be called when clicking on this thing
-                    */
-                    clickCallback = undefined;
-                },
-                () => {
-                    /* TODO
-                    make hoverCallback whathever function needs to be called when clicking on this thing
-                    */
-                    hoverCallback = undefined;
-                },
-            );
         }
         if (clickCallback !== undefined) {
             clickCallback();

@@ -42,8 +42,36 @@ export class Map {
         this.features = [];
     }
 
+    isTileOccupied(x, y) {
+        return this.buildings.some((b) => b.minX <= x && x <= b.maxX && b.minY <= y && y <= b.maxY) ||
+            this.features.some((f) => f.minX <= x && x <= f.maxX && f.minY <= y && y <= f.maxY) ||
+            this.units.some((u) => u.minX <= x && x <= u.maxX && u.minY <= y && y <= u.maxY);
+    }
+
+    areTilesOccupied(x1, x2, y1, y2) {
+        return this.buildings.some((b) =>
+                !((b.minX <= x1 && b.maxX <= x2) || (b.minX >= x1 && b.maxX >= x2)) ||
+                !((b.minY <= y1 && b.maxY <= y2) || (b.minY >= y1 && b.maxY >= y2))) ||
+            this.features.some((f) =>
+                !((f.minX <= x1 && f.maxX <= x2) || (f.minX >= x1 && f.maxX >= x2)) ||
+                !((f.minY <= y1 && f.maxY <= y2) || (f.minY >= y1 && f.maxY >= y2))) ||
+            this.units.some((u) =>
+                !((u.minX <= x1 && u.maxX <= x2) || (u.minX >= x1 && u.maxX >= x2)) ||
+                !((u.minY <= y1 && u.maxY <= y2) || (u.minY >= y1 && u.maxY >= y2)));
+    }
+
+    addBuilding(building) {
+        this.buildings.push(building);
+        this.view.addToView(building);
+    }
+
     addFeature(feature) {
         this.features.push(feature);
+        this.view.addToView(feature);
+    }
+
+    addUnit(unit) {
+        // this.features.push(feature);
         this.view.addToView(feature);
     }
 }

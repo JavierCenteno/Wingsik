@@ -24,9 +24,9 @@ for (let j = 9; j < 16; ++j) {
 }
 
 view.map.addFeature(new TestDiceFeature(1, 1, ORIENTATION.NORTH_EAST));
-view.map.addFeature(new TestDiceFeature(1, 4, ORIENTATION.SOUTH_EAST));
-view.map.addFeature(new TestDiceFeature(4, 1, ORIENTATION.NORTH_WEST));
-view.map.addFeature(new TestDiceFeature(4, 4, ORIENTATION.SOUTH_WEST));
+view.map.addFeature(new TestDiceFeature(1, 5, ORIENTATION.SOUTH_EAST));
+view.map.addFeature(new TestDiceFeature(5, 1, ORIENTATION.NORTH_WEST));
+view.map.addFeature(new TestDiceFeature(5, 5, ORIENTATION.SOUTH_WEST));
 
 /**
  * Main game loop function.
