@@ -1,5 +1,4 @@
-import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_DICE_SPRITES, FEATURE_TEST_SPHERE_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
-import { ORIENTATION } from "../view.js";
+import { FEATURE_TREE_SPRITES } from "../sprites.js";
 
 export class UnitType {
     /**
@@ -24,7 +23,7 @@ export class UnitType {
 
 export const UNIT_TYPES = {};
 
-FEATURE_TYPES.infantry = new UnitType(FEATURE_TREE_SPRITES, 1, 1);
+UNIT_TYPES.infantry = new UnitType(FEATURE_TREE_SPRITES, 1, 1);
 
 export class Unit {
     /**
