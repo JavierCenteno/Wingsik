@@ -1,4 +1,4 @@
-import { FEATURE_TREE_SPRITES } from "../sprites.js";
+import { UNIT_INFANTRY_SPRITES } from "../sprites.js";
 
 export class UnitType {
     /**
@@ -23,7 +23,7 @@ export class UnitType {
 
 export const UNIT_TYPES = {};
 
-UNIT_TYPES.infantry = new UnitType(FEATURE_TREE_SPRITES, 1, 1);
+UNIT_TYPES.infantry = new UnitType(UNIT_INFANTRY_SPRITES, 1, 1);
 
 export class Unit {
     /**
