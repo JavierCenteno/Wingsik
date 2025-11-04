@@ -68,8 +68,8 @@ export class Building {
             case ORIENTATION.SOUTH_WEST:
             case ORIENTATION.SOUTH_EAST:
                 return this.y - (this.type.sizeY - 1);
-            case ORIENTATION.NORTH_EAST:
             case ORIENTATION.NORTH_WEST:
+            case ORIENTATION.NORTH_EAST:
                 return this.y;
         }
     }
@@ -78,8 +78,8 @@ export class Building {
             case ORIENTATION.SOUTH_WEST:
             case ORIENTATION.SOUTH_EAST:
                 return this.y;
-            case ORIENTATION.NORTH_EAST:
             case ORIENTATION.NORTH_WEST:
+            case ORIENTATION.NORTH_EAST:
                 return this.y + (this.type.sizeY - 1);
         }
     }

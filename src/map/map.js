@@ -20,6 +20,10 @@ export class Map {
      * List of tile features in this map.
      */
     features;
+    /**
+     * List of units in this map.
+     */
+    units;
 
     /**
      * 
@@ -40,6 +44,7 @@ export class Map {
         }
         this.buildings = [];
         this.features = [];
+        this.units = [];
     }
 
     isTileOccupied(x, y) {
@@ -71,7 +76,7 @@ export class Map {
     }
 
     addUnit(unit) {
-        // this.features.push(feature);
-        this.view.addToView(feature);
+        this.units.push(unit);
+        this.view.addToView(unit);
     }
 }

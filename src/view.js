@@ -14,6 +14,17 @@ export const ORIENTATION = {
     SOUTH_WEST: 'SW'
 }
 
+export const GRANULAR_ORIENTATION = {
+    EAST: 'E',
+    NORTH: 'N',
+    NORTH_EAST: 'NE',
+    NORTH_WEST: 'NW',
+    SOUTH: 'S',
+    SOUTH_EAST: 'SE',
+    SOUTH_WEST: 'SW',
+    WEST: 'W'
+}
+
 export const TILE_WIDTH = 32;
 export const TILE_HEIGHT = 16;
 export const BLOCK_HEIGHT = 8;
@@ -437,8 +448,149 @@ export class View {
                     },
                 );
             } else if (o instanceof Unit) {
-                // TODO: render unit
-                
+                // TODO: REFINE THIS CODE FOR UNITS
+                const topTileCoordinates = [o.x, o.y];
+                let spriteIndex = 0;
+                switch (this.orientation) {
+                    case ORIENTATION.NORTH_EAST:
+                        switch (o.orientation) {
+                            case GRANULAR_ORIENTATION.NORTH_EAST:
+                                spriteIndex = 0;
+                                break;
+                            case GRANULAR_ORIENTATION.EAST:
+                                spriteIndex = 1;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 2;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH:
+                                spriteIndex = 3;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 4;
+                                break;
+                            case GRANULAR_ORIENTATION.WEST:
+                                spriteIndex = 5;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH_WEST:
+                                spriteIndex = 6;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH:
+                                spriteIndex = 7;
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.NORTH_WEST:
+                        switch (o.orientation) {
+                            case GRANULAR_ORIENTATION.NORTH_EAST:
+                                spriteIndex = 2;
+                                break;
+                            case GRANULAR_ORIENTATION.EAST:
+                                spriteIndex = 3;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 4;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH:
+                                spriteIndex = 5;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 6;
+                                break;
+                            case GRANULAR_ORIENTATION.WEST:
+                                spriteIndex = 7;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH_WEST:
+                                spriteIndex = 0;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH:
+                                spriteIndex = 1;
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.SOUTH_EAST:
+                        switch (o.orientation) {
+                            case GRANULAR_ORIENTATION.NORTH_EAST:
+                                spriteIndex = 6;
+                                break;
+                            case GRANULAR_ORIENTATION.EAST:
+                                spriteIndex = 7;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 0;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH:
+                                spriteIndex = 1;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 2;
+                                break;
+                            case GRANULAR_ORIENTATION.WEST:
+                                spriteIndex = 3;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH_WEST:
+                                spriteIndex = 4;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH:
+                                spriteIndex = 5;
+                                break;
+                        }
+                        break;
+                    case ORIENTATION.SOUTH_WEST:
+                        switch (o.orientation) {
+                            case GRANULAR_ORIENTATION.NORTH_EAST:
+                                spriteIndex = 4;
+                                break;
+                            case GRANULAR_ORIENTATION.EAST:
+                                spriteIndex = 5;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_EAST:
+                                spriteIndex = 6;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH:
+                                spriteIndex = 7;
+                                break;
+                            case GRANULAR_ORIENTATION.SOUTH_WEST:
+                                spriteIndex = 0;
+                                break;
+                            case GRANULAR_ORIENTATION.WEST:
+                                spriteIndex = 1;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH_WEST:
+                                spriteIndex = 2;
+                                break;
+                            case GRANULAR_ORIENTATION.NORTH:
+                                spriteIndex = 3;
+                                break;
+                        }
+                        break;
+                }
+                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
+                const tileCanvasLocation =
+                    [
+                        tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
+                    ];
+                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
+                drawSprite(
+                    o.type.sprite,
+                    [spriteIndex * singleSpriteWidth, 0],
+                    [singleSpriteWidth, o.type.sprite.image.height],
+                    tileCanvasLocation,
+                    [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    () => {
+                        /* TODO
+                        set clickCallback to the function that needs to be called when clicking on this sprite, if any
+                        */
+                        clickCallback = undefined;
+                    },
+                    () => {
+                        /* TODO
+                        set hoverCallback to the function that needs to be called when hovering over this sprite, if any
+                        */
+                        hoverCallback = undefined;
+                    },
+                );
             }
         }
         if (clickCallback !== undefined) {

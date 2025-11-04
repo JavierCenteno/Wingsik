@@ -1,7 +1,8 @@
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
-import { ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
+import { InfantryUnit } from './map/unit.js';
+import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 
 /**
  * How many milliseconds a frame lasts.
@@ -27,6 +28,14 @@ view.map.addFeature(new TestDiceFeature(1, 1, ORIENTATION.NORTH_EAST));
 view.map.addFeature(new TestDiceFeature(1, 5, ORIENTATION.SOUTH_EAST));
 view.map.addFeature(new TestDiceFeature(5, 1, ORIENTATION.NORTH_WEST));
 view.map.addFeature(new TestDiceFeature(5, 5, ORIENTATION.SOUTH_WEST));
+view.map.addUnit(new InfantryUnit(5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
+view.map.addUnit(new InfantryUnit(5, 10, GRANULAR_ORIENTATION.EAST));
+view.map.addUnit(new InfantryUnit(5, 8, GRANULAR_ORIENTATION.SOUTH_EAST));
+view.map.addUnit(new InfantryUnit(3, 8, GRANULAR_ORIENTATION.SOUTH));
+view.map.addUnit(new InfantryUnit(1, 8, GRANULAR_ORIENTATION.SOUTH_WEST));
+view.map.addUnit(new InfantryUnit(1, 10, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new InfantryUnit(1, 12, GRANULAR_ORIENTATION.NORTH_WEST));
+view.map.addUnit(new InfantryUnit(3, 12, GRANULAR_ORIENTATION.NORTH));
 
 /**
  * Main game loop function.
