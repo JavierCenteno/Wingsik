@@ -448,8 +448,9 @@ export class View {
                     },
                 );
             } else if (o instanceof Unit) {
-                // TODO: REFINE THIS CODE FOR UNITS
-                const topTileCoordinates = [o.x, o.y];
+                // TODO: CALCULATE UNIT HEIGHT BETTER
+                const unitZ = this.map.heights[Math.floor(o.x)][Math.floor(o.y)];
+                const topTileCoordinates = [o.x, o.y, unitZ];
                 let spriteIndex = 0;
                 switch (this.orientation) {
                     case ORIENTATION.NORTH_EAST:
@@ -479,6 +480,8 @@ export class View {
                                 spriteIndex = 7;
                                 break;
                         }
+                        topTileCoordinates[0] -= (Math.max(o.type.sizeX, o.type.sizeY)) - 0.5;
+                        topTileCoordinates[1] -= 0.5;
                         break;
                     case ORIENTATION.NORTH_WEST:
                         switch (o.orientation) {
@@ -507,6 +510,8 @@ export class View {
                                 spriteIndex = 1;
                                 break;
                         }
+                        topTileCoordinates[0] -= 0.5;
+                        topTileCoordinates[1] -= (Math.max(o.type.sizeX, o.type.sizeY)) - 0.5;
                         break;
                     case ORIENTATION.SOUTH_EAST:
                         switch (o.orientation) {
@@ -535,6 +540,8 @@ export class View {
                                 spriteIndex = 5;
                                 break;
                         }
+                        topTileCoordinates[0] -= 0.5;
+                        topTileCoordinates[1] += (Math.max(o.type.sizeX, o.type.sizeY)) - 1.5;
                         break;
                     case ORIENTATION.SOUTH_WEST:
                         switch (o.orientation) {
@@ -563,11 +570,11 @@ export class View {
                                 spriteIndex = 3;
                                 break;
                         }
+                        topTileCoordinates[0] += (Math.max(o.type.sizeX, o.type.sizeY)) - 1.5;
+                        topTileCoordinates[1] -= 0.5;
                         break;
                 }
-                topTileCoordinates[0] -= (Math.max(o.type.sizeX, o.type.sizeY)) - 0.5;// -0.5 to convert from tile index to coordinate
-                topTileCoordinates[1] -= 0.5;// -0.5 to convert from tile index to coordinate
-                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
+                const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], topTileCoordinates[2]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
