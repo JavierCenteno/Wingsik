@@ -40,14 +40,15 @@ view.map.addUnit(new InfantryUnit(3, 12, GRANULAR_ORIENTATION.NORTH));
 
 view.map.addUnit(new InfantryUnit(1, 22, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new InfantryUnit(5, 18, GRANULAR_ORIENTATION.WEST));
-view.map.addUnit(new CargoShipUnit(21, 38, GRANULAR_ORIENTATION.NORTH_EAST));
-view.map.addUnit(new CargoShipUnit(21, 30, GRANULAR_ORIENTATION.EAST));
-view.map.addUnit(new CargoShipUnit(21, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
-view.map.addUnit(new CargoShipUnit(13, 22, GRANULAR_ORIENTATION.SOUTH));
+
+view.map.addUnit(new CargoShipUnit(17, 34, GRANULAR_ORIENTATION.NORTH_EAST));
+view.map.addUnit(new CargoShipUnit(17, 28, GRANULAR_ORIENTATION.EAST));
+view.map.addUnit(new CargoShipUnit(17, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
+view.map.addUnit(new CargoShipUnit(11, 22, GRANULAR_ORIENTATION.SOUTH));
 view.map.addUnit(new CargoShipUnit(5, 22, GRANULAR_ORIENTATION.SOUTH_WEST));
-view.map.addUnit(new CargoShipUnit(5, 30, GRANULAR_ORIENTATION.WEST));
-view.map.addUnit(new CargoShipUnit(5, 38, GRANULAR_ORIENTATION.NORTH_WEST));
-view.map.addUnit(new CargoShipUnit(13, 38, GRANULAR_ORIENTATION.NORTH));
+view.map.addUnit(new CargoShipUnit(5, 28, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new CargoShipUnit(5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
+view.map.addUnit(new CargoShipUnit(11, 34, GRANULAR_ORIENTATION.NORTH));
 
 /**
  * Main game loop function.
