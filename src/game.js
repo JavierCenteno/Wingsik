@@ -50,6 +50,8 @@ view.map.addUnit(new CargoShipUnit(5, 28, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new CargoShipUnit(5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
 view.map.addUnit(new CargoShipUnit(11, 34, GRANULAR_ORIENTATION.NORTH));
 
+view.map.addUnit(new InfantryUnit(0, 0, GRANULAR_ORIENTATION.NORTH_EAST));
+
 /**
  * Main game loop function.
  */

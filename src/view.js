@@ -565,7 +565,8 @@ export class View {
                         }
                         break;
                 }
-                topTileCoordinates[0] -= (Math.max(o.type.sizeX, o.type.sizeY) - 1);
+                topTileCoordinates[0] -= (Math.max(o.type.sizeX, o.type.sizeY)) - 0.5;// -0.5 to convert from tile index to coordinate
+                topTileCoordinates[1] -= 0.5;// -0.5 to convert from tile index to coordinate
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.x][o.y]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [

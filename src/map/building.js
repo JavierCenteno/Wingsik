@@ -31,11 +31,11 @@ export class Building {
      */
     type;
     /**
-     * Location of this building along the x (west-east) axis.
+     * Location of this building along the x (west-east) axis. This is a discrete tile index.
      */
     x;
     /**
-     * Location of this building along the y (south-north) axis.
+     * Location of this building along the y (south-north) axis. This is a discrete tile index.
      */
     y;
     /**
@@ -43,6 +43,9 @@ export class Building {
      */
     orientation;
 
+    /**
+     * Lowest tile index of the range of tiles occupied by this building along the x (west-east) axis.
+     */
     get minX() {
         switch (this.orientation) {
             case ORIENTATION.SOUTH_WEST:
@@ -53,6 +56,9 @@ export class Building {
                 return this.x;
         }
     }
+    /**
+     * Highest tile index of the range of tiles occupied by this building along the x (west-east) axis.
+     */
     get maxX() {
         switch (this.orientation) {
             case ORIENTATION.SOUTH_WEST:
@@ -63,6 +69,9 @@ export class Building {
                 return this.x + (this.type.sizeX - 1);
         }
     }
+    /**
+     * Lowest tile index of the range of tiles occupied by this building along the y (south-north) axis.
+     */
     get minY() {
         switch (this.orientation) {
             case ORIENTATION.SOUTH_WEST:
@@ -73,6 +82,9 @@ export class Building {
                 return this.y;
         }
     }
+    /**
+     * Highest tile index of the range of tiles occupied by this building along the y (south-north) axis.
+     */
     get maxY() {
         switch (this.orientation) {
             case ORIENTATION.SOUTH_WEST:

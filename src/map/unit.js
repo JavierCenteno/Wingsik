@@ -39,11 +39,11 @@ export class Unit {
      */
     type;
     /**
-     * Location of this unit along the x (west-east) axis.
+     * Location of this unit along the x (west-east) axis. This is a continuous tile coordinate.
      */
     x;
     /**
-     * Location of this unit along the y (south-north) axis.
+     * Location of this unit along the y (south-north) axis. This is a continuous tile coordinate.
      */
     y;
     /**
@@ -51,6 +51,9 @@ export class Unit {
      */
     orientation;
 
+    /**
+     * Lowest tile index of the range of tiles occupied by this unit along the x (west-east) axis.
+     */
     get minX() {
         switch (this.orientation) {
             case GRANULAR_ORIENTATION.SOUTH:
@@ -66,6 +69,9 @@ export class Unit {
                 return Math.floor(this.x - (this.type.sizeXY - 1) / 2);
         }
     }
+    /**
+     * Highest tile index of the range of tiles occupied by this unit along the x (west-east) axis.
+     */
     get maxX() {
         switch (this.orientation) {
             case GRANULAR_ORIENTATION.SOUTH:
@@ -81,6 +87,9 @@ export class Unit {
                 return Math.ceil(this.x + (this.type.sizeXY - 1) / 2);
         }
     }
+    /**
+     * Lowest tile index of the range of tiles occupied by this unit along the y (south-north) axis.
+     */
     get minY() {
         switch (this.orientation) {
             case GRANULAR_ORIENTATION.SOUTH:
@@ -96,6 +105,9 @@ export class Unit {
                 return Math.floor(this.y - (this.type.sizeXY - 1) / 2);
         }
     }
+    /**
+     * Highest tile index of the range of tiles occupied by this unit along the y (south-north) axis.
+     */
     get maxY() {
         switch (this.orientation) {
             case GRANULAR_ORIENTATION.SOUTH:
