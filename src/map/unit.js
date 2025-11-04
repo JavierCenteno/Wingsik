@@ -1,4 +1,4 @@
-import { UNIT_INFANTRY_SPRITES } from "../sprites.js";
+import { UNIT_CARGO_SHIP_SPRITES, UNIT_INFANTRY_SPRITES } from "../sprites.js";
 import { ORIENTATION, GRANULAR_ORIENTATION } from "../view.js";
 
 export class UnitType {
@@ -30,6 +30,8 @@ export class UnitType {
 export const UNIT_TYPES = {};
 
 UNIT_TYPES.infantry = new UnitType(UNIT_INFANTRY_SPRITES, 1, 1);
+UNIT_TYPES.cargoShip = new UnitType(UNIT_CARGO_SHIP_SPRITES, 2, 6);
+
 
 export class Unit {
     /**
@@ -127,5 +129,11 @@ export class Unit {
 export class InfantryUnit extends Unit {
     constructor(x, y, orientation) {
         super(UNIT_TYPES.infantry, x, y, orientation)
+    }
+}
+
+export class CargoShipUnit extends Unit {
+    constructor(x, y, orientation) {
+        super(UNIT_TYPES.cargoShip, x, y, orientation)
     }
 }

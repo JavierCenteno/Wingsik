@@ -1,7 +1,7 @@
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
-import { InfantryUnit } from './map/unit.js';
+import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 
 /**
@@ -12,7 +12,7 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(20,32);
+let view = new View(40,64);
 for (let j = 8; j < 17; ++j) {
   for (let i = 8; i < 17; ++i) {
     view.map.heights[j][i] = 1;
@@ -28,6 +28,7 @@ view.map.addFeature(new TestDiceFeature(1, 1, ORIENTATION.NORTH_EAST));
 view.map.addFeature(new TestDiceFeature(1, 5, ORIENTATION.SOUTH_EAST));
 view.map.addFeature(new TestDiceFeature(5, 1, ORIENTATION.NORTH_WEST));
 view.map.addFeature(new TestDiceFeature(5, 5, ORIENTATION.SOUTH_WEST));
+
 view.map.addUnit(new InfantryUnit(5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
 view.map.addUnit(new InfantryUnit(5, 10, GRANULAR_ORIENTATION.EAST));
 view.map.addUnit(new InfantryUnit(5, 8, GRANULAR_ORIENTATION.SOUTH_EAST));
@@ -36,6 +37,15 @@ view.map.addUnit(new InfantryUnit(1, 8, GRANULAR_ORIENTATION.SOUTH_WEST));
 view.map.addUnit(new InfantryUnit(1, 10, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new InfantryUnit(1, 12, GRANULAR_ORIENTATION.NORTH_WEST));
 view.map.addUnit(new InfantryUnit(3, 12, GRANULAR_ORIENTATION.NORTH));
+
+view.map.addUnit(new CargoShipUnit(21, 38, GRANULAR_ORIENTATION.NORTH_EAST));
+view.map.addUnit(new CargoShipUnit(21, 30, GRANULAR_ORIENTATION.EAST));
+view.map.addUnit(new CargoShipUnit(21, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
+view.map.addUnit(new CargoShipUnit(13, 22, GRANULAR_ORIENTATION.SOUTH));
+view.map.addUnit(new CargoShipUnit(5, 22, GRANULAR_ORIENTATION.SOUTH_WEST));
+view.map.addUnit(new CargoShipUnit(5, 30, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new CargoShipUnit(5, 38, GRANULAR_ORIENTATION.NORTH_WEST));
+view.map.addUnit(new CargoShipUnit(13, 38, GRANULAR_ORIENTATION.NORTH));
 
 /**
  * Main game loop function.

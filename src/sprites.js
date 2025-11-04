@@ -39,3 +39,4 @@ export const FEATURE_TEST_CUBE_SPRITES = await loadSprite("assets/sprites/featur
 export const FEATURE_TEST_SPHERE_SPRITES = await loadSprite("assets/sprites/feature/test_sphere.png", true);
 export const FEATURE_TEST_DICE_SPRITES = await loadSprite("assets/sprites/feature/test_dice.png", true);
 export const UNIT_INFANTRY_SPRITES = await loadSprite("assets/sprites/unit/infantry.png", true);
+export const UNIT_CARGO_SHIP_SPRITES = await loadSprite("assets/sprites/unit/cargo_ship.png", true);

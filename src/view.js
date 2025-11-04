@@ -571,7 +571,7 @@ export class View {
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
                         tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
                     ];
-                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
+                const singleSpriteWidth = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_WIDTH;
                 drawSprite(
                     o.type.sprite,
                     [spriteIndex * singleSpriteWidth, 0],
