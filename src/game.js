@@ -38,6 +38,8 @@ view.map.addUnit(new InfantryUnit(1, 10, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new InfantryUnit(1, 12, GRANULAR_ORIENTATION.NORTH_WEST));
 view.map.addUnit(new InfantryUnit(3, 12, GRANULAR_ORIENTATION.NORTH));
 
+view.map.addUnit(new InfantryUnit(1, 22, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new InfantryUnit(5, 18, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new CargoShipUnit(21, 38, GRANULAR_ORIENTATION.NORTH_EAST));
 view.map.addUnit(new CargoShipUnit(21, 30, GRANULAR_ORIENTATION.EAST));
 view.map.addUnit(new CargoShipUnit(21, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
