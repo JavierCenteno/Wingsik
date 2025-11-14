@@ -31,12 +31,19 @@ export const loadSprite = async (source, createCanvas) => {
     return sprite;
 }
 
-export const TILE_SPRITES = await loadSprite("assets/sprites/tile.png", true);
-export const TERRAIN_SPRITES = await loadSprite("assets/sprites/terrain.png", true);
+// Terrain sprites
+export const TERRAIN_SPRITES = await loadSprite("assets/sprites/tile/terrain.png", true);
+export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/water.png", true);
+
+// Building sprites
 export const BUILDING_FARM_SPRITES = await loadSprite("assets/sprites/building/farm.png", true);
+
+// Feature sprites
 export const FEATURE_TREE_SPRITES = await loadSprite("assets/sprites/feature/tree.png", true);
 export const FEATURE_TEST_CUBE_SPRITES = await loadSprite("assets/sprites/feature/test_cube.png", true);
 export const FEATURE_TEST_SPHERE_SPRITES = await loadSprite("assets/sprites/feature/test_sphere.png", true);
 export const FEATURE_TEST_DICE_SPRITES = await loadSprite("assets/sprites/feature/test_dice.png", true);
+
+// Unit sprites
 export const UNIT_INFANTRY_SPRITES = await loadSprite("assets/sprites/unit/infantry.png", true);
 export const UNIT_CARGO_SHIP_SPRITES = await loadSprite("assets/sprites/unit/cargo_ship.png", true);

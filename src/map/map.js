@@ -9,9 +9,13 @@ export class Map {
      */
     y;
     /**
-     * Height of the points at the corners of the tiles as a two dimensional number array with lenghts [y + 1] and [x + 1].
+     * Height of the points at the corners of the tiles as a two dimensional number array with lenghts (y + 1) and (x + 1).
      */
     heights;
+    /**
+     * Types of terrain of each tile as a two dimensional number array with lenghts y and x.
+     */
+    terrain;
     /**
      * List of buildings in this map.
      */
@@ -42,6 +46,14 @@ export class Map {
                 this.heights[j].push(0);
             }
         }
+        // initialize terrain to a bidimensional array of dimensions x, y
+        this.terrain = [];
+        for (let j = 0; j < y; ++j) {
+            this.terrain.push([]);
+            for (let i = 0; i < x; ++i) {
+                this.terrain[j].push(undefined);
+            }
+        }
         this.buildings = [];
         this.features = [];
         this.units = [];
@@ -65,6 +77,12 @@ export class Map {
                 !((u.minY <= y1 && u.maxY <= y2) || (u.minY >= y1 && u.maxY >= y2)));
     }
 
+    terrainAt(x, y) {
+        const indexY = y < 0 ? 0 : y >= this.terrain.length ? this.terrain.length - 1 : y;
+        const indexX = x < 0 ? 0 : x >= this.terrain[indexY].length ? this.terrain[indexY].length - 1 : x;
+        return this.terrain[indexY][indexX];
+    }
+
     addBuilding(building) {
         this.buildings.push(building);
         this.view.addToView(building);
@@ -79,4 +97,11 @@ export class Map {
         this.units.push(unit);
         this.view.addToView(unit);
     }
+}
+
+export const Terrain = {
+    WATER: 1,
+    GRASS: 2,
+    CLAY: 3,
+    SAND: 4
 }

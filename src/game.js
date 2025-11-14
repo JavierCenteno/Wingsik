@@ -1,6 +1,7 @@
 import { clear, getWindowSize, setCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
+import { Terrain } from './map/map.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 
@@ -21,6 +22,12 @@ for (let j = 8; j < 17; ++j) {
 for (let j = 9; j < 16; ++j) {
   for (let i = 9; i < 16; ++i) {
     view.map.heights[j][i] = 2;
+  }
+}
+
+for (let j = 1; j < 3; ++j) {
+  for (let i = 9; i < 11; ++i) {
+    view.map.terrain[j][i] = Terrain.WATER;
   }
 }
 

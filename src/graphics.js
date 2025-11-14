@@ -16,6 +16,8 @@ export const getWindowSize = () => {
 export const setCanvasSize = ([width, height]) => {
     CANVAS.width = width;
     CANVAS.height = height;
+    CANVAS.style.width = `${width}px`;
+    CANVAS.style.height = `${height}px`;
 }
 
 setCanvasSize(getWindowSize());

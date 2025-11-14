@@ -4,7 +4,7 @@ import { Building } from "./map/building.js";
 import { Feature } from "./map/feature.js";
 import { Map } from './map/map.js';
 import { Unit } from "./map/unit.js";
-import { TERRAIN_SPRITES } from "./sprites.js";
+import { TERRAIN_SPRITES, TERRAIN_WATER_SPRITES } from "./sprites.js";
 import { binaryInsert, removeIfExists } from "./util/list-util.js";
 
 export const ORIENTATION = {
@@ -305,17 +305,116 @@ export class View {
                 const tileCanvasLocation =
                     [
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
-                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * TERRAIN_SPRITES.image.height
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1]
                     ];
                 drawSprite(
                     TERRAIN_SPRITES,
                     [spriteIndex * TILE_WIDTH, 0],
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
-                    tileCanvasLocation,
+                    [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
                     undefined,
                     undefined
                 );
+                if(this.map.terrain[j][i] !== undefined) {
+                    // tile up of this tile in the view
+                    const adjacencyUp = this.map.terrainAt(i + (reverseX ? 1 : -1), j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    // tile up and left of this tile in the view
+                    const adjacencyUpLeft = this.map.terrainAt(i, j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    // tile up and right of this tile in the view
+                    const adjacencyUpRight = this.map.terrainAt(i + (reverseX ? 1 : -1), j) === this.map.terrain[j][i];
+                    // tile left of this tile in the view
+                    const adjacencyLeft = this.map.terrainAt(i - (reverseX ? 1 : -1), j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    // tile right of this tile in the view
+                    const adjacencyRight = this.map.terrainAt(i + (reverseX ? 1 : -1), j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    // tile down and left of this tile in the view
+                    const adjacencyDownLeft = this.map.terrainAt(i - (reverseX ? 1 : -1), j) === this.map.terrain[j][i];
+                    // tile down and right of this tile in the view
+                    const adjacencyDownRight = this.map.terrainAt(i, j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    // tile down of this tile in the view
+                    const adjacencyDown = this.map.terrainAt(i - (reverseX ? 1 : -1), j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    let spriteIndex;
+                    if(adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
+                        spriteIndex = 0;
+                    } else if(!adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
+                        spriteIndex = 1;
+                    } else if(adjacencyDownLeft && !adjacencyUpLeft) {
+                        spriteIndex = 2;
+                    } else if(!adjacencyDownLeft && adjacencyUpLeft) {
+                        spriteIndex = 3;
+                    } else {
+                        spriteIndex = 4;
+                    }
+                    drawSprite(
+                        TERRAIN_WATER_SPRITES,
+                        [spriteIndex * TILE_WIDTH, 0],
+                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
+                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        undefined,
+                        undefined
+                    );
+                    if(adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
+                        spriteIndex = 5;
+                    } else if(!adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
+                        spriteIndex = 6;
+                    } else if(adjacencyUpLeft && !adjacencyUpRight) {
+                        spriteIndex = 7;
+                    } else if(!adjacencyUpLeft && adjacencyUpRight) {
+                        spriteIndex = 8;
+                    } else {
+                        spriteIndex = 9;
+                    }
+                    drawSprite(
+                        TERRAIN_WATER_SPRITES,
+                        [spriteIndex * TILE_WIDTH, 0],
+                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
+                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        undefined,
+                        undefined
+                    );
+                    if(adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
+                        spriteIndex = 10;
+                    } else if(!adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
+                        spriteIndex = 11;
+                    } else if(adjacencyUpRight && !adjacencyDownRight) {
+                        spriteIndex = 12;
+                    } else if(!adjacencyUpRight && adjacencyDownRight) {
+                        spriteIndex = 13;
+                    } else {
+                        spriteIndex = 14;
+                    }
+                    drawSprite(
+                        TERRAIN_WATER_SPRITES,
+                        [spriteIndex * TILE_WIDTH, 0],
+                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
+                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        undefined,
+                        undefined
+                    );
+                    if(adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
+                        spriteIndex = 15;
+                    } else if(!adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
+                        spriteIndex = 16;
+                    } else if(adjacencyDownRight && !adjacencyDownLeft) {
+                        spriteIndex = 17;
+                    } else if(!adjacencyDownRight && adjacencyDownLeft) {
+                        spriteIndex = 18;
+                    } else {
+                        spriteIndex = 19;
+                    }
+                    drawSprite(
+                        TERRAIN_WATER_SPRITES,
+                        [spriteIndex * TILE_WIDTH, 0],
+                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
+                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        undefined,
+                        undefined
+                    );
+                }
             }
         }
         // render the objects in the view
