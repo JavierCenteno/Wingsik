@@ -9,18 +9,17 @@ CONTEXT.imageSmoothingEnabled = false;
 
 // Draw methods
 
-export const getWindowSize = () => {
-    return [window.innerWidth, window.innerHeight]
-}
-
-export const setCanvasSize = ([width, height]) => {
-    CANVAS.width = width;
-    CANVAS.height = height;
+export const resetCanvasSize = () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const pixelRatio = window.devicePixelRatio || 1;
+    CANVAS.width = width * pixelRatio;
+    CANVAS.height = height * pixelRatio;
     CANVAS.style.width = `${width}px`;
     CANVAS.style.height = `${height}px`;
 }
 
-setCanvasSize(getWindowSize());
+resetCanvasSize();
 
 export const clear = () => {
     CONTEXT.fillStyle = "#000000";
@@ -77,8 +76,8 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
         fromY,
         fromWidth,
         fromHeight,
-        toX,
-        toY,
+        Math.round(toX),
+        Math.round(toY),
         toWidth,
         toHeight
     );

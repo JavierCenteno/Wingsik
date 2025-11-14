@@ -1,4 +1,4 @@
-import { clear, getWindowSize, setCanvasSize } from './graphics.js';
+import { clear, resetCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
 import { Terrain } from './map/map.js';
@@ -144,7 +144,7 @@ const processEvents = () => {
     view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * view.zoomLevel));
   }
   if (RESIZED) {
-    setCanvasSize(getWindowSize());
+    resetCanvasSize();
   }
   if (WHEEL < 0) {
     view.increaseZoom();
