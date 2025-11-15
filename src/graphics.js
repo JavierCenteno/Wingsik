@@ -13,8 +13,8 @@ export const resetCanvasSize = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
     const pixelRatio = window.devicePixelRatio || 1;
-    CANVAS.width = width * pixelRatio;
-    CANVAS.height = height * pixelRatio;
+    CANVAS.width = Math.round(width * pixelRatio);
+    CANVAS.height = Math.round(height * pixelRatio);
     CANVAS.style.width = `${width}px`;
     CANVAS.style.height = `${height}px`;
 }
