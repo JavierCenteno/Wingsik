@@ -17,6 +17,10 @@ export class Map {
      */
     terrain;
     /**
+     * Types of resources of each tile as a two dimensional number array with lenghts y and x.
+     */
+    resources;
+    /**
      * List of buildings in this map.
      */
     buildings;
@@ -46,12 +50,15 @@ export class Map {
                 this.heights[j].push(0);
             }
         }
-        // initialize terrain to a bidimensional array of dimensions x, y
+        // initialize terrain and resources to bidimensional arrays of dimensions x, y
         this.terrain = [];
+        this.resources = [];
         for (let j = 0; j < y; ++j) {
             this.terrain.push([]);
+            this.resources.push([]);
             for (let i = 0; i < x; ++i) {
                 this.terrain[j].push(undefined);
+                this.resources[j].push(undefined);
             }
         }
         this.buildings = [];
@@ -109,5 +116,11 @@ export const Terrain = {
     WATER: 1,
     GRASS: 2,
     CLAY: 3,
-    SAND: 4
+    SAND: 4,
+    LIMESTONE: 5
+}
+
+export const Resources = {
+    IRON: 1,
+    COAL: 2
 }

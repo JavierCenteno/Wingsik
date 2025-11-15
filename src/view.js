@@ -1,9 +1,9 @@
 import { CANVAS, drawSprite } from "./graphics.js";
 import { Building } from "./map/building.js";
 import { Feature } from "./map/feature.js";
-import { Map, Terrain } from './map/map.js';
+import { Map, Resources, Terrain } from './map/map.js';
 import { Unit } from "./map/unit.js";
-import { TERRAIN_CLAY_SPRITES, TERRAIN_GRASS_SPRITES, TERRAIN_SAND_SPRITES, TERRAIN_SPRITES, TERRAIN_WATER_SPRITES } from "./sprites.js";
+import { TERRAIN_CLAY_SPRITES, TERRAIN_GRASS_SPRITES, TERRAIN_SAND_SPRITES, TERRAIN_SPRITES, TERRAIN_LIMESTONE_SPRITES, TERRAIN_WATER_SPRITES, RESOURCE_IRON_SPRITES, RESOURCE_COAL_SPRITES } from "./sprites.js";
 import { binaryInsert, removeIfExists } from "./util/list-util.js";
 
 export const ORIENTATION = {
@@ -330,6 +330,9 @@ export class View {
                         case Terrain.SAND:
                             terrainSprites = TERRAIN_SAND_SPRITES;
                             break;
+                        case Terrain.LIMESTONE:
+                            terrainSprites = TERRAIN_LIMESTONE_SPRITES;
+                            break;
                     }
                     let adjacencyUp; // tile up of this tile in the view
                     let adjacencyUpLeft; // tile up and left of this tile in the view
@@ -459,6 +462,26 @@ export class View {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
+                        undefined,
+                        undefined
+                    );
+                }
+                if(this.map.resources[j][i] !== undefined) {
+                    let resourceSprite;
+                    switch(this.map.resources[j][i]) {
+                        case Resources.IRON:
+                            resourceSprite = RESOURCE_IRON_SPRITES;
+                            break;
+                        case Resources.COAL:
+                            resourceSprite = RESOURCE_COAL_SPRITES;
+                            break;
+                    }
+                    drawSprite(
+                        resourceSprite,
+                        [spriteIndex * TILE_WIDTH, 0],
+                        [TILE_WIDTH, resourceSprite.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * resourceSprite.image.height],
+                        [TILE_WIDTH * this.zoomLevel, resourceSprite.image.height * this.zoomLevel],
                         undefined,
                         undefined
                     );

@@ -33,10 +33,15 @@ export const loadSprite = async (source, createCanvas) => {
 
 // Terrain sprites
 export const TERRAIN_SPRITES = await loadSprite("assets/sprites/tile/terrain.png", true);
-export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/water.png", true);
-export const TERRAIN_GRASS_SPRITES = await loadSprite("assets/sprites/tile/grass.png", true);
-export const TERRAIN_CLAY_SPRITES = await loadSprite("assets/sprites/tile/clay.png", true);
-export const TERRAIN_SAND_SPRITES = await loadSprite("assets/sprites/tile/sand.png", true);
+
+export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/terrain/water.png", true);
+export const TERRAIN_GRASS_SPRITES = await loadSprite("assets/sprites/tile/terrain/grass.png", true);
+export const TERRAIN_CLAY_SPRITES = await loadSprite("assets/sprites/tile/terrain/clay.png", true);
+export const TERRAIN_SAND_SPRITES = await loadSprite("assets/sprites/tile/terrain/sand.png", true);
+export const TERRAIN_LIMESTONE_SPRITES = await loadSprite("assets/sprites/tile/terrain/limestone.png", true);
+
+export const RESOURCE_IRON_SPRITES = await loadSprite("assets/sprites/tile/resource/iron.png", true);
+export const RESOURCE_COAL_SPRITES = await loadSprite("assets/sprites/tile/resource/coal.png", true);
 
 // Building sprites
 export const BUILDING_FARM_SPRITES = await loadSprite("assets/sprites/building/farm.png", true);

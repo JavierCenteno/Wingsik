@@ -1,7 +1,7 @@
 import { clear, resetCanvasSize } from './graphics.js';
 import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
-import { Terrain } from './map/map.js';
+import { Resources, Terrain } from './map/map.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
 
@@ -31,10 +31,27 @@ view.map.terrain[4][10] = Terrain.CLAY;
 view.map.terrain[5][10] = Terrain.CLAY;
 view.map.terrain[4][11] = Terrain.WATER;
 view.map.terrain[5][11] = Terrain.WATER;
+view.map.terrain[4][12] = Terrain.LIMESTONE;
+view.map.terrain[5][12] = Terrain.LIMESTONE;
 
 for (let j = 1; j < 3; ++j) {
   for (let i = 9; i < 12; ++i) {
     view.map.terrain[j][i] = Terrain.WATER;
+  }
+}
+
+for (let j = 1; j < 6; ++j) {
+  for (let i = 13; i < 15; ++i) {
+    view.map.terrain[j][i] = Terrain.SAND;
+  }
+}
+view.map.resources[2][13] = Resources.COAL;
+view.map.resources[3][13] = Resources.COAL;
+view.map.resources[3][14] = Resources.IRON;
+view.map.resources[4][14] = Resources.IRON;
+for (let j = 1; j < 6; ++j) {
+  for (let i = 16; i < 18; ++i) {
+    view.map.resources[j][i] = Resources.COAL;
   }
 }
 
