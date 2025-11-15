@@ -1,10 +1,9 @@
 import { CANVAS, drawSprite } from "./graphics.js";
-import { CLICK_CURRENT, CLICK_ENDED, CLICK_LAST_FRAME, CLICK_STARTED } from "./input.js";
 import { Building } from "./map/building.js";
 import { Feature } from "./map/feature.js";
-import { Map } from './map/map.js';
+import { Map, Terrain } from './map/map.js';
 import { Unit } from "./map/unit.js";
-import { TERRAIN_SPRITES, TERRAIN_WATER_SPRITES } from "./sprites.js";
+import { TERRAIN_CLAY_SPRITES, TERRAIN_GRASS_SPRITES, TERRAIN_SAND_SPRITES, TERRAIN_SPRITES, TERRAIN_WATER_SPRITES } from "./sprites.js";
 import { binaryInsert, removeIfExists } from "./util/list-util.js";
 
 export const ORIENTATION = {
@@ -317,22 +316,71 @@ export class View {
                     undefined
                 );
                 if(this.map.terrain[j][i] !== undefined) {
-                    // tile up of this tile in the view
-                    const adjacencyUp = this.map.terrainAt(i + (reverseX ? 1 : -1), j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
-                    // tile up and left of this tile in the view
-                    const adjacencyUpLeft = this.map.terrainAt(i, j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
-                    // tile up and right of this tile in the view
-                    const adjacencyUpRight = this.map.terrainAt(i + (reverseX ? 1 : -1), j) === this.map.terrain[j][i];
-                    // tile left of this tile in the view
-                    const adjacencyLeft = this.map.terrainAt(i - (reverseX ? 1 : -1), j + (reverseY ? 1 : -1)) === this.map.terrain[j][i];
-                    // tile right of this tile in the view
-                    const adjacencyRight = this.map.terrainAt(i + (reverseX ? 1 : -1), j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
-                    // tile down and left of this tile in the view
-                    const adjacencyDownLeft = this.map.terrainAt(i - (reverseX ? 1 : -1), j) === this.map.terrain[j][i];
-                    // tile down and right of this tile in the view
-                    const adjacencyDownRight = this.map.terrainAt(i, j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
-                    // tile down of this tile in the view
-                    const adjacencyDown = this.map.terrainAt(i - (reverseX ? 1 : -1), j - (reverseY ? 1 : -1)) === this.map.terrain[j][i];
+                    let terrainSprites;
+                    switch(this.map.terrain[j][i]) {
+                        case Terrain.WATER:
+                            terrainSprites = TERRAIN_WATER_SPRITES;
+                            break;
+                        case Terrain.GRASS:
+                            terrainSprites = TERRAIN_GRASS_SPRITES;
+                            break;
+                        case Terrain.CLAY:
+                            terrainSprites = TERRAIN_CLAY_SPRITES;
+                            break;
+                        case Terrain.SAND:
+                            terrainSprites = TERRAIN_SAND_SPRITES;
+                            break;
+                    }
+                    let adjacencyUp; // tile up of this tile in the view
+                    let adjacencyUpLeft; // tile up and left of this tile in the view
+                    let adjacencyUpRight; // tile up and right of this tile in the view
+                    let adjacencyLeft; // tile left of this tile in the view
+                    let adjacencyRight; // tile right of this tile in the view
+                    let adjacencyDownLeft; // tile down and left of this tile in the view
+                    let adjacencyDownRight; // tile down and right of this tile in the view
+                    let adjacencyDown; // tile down of this tile in the view
+                    switch (this.orientation) {
+                        case ORIENTATION.NORTH_EAST:
+                            adjacencyUp = this.map.terrainAt(i + 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyUpLeft = this.map.terrainAt(i, j + 1) === this.map.terrain[j][i];
+                            adjacencyUpRight = this.map.terrainAt(i + 1, j) === this.map.terrain[j][i];
+                            adjacencyLeft = this.map.terrainAt(i - 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyRight = this.map.terrainAt(i + 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyDownLeft = this.map.terrainAt(i - 1, j) === this.map.terrain[j][i];
+                            adjacencyDownRight = this.map.terrainAt(i, j - 1) === this.map.terrain[j][i];
+                            adjacencyDown = this.map.terrainAt(i - 1, j - 1) === this.map.terrain[j][i];
+                            break;
+                        case ORIENTATION.NORTH_WEST:
+                            adjacencyUp = this.map.terrainAt(i - 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyUpLeft = this.map.terrainAt(i - 1, j) === this.map.terrain[j][i];
+                            adjacencyUpRight =this.map.terrainAt(i, j + 1) === this.map.terrain[j][i];
+                            adjacencyLeft = this.map.terrainAt(i - 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyRight = this.map.terrainAt(i + 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyDownLeft = this.map.terrainAt(i, j - 1) === this.map.terrain[j][i];
+                            adjacencyDownRight = this.map.terrainAt(i + 1, j) === this.map.terrain[j][i];
+                            adjacencyDown = this.map.terrainAt(i + 1, j - 1) === this.map.terrain[j][i];
+                            break;
+                        case ORIENTATION.SOUTH_EAST:
+                            adjacencyUp = this.map.terrainAt(i + 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyUpLeft = this.map.terrainAt(i + 1, j) === this.map.terrain[j][i];
+                            adjacencyUpRight = this.map.terrainAt(i, j - 1) === this.map.terrain[j][i];
+                            adjacencyLeft = this.map.terrainAt(i + 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyRight = this.map.terrainAt(i - 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyDownLeft = this.map.terrainAt(i, j + 1) === this.map.terrain[j][i];
+                            adjacencyDownRight = this.map.terrainAt(i - 1, j) === this.map.terrain[j][i];
+                            adjacencyDown = this.map.terrainAt(i - 1, j + 1) === this.map.terrain[j][i];
+                            break;
+                        case ORIENTATION.SOUTH_WEST:
+                            adjacencyUp = this.map.terrainAt(i - 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyUpLeft = this.map.terrainAt(i, j - 1) === this.map.terrain[j][i];
+                            adjacencyUpRight = this.map.terrainAt(i - 1, j) === this.map.terrain[j][i];
+                            adjacencyLeft = this.map.terrainAt(i + 1, j - 1) === this.map.terrain[j][i];
+                            adjacencyRight = this.map.terrainAt(i - 1, j + 1) === this.map.terrain[j][i];
+                            adjacencyDownLeft = this.map.terrainAt(i + 1, j) === this.map.terrain[j][i];
+                            adjacencyDownRight = this.map.terrainAt(i, j + 1) === this.map.terrain[j][i];
+                            adjacencyDown = this.map.terrainAt(i + 1, j + 1) === this.map.terrain[j][i];
+                            break;
+                    }
                     let spriteIndex;
                     if(adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
                         spriteIndex = 0;
@@ -346,11 +394,11 @@ export class View {
                         spriteIndex = 4;
                     }
                     drawSprite(
-                        TERRAIN_WATER_SPRITES,
+                        terrainSprites,
                         [spriteIndex * TILE_WIDTH, 0],
-                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
-                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
-                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        [TILE_WIDTH, terrainSprites.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
+                        [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         undefined,
                         undefined
                     );
@@ -366,11 +414,11 @@ export class View {
                         spriteIndex = 9;
                     }
                     drawSprite(
-                        TERRAIN_WATER_SPRITES,
+                        terrainSprites,
                         [spriteIndex * TILE_WIDTH, 0],
-                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
-                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
-                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        [TILE_WIDTH, terrainSprites.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
+                        [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         undefined,
                         undefined
                     );
@@ -386,11 +434,11 @@ export class View {
                         spriteIndex = 14;
                     }
                     drawSprite(
-                        TERRAIN_WATER_SPRITES,
+                        terrainSprites,
                         [spriteIndex * TILE_WIDTH, 0],
-                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
-                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
-                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        [TILE_WIDTH, terrainSprites.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
+                        [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         undefined,
                         undefined
                     );
@@ -406,11 +454,11 @@ export class View {
                         spriteIndex = 19;
                     }
                     drawSprite(
-                        TERRAIN_WATER_SPRITES,
+                        terrainSprites,
                         [spriteIndex * TILE_WIDTH, 0],
-                        [TILE_WIDTH, TERRAIN_WATER_SPRITES.image.height],
-                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_WATER_SPRITES.image.height],
-                        [TILE_WIDTH * this.zoomLevel, TERRAIN_WATER_SPRITES.image.height * this.zoomLevel],
+                        [TILE_WIDTH, terrainSprites.image.height],
+                        [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
+                        [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         undefined,
                         undefined
                     );

@@ -25,8 +25,15 @@ for (let j = 9; j < 16; ++j) {
   }
 }
 
+view.map.terrain[4][9] = Terrain.SAND;
+view.map.terrain[5][9] = Terrain.WATER;
+view.map.terrain[4][10] = Terrain.CLAY;
+view.map.terrain[5][10] = Terrain.CLAY;
+view.map.terrain[4][11] = Terrain.WATER;
+view.map.terrain[5][11] = Terrain.WATER;
+
 for (let j = 1; j < 3; ++j) {
-  for (let i = 9; i < 11; ++i) {
+  for (let i = 9; i < 12; ++i) {
     view.map.terrain[j][i] = Terrain.WATER;
   }
 }
