@@ -77,6 +77,12 @@ export class Map {
                 !((u.minY <= y1 && u.maxY <= y2) || (u.minY >= y1 && u.maxY >= y2)));
     }
 
+    isTileFlat(x, y) {
+        return (this.heights[y][x] === this.heights[y + 1][x]) &&
+            (this.heights[y][x] === this.heights[y][x + 1]) &&
+            (this.heights[y][x] === this.heights[y + 1][x + 1]);
+    }
+
     terrainAt(x, y) {
         const indexY = y < 0 ? 0 : y >= this.terrain.length ? this.terrain.length - 1 : y;
         const indexX = x < 0 ? 0 : x >= this.terrain[indexY].length ? this.terrain[indexY].length - 1 : x;

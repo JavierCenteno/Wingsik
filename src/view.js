@@ -596,7 +596,7 @@ export class View {
                 );
             } else if (o instanceof Unit) {
                 // TODO: CALCULATE UNIT HEIGHT BETTER
-                const unitZ = this.map.heights[Math.floor(o.x)][Math.floor(o.y)];
+                const unitZ = this.map.heights[Math.floor(o.y)][Math.floor(o.x)];
                 const topTileCoordinates = [o.x, o.y, unitZ];
                 let spriteIndex = 0;
                 switch (this.orientation) {
