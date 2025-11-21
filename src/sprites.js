@@ -1,3 +1,5 @@
+import { CONTEXT } from './graphics.js';
+
 /**
  * Given an image element, returns a promise that resolves when an image is loaded or fails to load.
  */
@@ -15,7 +17,7 @@ const imageLoadPromise = (image) => {
  * Creates a sprite object from the given image source and optionally adds a canvas object to it.
  * A canvas object should be added if it is needed to access the image data of the sprite.
  */
-export const loadSprite = async (source, createCanvas) => {
+const loadSprite = async (source, createCanvas) => {
     const sprite = {};
     sprite.source = source;
     sprite.image = new Image();
@@ -55,3 +57,10 @@ export const FEATURE_TEST_DICE_SPRITES = await loadSprite("assets/sprites/featur
 // Unit sprites
 export const UNIT_INFANTRY_SPRITES = await loadSprite("assets/sprites/unit/infantry.png", true);
 export const UNIT_CARGO_SHIP_SPRITES = await loadSprite("assets/sprites/unit/cargo_ship.png", true);
+
+const loadFont = async (name, source) => {
+    const font = new FontFace(name, `url(${source})`);
+    await font.load().then((font) => {
+        document.fonts.add(font);
+    });
+}

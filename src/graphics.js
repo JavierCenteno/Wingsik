@@ -82,3 +82,17 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
         toHeight
     );
 }
+
+export const writeText = (text, [atX, atY], font, fontSize = 1, color = '#000000') => {
+    const lines = text.split('\n');
+    const fontSizePx = Math.round(fontSize) * 16 * window.devicePixelRatio;
+    let accumulator = atY;
+    for(const line of lines) {
+        CONTEXT.font = `${fontSizePx}px ${font}`;
+        CONTEXT.fillStyle = color;
+        CONTEXT.textBaseline = 'top';
+        CONTEXT.textAlign = 'start';
+        CONTEXT.fillText(line, atX, accumulator);
+        accumulator += fontSizePx;
+    }
+}
