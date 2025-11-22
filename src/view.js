@@ -53,6 +53,8 @@ export class View {
      */
     renderOrder;
 
+    hoveringOverTile = [undefined, undefined];
+
     /**
      * 
      * @param {number} x Number of tiles along the x (west-east) axis. Positive x is east while negative x is west.
@@ -256,6 +258,7 @@ export class View {
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
         let clickCallback = undefined;
         let hoverCallback = undefined;
+        this.hoveringOverTile = [undefined, undefined];
         // render the tiles
         // we start rendering from the top corner in the view
         for (
@@ -313,7 +316,9 @@ export class View {
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
                     undefined,
-                    undefined
+                    () => {
+                        this.hoveringOverTile = [j, i];
+                    }
                 );
                 if(this.map.terrain[j][i] !== undefined) {
                     let terrainSprites;

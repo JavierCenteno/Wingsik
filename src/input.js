@@ -91,28 +91,32 @@ document.addEventListener('keyup', (event) => {
     KEYS_HELD_DOWN[event.key] = 0;
 })
 
+const getPixelCoordinates = (event) => {
+    return [Math.round(event.pageX * window.devicePixelRatio), Math.round(event.pageY * window.devicePixelRatio)];
+}
+
 document.addEventListener('mousedown', (event) => {
     event.preventDefault();
-    CLICK_STARTED = [event.pageX, event.pageY];
-    CLICK_LAST_FRAME = [event.pageX, event.pageY];
-    CLICK_CURRENT = [event.pageX, event.pageY];
-    CURSOR_CURRENT = [event.pageX, event.pageY];
+    CLICK_STARTED = getPixelCoordinates(event);
+    CLICK_LAST_FRAME = getPixelCoordinates(event);
+    CLICK_CURRENT = getPixelCoordinates(event);
+    CURSOR_CURRENT = getPixelCoordinates(event);
 })
 
 document.addEventListener('mouseup', (event) => {
     event.preventDefault();
     if (CLICK_STARTED) {
-        CLICK_ENDED = [event.pageX, event.pageY];
+        CLICK_ENDED = getPixelCoordinates(event);
     }
-    CURSOR_CURRENT = [event.pageX, event.pageY];
+    CURSOR_CURRENT = getPixelCoordinates(event);
 })
 
 document.addEventListener('mousemove', (event) => {
     event.preventDefault();
     if (CLICK_STARTED) {
-        CLICK_CURRENT = [event.pageX, event.pageY];
+        CLICK_CURRENT = getPixelCoordinates(event);
     }
-    CURSOR_CURRENT = [event.pageX, event.pageY];
+    CURSOR_CURRENT = getPixelCoordinates(event);
 })
 
 document.addEventListener('wheel', (event) => {
