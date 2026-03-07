@@ -51,6 +51,7 @@ export const RESOURCE_GOLDENPITCH_SPRITES = await loadSprite("assets/sprites/til
 export const RESOURCE_IRON_SPRITES = await loadSprite("assets/sprites/tile/resource/iron.png", true);
 export const RESOURCE_LEAD_SPRITES = await loadSprite("assets/sprites/tile/resource/lead.png", true);
 export const RESOURCE_MERCURY_SPRITES = await loadSprite("assets/sprites/tile/resource/mercury.png", true);
+export const RESOURCE_PETROLEUM_SPRITES = await loadSprite("assets/sprites/tile/resource/petroleum.png", true);
 export const RESOURCE_SALT_SPRITES = await loadSprite("assets/sprites/tile/resource/salt.png", true);
 export const RESOURCE_SILVER_SPRITES = await loadSprite("assets/sprites/tile/resource/silver.png", true);
 export const RESOURCE_SULFUR_SPRITES = await loadSprite("assets/sprites/tile/resource/sulfur.png", true);

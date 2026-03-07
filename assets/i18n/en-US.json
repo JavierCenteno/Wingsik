@@ -198,12 +198,60 @@
       }
     },
     "terrainResource": {
+      "aluminum": {
+        "name": "aluminum",
+        "description": ""
+      },
       "coal": {
-        "name": "",
+        "name": "coal",
+        "description": ""
+      },
+      "copper": {
+        "name": "copper",
+        "description": ""
+      },
+      "gold": {
+        "name": "gold",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "goldenpitch",
         "description": ""
       },
       "iron": {
-        "name": "",
+        "name": "iron",
+        "description": ""
+      },
+      "lead": {
+        "name": "lead",
+        "description": ""
+      },
+      "mercury": {
+        "name": "mercury",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "stone oil",
+        "description": ""
+      },
+      "salt": {
+        "name": "salt",
+        "description": ""
+      },
+      "silver": {
+        "name": "silver",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "sulfur",
+        "description": ""
+      },
+      "tin": {
+        "name": "tin",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "tungsten",
         "description": ""
       }
     },
