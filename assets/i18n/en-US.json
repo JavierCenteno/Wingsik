@@ -1,3 +1,237 @@
 {
-  "name": "Wingsik"
+  "name": "Wingsik",
+  "map": {
+    "occupation": {
+      "actor": {
+        "name": "actor",
+        "plural": "actors",
+        "description": ""
+      },
+      "artist": {
+        "name": "artist",
+        "plural": "artists",
+        "description": ""
+      },
+      "athlete": {
+        "name": "athlete",
+        "plural": "athletes",
+        "description": ""
+      },
+      "attendant": {
+        "name": "attendant",
+        "plural": "attendants",
+        "description": ""
+      },
+      "banker": {
+        "name": "banker",
+        "plural": "bankers",
+        "description": ""
+      },
+      "builder": {
+        "name": "builder",
+        "plural": "builders",
+        "description": ""
+      },
+      "chemist": {
+        "name": "chemist",
+        "plural": "chemists",
+        "description": ""
+      },
+      "engineer": {
+        "name": "engineer",
+        "plural": "engineers",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "factory worker",
+        "plural": "factory workers",
+        "description": ""
+      },
+      "farmer": {
+        "name": "farmer",
+        "plural": "farmers",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "firefighter",
+        "plural": "firefighters",
+        "description": ""
+      },
+      "journalist": {
+        "name": "journalist",
+        "plural": "journalists",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "mail carrier",
+        "plural": "mail carriers",
+        "description": ""
+      },
+      "miner": {
+        "name": "miner",
+        "plural": "miner",
+        "description": ""
+      },
+      "musician": {
+        "name": "musician",
+        "plural": "musicians",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "office worker",
+        "plural": "office workers",
+        "description": ""
+      },
+      "physician": {
+        "name": "physician",
+        "plural": "physicians",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "police officer",
+        "plural": "police officers",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "secret agent",
+        "plural": "secret agents",
+        "description": ""
+      },
+      "soldier": {
+        "name": "soldier",
+        "plural": "soldiers",
+        "description": ""
+      },
+      "teacher": {
+        "name": "teacher",
+        "plural": "teachers",
+        "description": ""
+      },
+      "teamster": {
+        "name": "teamster",
+        "plural": "teamsters",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "unemployed",
+        "plural": "unemployeds",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "weather controller",
+        "plural": "weather controllers",
+        "description": ""
+      }
+    },
+    "race": {
+      "buffalo": {
+        "name": "Buffalo",
+        "plural": "Buffalo"
+      },
+      "caribou": {
+        "name": "Caribou",
+        "plural": "Caribou"
+      },
+      "cattle": {
+        "name": "Cattle",
+        "plural": "Cattle"
+      },
+      "changeling": {
+        "name": "Changeling",
+        "plural": "Changelings"
+      },
+      "deer": {
+        "name": "Deer",
+        "plural": "Deer"
+      },
+      "donkey": {
+        "name": "Donkey",
+        "plural": "Donkeys"
+      },
+      "dragon": {
+        "name": "Dragon",
+        "plural": "Dragons"
+      },
+      "earthPony": {
+        "name": "Earth Pony",
+        "plural": "Earth Ponies"
+      },
+      "griffon": {
+        "name": "Griffon",
+        "plural": "Griffons"
+      },
+      "kirin": {
+        "name": "Kirin",
+        "plural": "Kirins"
+      },
+      "lamia": {
+        "name": "Lamia",
+        "plural": "Lamias"
+      },
+      "llama": {
+        "name": "Llama",
+        "plural": "Llamas"
+      },
+      "pegasus": {
+        "name": "Pegasus",
+        "plural": "Pegasi"
+      },
+      "seapony": {
+        "name": "Seapony",
+        "plural": "Seaponies"
+      },
+      "sphinx": {
+        "name": "Sphinx",
+        "plural": "Sphinxes"
+      },
+      "unicorn": {
+        "name": "Unicorn",
+        "plural": "Unicorns"
+      },
+      "yak": {
+        "name": "Yak",
+        "plural": "Yak"
+      },
+      "zebra": {
+        "name": "Zebra",
+        "plural": "Zebras"
+      }
+    },
+    "terrainResource": {
+      "coal": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "terrainType": {
+      "clay": {
+        "name": "clay",
+        "description": ""
+      },
+      "grass": {
+        "name": "",
+        "description": ""
+      },
+      "limestone": {
+        "name": "limestone",
+        "description": ""
+      },
+      "sand": {
+        "name": "sand",
+        "description": ""
+      },
+      "tar": {
+        "name": "tar",
+        "description": ""
+      },
+      "water": {
+        "name": "water",
+        "description": ""
+      }
+    }
+  }
 }

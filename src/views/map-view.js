@@ -1,10 +1,10 @@
-import { CANVAS, drawSprite } from "./graphics.js";
-import { Building } from "./map/building.js";
-import { Feature } from "./map/feature.js";
-import { Map, Resources, Terrain } from './map/map.js';
-import { Unit } from "./map/unit.js";
-import { TERRAIN_CLAY_SPRITES, TERRAIN_GRASS_SPRITES, TERRAIN_SAND_SPRITES, TERRAIN_SPRITES, TERRAIN_LIMESTONE_SPRITES, TERRAIN_WATER_SPRITES, RESOURCE_IRON_SPRITES, RESOURCE_COAL_SPRITES } from "./sprites.js";
-import { binaryInsert, removeIfExists } from "./util/list-util.js";
+import { CANVAS, drawSprite } from "../graphics.js";
+import { Building, FarmBuilding } from "../map/building.js";
+import { Feature } from "../map/feature.js";
+import { Map } from '../map/map.js';
+import { Unit } from "../map/unit.js";
+import { MENU_BUILD_SPRITES, TERRAIN_SPRITES } from "../sprites.js";
+import { binaryInsert, removeIfExists } from "../util/list-util.js";
 
 export const ORIENTATION = {
     NORTH_EAST: 'NE',
@@ -31,7 +31,7 @@ export const BLOCK_HEIGHT = 8;
 /**
  * A view of a map.
  */
-export class View {
+export class MapView {
     /**
      * Current map on display.
      */
@@ -53,7 +53,10 @@ export class View {
      */
     renderOrder;
 
-    hoveringOverTile = [undefined, undefined];
+    hoveringOverTile = undefined;
+    clickingOnTile = undefined;
+
+    newBuildingGhost = undefined;
 
     /**
      * 
@@ -258,7 +261,8 @@ export class View {
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
         let clickCallback = undefined;
         let hoverCallback = undefined;
-        this.hoveringOverTile = [undefined, undefined];
+        this.hoveringOverTile = undefined;
+        this.clickingOnTile = undefined;
         // render the tiles
         // we start rendering from the top corner in the view
         for (
@@ -315,30 +319,15 @@ export class View {
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
-                    undefined,
+                    () => {
+                        this.clickingOnTile = [j, i];
+                    },
                     () => {
                         this.hoveringOverTile = [j, i];
                     }
                 );
                 if(this.map.terrain[j][i] !== undefined) {
-                    let terrainSprites;
-                    switch(this.map.terrain[j][i]) {
-                        case Terrain.WATER:
-                            terrainSprites = TERRAIN_WATER_SPRITES;
-                            break;
-                        case Terrain.GRASS:
-                            terrainSprites = TERRAIN_GRASS_SPRITES;
-                            break;
-                        case Terrain.CLAY:
-                            terrainSprites = TERRAIN_CLAY_SPRITES;
-                            break;
-                        case Terrain.SAND:
-                            terrainSprites = TERRAIN_SAND_SPRITES;
-                            break;
-                        case Terrain.LIMESTONE:
-                            terrainSprites = TERRAIN_LIMESTONE_SPRITES;
-                            break;
-                    }
+                    let terrainSprites = this.map.terrain[j][i].sprites;
                     let adjacencyUp; // tile up of this tile in the view
                     let adjacencyUpLeft; // tile up and left of this tile in the view
                     let adjacencyUpRight; // tile up and right of this tile in the view
@@ -472,15 +461,7 @@ export class View {
                     );
                 }
                 if(this.map.resources[j][i] !== undefined) {
-                    let resourceSprite;
-                    switch(this.map.resources[j][i]) {
-                        case Resources.IRON:
-                            resourceSprite = RESOURCE_IRON_SPRITES;
-                            break;
-                        case Resources.COAL:
-                            resourceSprite = RESOURCE_COAL_SPRITES;
-                            break;
-                    }
+                    let resourceSprite = this.map.resources[j][i].sprites;
                     drawSprite(
                         resourceSprite,
                         [spriteIndex * TILE_WIDTH, 0],
@@ -491,6 +472,19 @@ export class View {
                         undefined
                     );
                 }
+            }
+        }
+        if(this.newBuildingGhost) {
+            if(this.hoveringOverTile !== undefined) {
+                this.newBuildingGhost.y = this.hoveringOverTile[0];
+                this.newBuildingGhost.x = this.hoveringOverTile[1];
+                this.updateRenderOrderInView(this.newBuildingGhost);
+            } else {
+                this.removeFromView(this.newBuildingGhost);
+            }
+            if(this.clickingOnTile !== undefined) {
+                this.map.buildings.push(this.newBuildingGhost);
+                this.newBuildingGhost = undefined;
             }
         }
         // render the objects in the view
@@ -777,6 +771,19 @@ export class View {
                 );
             }
         }
+        drawSprite(
+            MENU_BUILD_SPRITES,
+            [0, 0],
+            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
+            [10, 10],
+            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
+            () => {
+                // CLICK_MENU = 'build';
+                this.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.addToView(this.newBuildingGhost);
+            },
+            undefined
+        );
         if (clickCallback !== undefined) {
             clickCallback();
             clickCallback = undefined;

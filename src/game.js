@@ -1,9 +1,10 @@
 import { clear, resetCanvasSize } from './graphics.js';
-import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
+import { CLICK_CURRENT, CLICK_LAST_FRAME, CLICK_MENU, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
-import { Resources, Terrain } from './map/map.js';
+import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
+import { TERRAIN_TYPES } from './map/terrain-type.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
-import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, View } from './view.js';
+import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, MapView } from './views/map-view.js';
 
 /**
  * How many milliseconds a frame lasts.
@@ -13,7 +14,7 @@ const FRAME_DURATION_MS = 50;
 /**
  * Current map view.
  */
-let view = new View(40,64);
+let view = new MapView(40,64);
 for (let j = 8; j < 17; ++j) {
   for (let i = 8; i < 17; ++i) {
     view.map.heights[j][i] = 1;
@@ -25,33 +26,33 @@ for (let j = 9; j < 16; ++j) {
   }
 }
 
-view.map.terrain[4][9] = Terrain.SAND;
-view.map.terrain[5][9] = Terrain.WATER;
-view.map.terrain[4][10] = Terrain.CLAY;
-view.map.terrain[5][10] = Terrain.CLAY;
-view.map.terrain[4][11] = Terrain.WATER;
-view.map.terrain[5][11] = Terrain.WATER;
-view.map.terrain[4][12] = Terrain.LIMESTONE;
-view.map.terrain[5][12] = Terrain.LIMESTONE;
+view.map.terrain[4][9] = TERRAIN_TYPES.sand;
+view.map.terrain[5][9] = TERRAIN_TYPES.water;
+view.map.terrain[4][10] = TERRAIN_TYPES.clay;
+view.map.terrain[5][10] = TERRAIN_TYPES.clay;
+view.map.terrain[4][11] = TERRAIN_TYPES.water;
+view.map.terrain[5][11] = TERRAIN_TYPES.water;
+view.map.terrain[4][12] = TERRAIN_TYPES.limestone;
+view.map.terrain[5][12] = TERRAIN_TYPES.limestone;
 
 for (let j = 1; j < 3; ++j) {
   for (let i = 9; i < 12; ++i) {
-    view.map.terrain[j][i] = Terrain.WATER;
+    view.map.terrain[j][i] = TERRAIN_TYPES.water;
   }
 }
 
 for (let j = 1; j < 6; ++j) {
   for (let i = 13; i < 15; ++i) {
-    view.map.terrain[j][i] = Terrain.SAND;
+    view.map.terrain[j][i] = TERRAIN_TYPES.sand;
   }
 }
-view.map.resources[2][13] = Resources.COAL;
-view.map.resources[3][13] = Resources.COAL;
-view.map.resources[3][14] = Resources.IRON;
-view.map.resources[4][14] = Resources.IRON;
+view.map.resources[2][13] = TERRAIN_RESOURCES.coal;
+view.map.resources[3][13] = TERRAIN_RESOURCES.coal;
+view.map.resources[3][14] = TERRAIN_RESOURCES.iron;
+view.map.resources[4][14] = TERRAIN_RESOURCES.iron;
 for (let j = 1; j < 6; ++j) {
   for (let i = 16; i < 18; ++i) {
-    view.map.resources[j][i] = Resources.COAL;
+    view.map.resources[j][i] = TERRAIN_RESOURCES.coal;
   }
 }
 
@@ -163,7 +164,7 @@ const processEvents = () => {
       }
     }
   }
-  if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
+  if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined && CLICK_MENU === undefined) {
     view.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / (TILE_WIDTH * view.zoomLevel));
     view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * view.zoomLevel));
   }

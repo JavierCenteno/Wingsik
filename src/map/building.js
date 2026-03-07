@@ -1,4 +1,5 @@
 import { BUILDING_FARM_SPRITES } from "../sprites.js";
+import { ORIENTATION } from "../views/map-view.js";
 
 export class BuildingType {
     /**

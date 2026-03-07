@@ -1,5 +1,5 @@
 import { UNIT_CARGO_SHIP_SPRITES, UNIT_INFANTRY_SPRITES } from "../sprites.js";
-import { ORIENTATION, GRANULAR_ORIENTATION } from "../view.js";
+import { ORIENTATION, GRANULAR_ORIENTATION } from "../views/map-view.js";
 
 export class UnitType {
     /**

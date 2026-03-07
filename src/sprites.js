@@ -36,11 +36,12 @@ const loadSprite = async (source, createCanvas) => {
 // Terrain sprites
 export const TERRAIN_SPRITES = await loadSprite("assets/sprites/tile/terrain.png", true);
 
-export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/terrain/water.png", true);
-export const TERRAIN_GRASS_SPRITES = await loadSprite("assets/sprites/tile/terrain/grass.png", true);
 export const TERRAIN_CLAY_SPRITES = await loadSprite("assets/sprites/tile/terrain/clay.png", true);
-export const TERRAIN_SAND_SPRITES = await loadSprite("assets/sprites/tile/terrain/sand.png", true);
+export const TERRAIN_GRASS_SPRITES = await loadSprite("assets/sprites/tile/terrain/grass.png", true);
 export const TERRAIN_LIMESTONE_SPRITES = await loadSprite("assets/sprites/tile/terrain/limestone.png", true);
+export const TERRAIN_SAND_SPRITES = await loadSprite("assets/sprites/tile/terrain/sand.png", true);
+export const TERRAIN_TAR_SPRITES = await loadSprite("assets/sprites/tile/terrain/tar.png", true);
+export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/terrain/water.png", true);
 
 export const RESOURCE_IRON_SPRITES = await loadSprite("assets/sprites/tile/resource/iron.png", true);
 export const RESOURCE_COAL_SPRITES = await loadSprite("assets/sprites/tile/resource/coal.png", true);
@@ -57,6 +58,9 @@ export const FEATURE_TEST_DICE_SPRITES = await loadSprite("assets/sprites/featur
 // Unit sprites
 export const UNIT_INFANTRY_SPRITES = await loadSprite("assets/sprites/unit/infantry.png", true);
 export const UNIT_CARGO_SHIP_SPRITES = await loadSprite("assets/sprites/unit/cargo_ship.png", true);
+
+// Menu sprites
+export const MENU_BUILD_SPRITES = await loadSprite("assets/sprites/menu/build.png", true);
 
 const loadFont = async (name, source) => {
     const font = new FontFace(name, `url(${source})`);

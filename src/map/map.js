@@ -111,16 +111,3 @@ export class Map {
         this.view.addToView(unit);
     }
 }
-
-export const Terrain = {
-    WATER: 1,
-    GRASS: 2,
-    CLAY: 3,
-    SAND: 4,
-    LIMESTONE: 5
-}
-
-export const Resources = {
-    IRON: 1,
-    COAL: 2
-}

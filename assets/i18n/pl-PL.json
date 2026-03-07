@@ -125,76 +125,76 @@
     },
     "race": {
       "buffalo": {
-        "name": "Buffle",
-        "plural": "Buffles"
+        "name": "",
+        "plural": ""
       },
       "caribou": {
-        "name": "Renne",
-        "plural": "Rennes"
+        "name": "",
+        "plural": ""
       },
       "cattle": {
-        "name": "Bœuf",
-        "plural": "Bœufs"
+        "name": "Bydło",
+        "plural": "Bydło"
       },
       "changeling": {
-        "name": "Changelin",
-        "plural": "Changelins"
+        "name": "Podmieniec",
+        "plural": "Podmieńce"
       },
       "deer": {
-        "name": "Cerf",
-        "plural": "Cerfs"
+        "name": "Jeleń",
+        "plural": "Jelenie"
       },
       "donkey": {
-        "name": "Âne",
-        "plural": "Ânes"
+        "name": "",
+        "plural": ""
       },
       "dragon": {
-        "name": "Dragon",
-        "plural": "Dragons"
+        "name": "",
+        "plural": ""
       },
       "earthPony": {
-        "name": "Poney Terrestre",
-        "plural": "Poneys Terrestres"
+        "name": "",
+        "plural": ""
       },
       "griffon": {
-        "name": "Griffon",
-        "plural": "Griffons"
+        "name": "",
+        "plural": ""
       },
       "kirin": {
-        "name": "Kirin",
-        "plural": "Kirins"
+        "name": "",
+        "plural": ""
       },
       "lamia": {
-        "name": "Lamia",
-        "plural": "Lamias"
+        "name": "",
+        "plural": ""
       },
       "llama": {
-        "name": "Lama",
-        "plural": "Lamas"
+        "name": "",
+        "plural": ""
       },
       "pegasus": {
-        "name": "Pégase",
-        "plural": "Pégases"
+        "name": "",
+        "plural": "Pegazy"
       },
       "seapony": {
-        "name": "Poney de Mer",
-        "plural": "Poneys de Mer"
+        "name": "",
+        "plural": ""
       },
       "sphinx": {
-        "name": "Sphinx",
-        "plural": "Sphinx"
+        "name": "",
+        "plural": ""
       },
       "unicorn": {
-        "name": "Licorne",
-        "plural": "Licornes"
+        "name": "",
+        "plural": "Jednorożce"
       },
       "yak": {
-        "name": "Yack",
-        "plural": "Yacks"
+        "name": "",
+        "plural": ""
       },
       "zebra": {
-        "name": "Zèbre",
-        "plural": "Zèbres"
+        "name": "",
+        "plural": ""
       }
     },
     "terrainResource": {
@@ -209,27 +209,27 @@
     },
     "terrainType": {
       "clay": {
-        "name": "argile",
+        "name": "",
         "description": ""
       },
       "grass": {
-        "name": "herbe",
+        "name": "",
         "description": ""
       },
       "limestone": {
-        "name": "calcaire",
+        "name": "",
         "description": ""
       },
       "sand": {
-        "name": "sable",
+        "name": "",
         "description": ""
       },
       "tar": {
-        "name": "bitume",
+        "name": "",
         "description": ""
       },
       "water": {
-        "name": "eau",
+        "name": "",
         "description": ""
       }
     }

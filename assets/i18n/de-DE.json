@@ -1,6 +1,80 @@
 {
-  "name": "Wingsik",
+  "name": "",
   "map": {
+    "race": {
+      "buffalo": {
+        "name": "",
+        "plural": ""
+      },
+      "caribou": {
+        "name": "",
+        "plural": ""
+      },
+      "cattle": {
+        "name": "",
+        "plural": ""
+      },
+      "changeling": {
+        "name": "",
+        "plural": ""
+      },
+      "deer": {
+        "name": "",
+        "plural": ""
+      },
+      "donkey": {
+        "name": "",
+        "plural": ""
+      },
+      "dragon": {
+        "name": "",
+        "plural": ""
+      },
+      "earthPony": {
+        "name": "",
+        "plural": ""
+      },
+      "griffon": {
+        "name": "",
+        "plural": ""
+      },
+      "kirin": {
+        "name": "",
+        "plural": ""
+      },
+      "lamia": {
+        "name": "",
+        "plural": ""
+      },
+      "llama": {
+        "name": "",
+        "plural": ""
+      },
+      "pegasus": {
+        "name": "",
+        "plural": ""
+      },
+      "seapony": {
+        "name": "",
+        "plural": ""
+      },
+      "sphinx": {
+        "name": "",
+        "plural": ""
+      },
+      "unicorn": {
+        "name": "",
+        "plural": ""
+      },
+      "yak": {
+        "name": "",
+        "plural": ""
+      },
+      "zebra": {
+        "name": "",
+        "plural": ""
+      }
+    },
     "occupation": {
       "actor": {
         "name": "",
@@ -120,116 +194,6 @@
       "weatherController": {
         "name": "",
         "plural": "",
-        "description": ""
-      }
-    },
-    "race": {
-      "buffalo": {
-        "name": "Buffle",
-        "plural": "Buffles"
-      },
-      "caribou": {
-        "name": "Renne",
-        "plural": "Rennes"
-      },
-      "cattle": {
-        "name": "Bœuf",
-        "plural": "Bœufs"
-      },
-      "changeling": {
-        "name": "Changelin",
-        "plural": "Changelins"
-      },
-      "deer": {
-        "name": "Cerf",
-        "plural": "Cerfs"
-      },
-      "donkey": {
-        "name": "Âne",
-        "plural": "Ânes"
-      },
-      "dragon": {
-        "name": "Dragon",
-        "plural": "Dragons"
-      },
-      "earthPony": {
-        "name": "Poney Terrestre",
-        "plural": "Poneys Terrestres"
-      },
-      "griffon": {
-        "name": "Griffon",
-        "plural": "Griffons"
-      },
-      "kirin": {
-        "name": "Kirin",
-        "plural": "Kirins"
-      },
-      "lamia": {
-        "name": "Lamia",
-        "plural": "Lamias"
-      },
-      "llama": {
-        "name": "Lama",
-        "plural": "Lamas"
-      },
-      "pegasus": {
-        "name": "Pégase",
-        "plural": "Pégases"
-      },
-      "seapony": {
-        "name": "Poney de Mer",
-        "plural": "Poneys de Mer"
-      },
-      "sphinx": {
-        "name": "Sphinx",
-        "plural": "Sphinx"
-      },
-      "unicorn": {
-        "name": "Licorne",
-        "plural": "Licornes"
-      },
-      "yak": {
-        "name": "Yack",
-        "plural": "Yacks"
-      },
-      "zebra": {
-        "name": "Zèbre",
-        "plural": "Zèbres"
-      }
-    },
-    "terrainResource": {
-      "coal": {
-        "name": "",
-        "description": ""
-      },
-      "iron": {
-        "name": "",
-        "description": ""
-      }
-    },
-    "terrainType": {
-      "clay": {
-        "name": "argile",
-        "description": ""
-      },
-      "grass": {
-        "name": "herbe",
-        "description": ""
-      },
-      "limestone": {
-        "name": "calcaire",
-        "description": ""
-      },
-      "sand": {
-        "name": "sable",
-        "description": ""
-      },
-      "tar": {
-        "name": "bitume",
-        "description": ""
-      },
-      "water": {
-        "name": "eau",
         "description": ""
       }
     }

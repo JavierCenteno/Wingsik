@@ -1,3 +1,237 @@
 {
-  "name": "Wingsik"
+  "name": "Wingsik",
+  "map": {
+    "occupation": {
+      "actor": {
+        "name": "actor",
+        "plural": "actores",
+        "description": ""
+      },
+      "artist": {
+        "name": "artista",
+        "plural": "artistas",
+        "description": ""
+      },
+      "athlete": {
+        "name": "atleta",
+        "plural": "atletas",
+        "description": ""
+      },
+      "attendant": {
+        "name": "atendiente",
+        "plural": "atendientes",
+        "description": ""
+      },
+      "banker": {
+        "name": "banquero",
+        "plural": "banqueros",
+        "description": ""
+      },
+      "builder": {
+        "name": "constructor",
+        "plural": "constructores",
+        "description": ""
+      },
+      "chemist": {
+        "name": "químico",
+        "plural": "químicos",
+        "description": ""
+      },
+      "engineer": {
+        "name": "ingeniero",
+        "plural": "ingenieros",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "fabricante",
+        "plural": "fabricantes",
+        "description": ""
+      },
+      "farmer": {
+        "name": "granjero",
+        "plural": "granjeros",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "bombero",
+        "plural": "bomberos",
+        "description": ""
+      },
+      "journalist": {
+        "name": "periodista",
+        "plural": "periodistas",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "cartero",
+        "plural": "carteros",
+        "description": ""
+      },
+      "miner": {
+        "name": "minero",
+        "plural": "mineros",
+        "description": ""
+      },
+      "musician": {
+        "name": "músico",
+        "plural": "músicos",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "oficinista",
+        "plural": "oficinistas",
+        "description": ""
+      },
+      "physician": {
+        "name": "médico",
+        "plural": "médicos",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "policía",
+        "plural": "policías",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "agente secreto",
+        "plural": "agentes secretos",
+        "description": ""
+      },
+      "soldier": {
+        "name": "soldado",
+        "plural": "soldados",
+        "description": ""
+      },
+      "teacher": {
+        "name": "profesor",
+        "plural": "profesores",
+        "description": ""
+      },
+      "teamster": {
+        "name": "transportista",
+        "plural": "transportistas",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "desempleado",
+        "plural": "desempleados",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "meteorólogo",
+        "plural": "meteorólogos",
+        "description": ""
+      }
+    },
+    "race": {
+      "buffalo": {
+        "name": "Búfalo",
+        "plural": "Búfalos"
+      },
+      "caribou": {
+        "name": "Reno",
+        "plural": "Renos"
+      },
+      "cattle": {
+        "name": "Res",
+        "plural": "Reses"
+      },
+      "changeling": {
+        "name": "Cambiante",
+        "plural": "Cambiantes"
+      },
+      "deer": {
+        "name": "Ciervo",
+        "plural": "Ciervos"
+      },
+      "donkey": {
+        "name": "Burro",
+        "plural": "Burros"
+      },
+      "dragon": {
+        "name": "Dragón",
+        "plural": "Dragones"
+      },
+      "earthPony": {
+        "name": "Poni de Tierra",
+        "plural": "Ponis de Tierra"
+      },
+      "griffon": {
+        "name": "Grifo",
+        "plural": "Grifos"
+      },
+      "kirin": {
+        "name": "Kirin",
+        "plural": "Kirins"
+      },
+      "lamia": {
+        "name": "Lamia",
+        "plural": "Lamias"
+      },
+      "llama": {
+        "name": "Llama",
+        "plural": "Llamas"
+      },
+      "pegasus": {
+        "name": "Pegaso",
+        "plural": "Pegasos"
+      },
+      "seapony": {
+        "name": "Poni de Mar",
+        "plural": "Ponis de Mar"
+      },
+      "sphinx": {
+        "name": "Esfinge",
+        "plural": "Esfinges"
+      },
+      "unicorn": {
+        "name": "Unicornio",
+        "plural": "Unicornios"
+      },
+      "yak": {
+        "name": "Yak",
+        "plural": "Yaks"
+      },
+      "zebra": {
+        "name": "Cebra",
+        "plural": "Cebras"
+      }
+    },
+    "terrainResource": {
+      "coal": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "terrainType": {
+      "clay": {
+        "name": "arcilla",
+        "description": ""
+      },
+      "grass": {
+        "name": "hierba",
+        "description": ""
+      },
+      "limestone": {
+        "name": "caliza",
+        "description": ""
+      },
+      "sand": {
+        "name": "arena",
+        "description": ""
+      },
+      "tar": {
+        "name": "brea",
+        "description": ""
+      },
+      "water": {
+        "name": "agua",
+        "description": ""
+      }
+    }
+  }
 }

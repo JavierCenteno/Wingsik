@@ -35,6 +35,10 @@ export let KEYS_PRESSED = {};
  */
 export let KEYS_HELD_DOWN = {};
 /**
+ * Which menu was clicked.
+ */
+export let CLICK_MENU = undefined;
+/**
  * At which coordinates of the screen the last click started.
  */
 export let CLICK_STARTED = undefined;
@@ -107,6 +111,7 @@ document.addEventListener('mouseup', (event) => {
     event.preventDefault();
     if (CLICK_STARTED) {
         CLICK_ENDED = getPixelCoordinates(event);
+        // CLICK_MENU = undefined;
     }
     CURSOR_CURRENT = getPixelCoordinates(event);
 })
