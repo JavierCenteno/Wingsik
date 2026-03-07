@@ -43,8 +43,19 @@ export const TERRAIN_SAND_SPRITES = await loadSprite("assets/sprites/tile/terrai
 export const TERRAIN_TAR_SPRITES = await loadSprite("assets/sprites/tile/terrain/tar.png", true);
 export const TERRAIN_WATER_SPRITES = await loadSprite("assets/sprites/tile/terrain/water.png", true);
 
-export const RESOURCE_IRON_SPRITES = await loadSprite("assets/sprites/tile/resource/iron.png", true);
+export const RESOURCE_ALUMINUM_SPRITES = await loadSprite("assets/sprites/tile/resource/aluminum.png", true);
 export const RESOURCE_COAL_SPRITES = await loadSprite("assets/sprites/tile/resource/coal.png", true);
+export const RESOURCE_COPPER_SPRITES = await loadSprite("assets/sprites/tile/resource/copper.png", true);
+export const RESOURCE_GOLD_SPRITES = await loadSprite("assets/sprites/tile/resource/gold.png", true);
+export const RESOURCE_GOLDENPITCH_SPRITES = await loadSprite("assets/sprites/tile/resource/goldenpitch.png", true);
+export const RESOURCE_IRON_SPRITES = await loadSprite("assets/sprites/tile/resource/iron.png", true);
+export const RESOURCE_LEAD_SPRITES = await loadSprite("assets/sprites/tile/resource/lead.png", true);
+export const RESOURCE_MERCURY_SPRITES = await loadSprite("assets/sprites/tile/resource/mercury.png", true);
+export const RESOURCE_SALT_SPRITES = await loadSprite("assets/sprites/tile/resource/salt.png", true);
+export const RESOURCE_SILVER_SPRITES = await loadSprite("assets/sprites/tile/resource/silver.png", true);
+export const RESOURCE_SULFUR_SPRITES = await loadSprite("assets/sprites/tile/resource/sulfur.png", true);
+export const RESOURCE_TIN_SPRITES = await loadSprite("assets/sprites/tile/resource/tin.png", true);
+export const RESOURCE_TUNGSTEN_SPRITES = await loadSprite("assets/sprites/tile/resource/tungsten.png", true);
 
 // Building sprites
 export const BUILDING_FARM_SPRITES = await loadSprite("assets/sprites/building/farm.png", true);
