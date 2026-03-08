@@ -3,31 +3,40 @@ import { ORIENTATION } from "../views/map-view.js";
 
 export class FeatureType {
     /**
-     * @type {Sprite}
+     * Key of this building type for dictionary lookups.
+     * @type {string}
      */
-    sprite;
+    key;
     /**
      * How many tiles along the x (west-east) axis features of this type take in their default orientation (north east).
+     * @type {number}
      */
     sizeX;
     /**
      * How many tiles along the y (south-north) axis features of this type take in their default orientation (north east).
+     * @type {number}
      */
     sizeY;
+    /**
+     * Sprites for features of this type.
+     * @type {Sprite}
+     */
+    sprite;
 
-    constructor(sprite, sizeX, sizeY) {
-        this.sprite = sprite;
+    constructor(key, sizeX, sizeY, sprite) {
+        this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        this.sprite = sprite;
     }
 }
 
 export const FEATURE_TYPES = {};
 
-FEATURE_TYPES.tree = new FeatureType(FEATURE_TREE_SPRITES, 1, 1);
-FEATURE_TYPES.test_cube = new FeatureType(FEATURE_TEST_CUBE_SPRITES, 1, 1);
-FEATURE_TYPES.test_sphere = new FeatureType(FEATURE_TEST_SPHERE_SPRITES, 1, 1);
-FEATURE_TYPES.test_dice = new FeatureType(FEATURE_TEST_DICE_SPRITES, 2, 2);
+FEATURE_TYPES.tree = new FeatureType('tree', 1, 1, FEATURE_TREE_SPRITES);
+FEATURE_TYPES.test_cube = new FeatureType('testCube', 1, 1, FEATURE_TEST_CUBE_SPRITES);
+FEATURE_TYPES.test_sphere = new FeatureType('testSphere', 1, 1, FEATURE_TEST_SPHERE_SPRITES);
+FEATURE_TYPES.test_dice = new FeatureType('testDice', 2, 2, FEATURE_TEST_DICE_SPRITES);
 
 export class Feature {
     /**

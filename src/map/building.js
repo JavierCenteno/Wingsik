@@ -3,28 +3,37 @@ import { ORIENTATION } from "../views/map-view.js";
 
 export class BuildingType {
     /**
-     * @type {Sprite}
+     * Key of this building type for dictionary lookups.
+     * @type {string}
      */
-    sprite;
+    key;
     /**
      * How many tiles along the x (west-east) axis buildings of this type take in their default orientation (north east).
+     * @type {number}
      */
     sizeX;
     /**
      * How many tiles along the y (south-north) axis buildings of this type take in their default orientation (north east).
+     * @type {number}
      */
     sizeY;
+    /**
+     * Sprites for buildings of this type.
+     * @type {Sprite}
+     */
+    sprite;
 
-    constructor(sprite, sizeX, sizeY) {
-        this.sprite = sprite;
+    constructor(key, sizeX, sizeY, sprite) {
+        this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        this.sprite = sprite;
     }
 }
 
 export const BUILDING_TYPES = {};
 
-BUILDING_TYPES.farm = new BuildingType(BUILDING_FARM_SPRITES, 2, 3);
+BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES);
 
 export class Building {
     /**

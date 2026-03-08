@@ -1,6 +1,140 @@
 {
   "name": "",
   "map": {
+    "building": {
+      "farm": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "feature": {},
+    "occupation": {
+      "actor": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "artist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "athlete": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "attendant": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "banker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "builder": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "chemist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "engineer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "farmer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "journalist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "lumberjack": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "miner": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "musician": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "physician": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "soldier": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "teacher": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "teamster": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      }
+    },
     "race": {
       "buffalo": {
         "name": "",
@@ -75,127 +209,90 @@
         "plural": ""
       }
     },
-    "occupation": {
-      "actor": {
+    "resource": {
+      "aluminum": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "artist": {
+      "coal": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "athlete": {
+      "copper": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "attendant": {
+      "gold": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "banker": {
+      "goldenpitch": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "builder": {
+      "iron": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "chemist": {
+      "lead": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "engineer": {
+      "mercury": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "factoryWorker": {
+      "petroleum": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "farmer": {
+      "salt": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "firefighter": {
+      "silver": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "journalist": {
+      "sulfur": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "mailCarrier": {
+      "tin": {
         "name": "",
-        "plural": "",
         "description": ""
       },
-      "miner": {
+      "tungsten": {
         "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "musician": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "officeWorker": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "physician": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "policeOfficer": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "secretAgent": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "soldier": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "teacher": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "teamster": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "unemployed": {
-        "name": "",
-        "plural": "",
-        "description": ""
-      },
-      "weatherController": {
-        "name": "",
-        "plural": "",
         "description": ""
       }
-    }
+    },
+    "terrainType": {
+      "clay": {
+        "name": "",
+        "description": ""
+      },
+      "grass": {
+        "name": "",
+        "description": ""
+      },
+      "limestone": {
+        "name": "",
+        "description": ""
+      },
+      "sand": {
+        "name": "",
+        "description": ""
+      },
+      "tar": {
+        "name": "",
+        "description": ""
+      },
+      "water": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "unit": {}
   }
 }

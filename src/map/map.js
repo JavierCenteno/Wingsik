@@ -2,34 +2,42 @@ export class Map {
     view;
     /**
      * Number of tiles along the x (west-east) axis. Positive x is east while negative x is west.
+     * @type {number}
      */
     x;
     /**
      * Number of tiles along the y (south-north) axis. Positive y is north while negative y is south.
+     * @type {number}
      */
     y;
     /**
      * Height of the points at the corners of the tiles as a two dimensional number array with lenghts (y + 1) and (x + 1).
+     * @type {number[][]}
      */
     heights;
     /**
      * Types of terrain of each tile as a two dimensional number array with lenghts y and x.
+     * @type {TerrainType[][]}
      */
     terrain;
     /**
      * Types of resources of each tile as a two dimensional number array with lenghts y and x.
+     * @type {TerrainResource[][]}
      */
     resources;
     /**
      * List of buildings in this map.
+     * @type {Building[]}
      */
     buildings;
     /**
      * List of tile features in this map.
+     * @type {Feature[]}
      */
     features;
     /**
      * List of units in this map.
+     * @type {Unit[]}
      */
     units;
 

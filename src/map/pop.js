@@ -1,4 +1,8 @@
 export class Race {
+    /**
+     * Key of this race for dictionary lookups.
+     * @type {string}
+     */
     key;
 
     constructor(key) {

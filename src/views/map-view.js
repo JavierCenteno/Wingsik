@@ -327,7 +327,7 @@ export class MapView {
                     }
                 );
                 if(this.map.terrain[j][i] !== undefined) {
-                    let terrainSprites = this.map.terrain[j][i].sprites;
+                    let terrainSprites = this.map.terrain[j][i].sprite;
                     let adjacencyUp; // tile up of this tile in the view
                     let adjacencyUpLeft; // tile up and left of this tile in the view
                     let adjacencyUpRight; // tile up and right of this tile in the view
@@ -461,7 +461,7 @@ export class MapView {
                     );
                 }
                 if(this.map.resources[j][i] !== undefined) {
-                    let resourceSprite = this.map.resources[j][i].sprites;
+                    let resourceSprite = this.map.resources[j][i].sprite;
                     drawSprite(
                         resourceSprite,
                         [spriteIndex * TILE_WIDTH, 0],

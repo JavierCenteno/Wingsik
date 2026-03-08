@@ -3,9 +3,10 @@ import { ORIENTATION, GRANULAR_ORIENTATION } from "../views/map-view.js";
 
 export class UnitType {
     /**
-     * @type {Sprite}
+     * Key of this building type for dictionary lookups.
+     * @type {string}
      */
-    sprite;
+    key;
     /**
      * How many tiles along the x (west-east) axis units of this type take in their default orientation (north).
      */
@@ -18,19 +19,25 @@ export class UnitType {
      * How many tiles along the diagonal axis units of this type take in their default orientation (north).
      */
     sizeXY;
+    /**
+     * Sprites for units of this type.
+     * @type {Sprite}
+     */
+    sprite;
 
-    constructor(sprite, sizeX, sizeY) {
-        this.sprite = sprite;
+    constructor(key, sizeX, sizeY, sprite) {
+        this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.sizeXY = (sizeX ** 2 + sizeY ** 2) ** 0.5;
+        this.sprite = sprite;
     }
 }
 
 export const UNIT_TYPES = {};
 
-UNIT_TYPES.infantry = new UnitType(UNIT_INFANTRY_SPRITES, 1, 1);
-UNIT_TYPES.cargoShip = new UnitType(UNIT_CARGO_SHIP_SPRITES, 2, 6);
+UNIT_TYPES.infantry = new UnitType('infantry', 1, 1, UNIT_INFANTRY_SPRITES);
+UNIT_TYPES.cargoShip = new UnitType('cargoShip', 2, 6, UNIT_CARGO_SHIP_SPRITES);
 
 
 export class Unit {

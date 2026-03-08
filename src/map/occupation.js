@@ -65,6 +65,10 @@ OCCUPATIONS.journalist = new Occupation('journalist',
     [ RACES.griffon, RACES.pegasus ],
     [ RACES.changeling ]
 );
+OCCUPATIONS.lumberjack = new Occupation('lumberjack',
+    [],
+    [ RACES.earthPony, RACES.yak ]
+);
 OCCUPATIONS.mailCarrier = new Occupation('mailCarrier',
     [],
     [ RACES.griffon, RACES.pegasus ]

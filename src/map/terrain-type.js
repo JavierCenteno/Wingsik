@@ -1,13 +1,20 @@
 import { TERRAIN_CLAY_SPRITES, TERRAIN_GRASS_SPRITES, TERRAIN_SAND_SPRITES, TERRAIN_LIMESTONE_SPRITES, TERRAIN_TAR_SPRITES, TERRAIN_WATER_SPRITES } from "../sprites.js";
 
 export class TerrainType {
+    /**
+     * Key of this terrain type for dictionary lookups.
+     * @type {string}
+     */
     key;
+    /**
+     * Sprites for this terrain type.
+     * @type {Sprite}
+     */
+    sprite;
 
-    sprites;
-
-    constructor(key, sprites) {
+    constructor(key, sprite) {
         this.key = key;
-        this.sprites = sprites;
+        this.sprite = sprite;
     }
 }
 

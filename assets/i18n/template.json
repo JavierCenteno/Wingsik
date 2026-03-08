@@ -1,6 +1,18 @@
 {
   "name": "Wingsik",
   "map": {
+    "building": {
+      "farm": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "feature": {
+      "tree": {
+        "name": "",
+        "description": ""
+      }
+    },
     "occupation": {
       "actor": {
         "name": "",
@@ -58,6 +70,11 @@
         "description": ""
       },
       "journalist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "lumberjack": {
         "name": "",
         "plural": "",
         "description": ""
@@ -189,7 +206,7 @@
         "plural": ""
       }
     },
-    "terrainResource": {
+    "resource": {
       "aluminum": {
         "name": "",
         "description": ""
@@ -272,6 +289,7 @@
         "name": "",
         "description": ""
       }
-    }
+    },
+    "unit": {}
   }
 }
