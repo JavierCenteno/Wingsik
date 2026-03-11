@@ -143,75 +143,93 @@
     "race": {
       "buffalo": {
         "name": "Buffalo",
-        "plural": "Buffalo"
+        "plural": "Buffalo",
+        "description": "Strong and nature-bound, Buffalo will do whatever it takes to protect their land."
       },
       "caribou": {
         "name": "Caribou",
-        "plural": "Caribou"
+        "plural": "Caribou",
+        "description": "Not even the bitter cold can stop the Caribou from thriving, protected by the souls of their ancestors which dance in the polar sky."
       },
       "cattle": {
         "name": "Cattle",
-        "plural": "Cattle"
+        "plural": "Cattle",
+        "description": "Worshippers of the sacred soil and waters, even a desert can turn lush under the hooves of the Cattle."
       },
       "changeling": {
         "name": "Changeling",
-        "plural": "Changelings"
+        "plural": "Changelings",
+        "description": "With strong illusion magic, Changelings wander from their hives and among society and no secrets can be kept from them."
       },
       "deer": {
         "name": "Deer",
-        "plural": "Deer"
+        "plural": "Deer",
+        "description": "Perfectly attuned to nature, Deer can hold down even an industralized army with just what the forest provides."
       },
       "donkey": {
         "name": "Donkey",
-        "plural": "Donkeys"
+        "plural": "Donkeys",
+        "description": "Hard-working and religious, Donkeys toil away in farms and workshops."
       },
       "dragon": {
         "name": "Dragon",
-        "plural": "Dragons"
+        "plural": "Dragons",
+        "description": "With breath of fire that melts even the hardest metals, tools forged by Dragons last as long as the universe itself."
       },
       "earthPony": {
         "name": "Earth Pony",
-        "plural": "Earth Ponies"
+        "plural": "Earth Ponies",
+        "description": "Earth Ponies are the masters of infrastructure and their cities are well oiled machines capable of producing wealth beyond belief."
       },
       "griffon": {
         "name": "Griffon",
-        "plural": "Griffons"
+        "plural": "Griffons",
+        "description": "Tough and ingenious, Griffons make up for the lack of resources of their land with inventions that amaze and astonish all other creatures."
       },
       "kirin": {
         "name": "Kirin",
-        "plural": "Kirins"
+        "plural": "Kirins",
+        "description": "Commanding powerful fire magic, an army of Kirins can stand tall against even mighty Dragons."
       },
       "lamia": {
         "name": "Lamia",
-        "plural": "Lamias"
+        "plural": "Lamias",
+        "description": "Defended by strong mind magic, any army that tries to conquer the lamias will find itself turning around for reasons unknown."
       },
       "llama": {
         "name": "Llama",
-        "plural": "Llamas"
+        "plural": "Llamas",
+        "description": "Llamas thrive among mountain peaks in altitudes that even Pegasi struggle to breathe in."
       },
       "pegasus": {
         "name": "Pegasus",
-        "plural": "Pegasi"
+        "plural": "Pegasi",
+        "description": "The pegasi rule the skies and can alter the weather to what convenes them, wrecking aerial devastation on their enemies."
       },
       "seapony": {
         "name": "Seapony",
-        "plural": "Seaponies"
+        "plural": "Seaponies",
+        "description": "Seaponies are unrivaled in the endless expanse of the seas and are no match for any navy."
       },
       "sphinx": {
         "name": "Sphinx",
-        "plural": "Sphinxes"
+        "plural": "Sphinxes",
+        "description": "The knowledge of geometry and architecture of the Sphinxes make them a must-have for the construction of any monument."
       },
       "unicorn": {
         "name": "Unicorn",
-        "plural": "Unicorns"
+        "plural": "Unicorns",
+        "description": "Unicorns possess a knowledge of magic that no species can rival and their wizards are prepared for any possible threat."
       },
       "yak": {
         "name": "Yak",
-        "plural": "Yak"
+        "plural": "Yak",
+        "description": "Perhaps the strongest ungulate that exists, Yaks can smash through rocks and fear not the wrath of the earth."
       },
       "zebra": {
         "name": "Zebra",
-        "plural": "Zebras"
+        "plural": "Zebras",
+        "description": "With knowledge of botany and alchemy, there is no disease that can't be cured by the zebras."
       }
     },
     "resource": {

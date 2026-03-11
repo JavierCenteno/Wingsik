@@ -39,7 +39,7 @@ OCCUPATIONS.banker = new Occupation('banker',
 );
 OCCUPATIONS.builder = new Occupation('builder',
     [ RACES.buffalo, RACES.donkey, RACES.earthPony, RACES.pegasus, RACES.yak ],
-    []
+    [ RACES.sphinx ]
 );
 OCCUPATIONS.chemist = new Occupation('chemist',
     [ RACES.unicorn, RACES.kirin ],
@@ -54,7 +54,7 @@ OCCUPATIONS.factoryWorker = new Occupation('factoryWorker',
     []
 );
 OCCUPATIONS.farmer = new Occupation('farmer',
-    [ RACES.buffalo, RACES.yak ],
+    [ RACES.buffalo ],
     [ RACES.deer, RACES.cattle, RACES.earthPony, RACES.zebra ]
 );
 OCCUPATIONS.firefighter = new Occupation('firefighter',
@@ -75,11 +75,11 @@ OCCUPATIONS.mailCarrier = new Occupation('mailCarrier',
 );
 OCCUPATIONS.miner = new Occupation('miner',
     [ RACES.donkey, RACES.earthPony ],
-    []
+    [ RACES.yak ]
 );
 OCCUPATIONS.musician = new Occupation('musician',
     [],
-    []
+    [ RACES.batpony ]
 );
 OCCUPATIONS.officeWorker = new Occupation('officeWorker',
     [],

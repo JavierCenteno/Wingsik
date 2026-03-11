@@ -143,75 +143,93 @@
     "race": {
       "buffalo": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "caribou": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "cattle": {
         "name": "Bydło",
-        "plural": "Bydło"
+        "plural": "Bydło",
+        "description": ""
       },
       "changeling": {
         "name": "Podmieniec",
-        "plural": "Podmieńce"
+        "plural": "Podmieńce",
+        "description": ""
       },
       "deer": {
         "name": "Jeleń",
-        "plural": "Jelenie"
+        "plural": "Jelenie",
+        "description": ""
       },
       "donkey": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "dragon": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "earthPony": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "griffon": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "kirin": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "lamia": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "llama": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "pegasus": {
         "name": "",
-        "plural": "Pegazy"
+        "plural": "Pegazy",
+        "description": ""
       },
       "seapony": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "sphinx": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "unicorn": {
         "name": "",
-        "plural": "Jednorożce"
+        "plural": "Jednorożce",
+        "description": ""
       },
       "yak": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "zebra": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       }
     },
     "resource": {

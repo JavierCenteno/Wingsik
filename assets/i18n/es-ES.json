@@ -143,75 +143,93 @@
     "race": {
       "buffalo": {
         "name": "Búfalo",
-        "plural": "Búfalos"
+        "plural": "Búfalos",
+        "description": ""
       },
       "caribou": {
         "name": "Reno",
-        "plural": "Renos"
+        "plural": "Renos",
+        "description": ""
       },
       "cattle": {
         "name": "Res",
-        "plural": "Reses"
+        "plural": "Reses",
+        "description": ""
       },
       "changeling": {
         "name": "Cambiante",
-        "plural": "Cambiantes"
+        "plural": "Cambiantes",
+        "description": ""
       },
       "deer": {
         "name": "Ciervo",
-        "plural": "Ciervos"
+        "plural": "Ciervos",
+        "description": ""
       },
       "donkey": {
         "name": "Burro",
-        "plural": "Burros"
+        "plural": "Burros",
+        "description": ""
       },
       "dragon": {
         "name": "Dragón",
-        "plural": "Dragones"
+        "plural": "Dragones",
+        "description": ""
       },
       "earthPony": {
         "name": "Poni de Tierra",
-        "plural": "Ponis de Tierra"
+        "plural": "Ponis de Tierra",
+        "description": ""
       },
       "griffon": {
         "name": "Grifo",
-        "plural": "Grifos"
+        "plural": "Grifos",
+        "description": ""
       },
       "kirin": {
         "name": "Kirin",
-        "plural": "Kirins"
+        "plural": "Kirins",
+        "description": ""
       },
       "lamia": {
         "name": "Lamia",
-        "plural": "Lamias"
+        "plural": "Lamias",
+        "description": ""
       },
       "llama": {
         "name": "Llama",
-        "plural": "Llamas"
+        "plural": "Llamas",
+        "description": ""
       },
       "pegasus": {
         "name": "Pegaso",
-        "plural": "Pegasos"
+        "plural": "Pegasos",
+        "description": ""
       },
       "seapony": {
         "name": "Poni de Mar",
-        "plural": "Ponis de Mar"
+        "plural": "Ponis de Mar",
+        "description": ""
       },
       "sphinx": {
         "name": "Esfinge",
-        "plural": "Esfinges"
+        "plural": "Esfinges",
+        "description": ""
       },
       "unicorn": {
         "name": "Unicornio",
-        "plural": "Unicornios"
+        "plural": "Unicornios",
+        "description": ""
       },
       "yak": {
         "name": "Yak",
-        "plural": "Yaks"
+        "plural": "Yaks",
+        "description": ""
       },
       "zebra": {
         "name": "Cebra",
-        "plural": "Cebras"
+        "plural": "Cebras",
+        "description": ""
       }
     },
     "resource": {

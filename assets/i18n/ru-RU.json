@@ -143,75 +143,93 @@
     "race": {
       "buffalo": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "caribou": {
         "name": "Кари́бу",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "cattle": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "changeling": {
         "name": "Оборотень",
-        "plural": "Оборотни"
+        "plural": "Оборотни",
+        "description": ""
       },
       "deer": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "donkey": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "dragon": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "earthPony": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "griffon": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "kirin": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "lamia": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "llama": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "pegasus": {
         "name": "",
-        "plural": "Пегасы"
+        "plural": "Пегасы",
+        "description": ""
       },
       "seapony": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "sphinx": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "unicorn": {
         "name": "",
-        "plural": "Единороги"
+        "plural": "Единороги",
+        "description": ""
       },
       "yak": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       },
       "zebra": {
         "name": "",
-        "plural": ""
+        "plural": "",
+        "description": ""
       }
     },
     "resource": {
