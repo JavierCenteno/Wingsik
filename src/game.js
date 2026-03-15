@@ -1,5 +1,5 @@
 import { clear, resetCanvasSize } from './graphics.js';
-import { CLICK_CURRENT, CLICK_LAST_FRAME, CLICK_MENU, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
+import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, RESIZED, updateEvents, WHEEL } from './input.js';
 import { TestDiceFeature } from './map/feature.js';
 import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
 import { TERRAIN_TYPES } from './map/terrain-type.js';
@@ -107,7 +107,7 @@ const frame = () => {
   // No need to render the frame if the user isn't looking at the tab
   if (!document.hidden) {
     clear();
-    view.draw();
+    view.render();
   }
   updateEvents();
 }
@@ -164,7 +164,7 @@ const processEvents = () => {
       }
     }
   }
-  if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined && CLICK_MENU === undefined) {
+  if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
     view.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / (TILE_WIDTH * view.zoomLevel));
     view.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * view.zoomLevel));
   }

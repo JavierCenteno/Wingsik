@@ -56,6 +56,28 @@ Appears as black in the map.
 
 Allows creatures to buy appliances.
 
+## Newspaper
+
+Provides useful information about what goes on, increasing the service quality of public buildings.
+
+## Radio station
+
+Workmodes:
+
+- Radio drama: Provides entertainment to creatures living in the area.
+- Foreign radio: Boosts the signal of far away radio stations, increasing freedom.
+- News: Provides useful information about what goes on, increasing the service quality of public buildings.
+- Music: Improves productivity of nearby workplaces.
+- Numbers station: Secret agents become more efficient at their jobs.
+
+## TV station
+
+Workmodes:
+
+- Movies: Provides entertainment to creatures living in the area.
+- Foreign TV: Boosts the signal of far away TV stations, increasing freedom.
+- News: Provides useful information about what goes on, increasing the service quality of public buildings.
+
 # Units
 
 ## Infantry
@@ -85,8 +107,6 @@ College students take longer to graduate but contribute to research.
 Poor citizens can also attend college
 
 ## Literacy program
-
-
 
 ## Subsidize appliances
 

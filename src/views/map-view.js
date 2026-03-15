@@ -1,10 +1,11 @@
 import { CANVAS, drawSprite } from "../graphics.js";
-import { Building, FarmBuilding } from "../map/building.js";
+import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
 import { Unit } from "../map/unit.js";
-import { MENU_BUILD_SPRITES, TERRAIN_SPRITES } from "../sprites.js";
+import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
+import { BuildWindow } from "./windows/build-window.js";
 
 export const ORIENTATION = {
     NORTH_EAST: 'NE',
@@ -57,6 +58,12 @@ export class MapView {
     clickingOnTile = undefined;
 
     newBuildingGhost = undefined;
+    /**
+     * Windows that are open in the map.
+     * 
+     * @type { GameWindow[] }
+     */
+    windows = [];
 
     /**
      * 
@@ -70,6 +77,7 @@ export class MapView {
         this.renderOrder[ORIENTATION.NORTH_WEST] = [];
         this.renderOrder[ORIENTATION.SOUTH_EAST] = [];
         this.renderOrder[ORIENTATION.SOUTH_WEST] = [];
+        this.windows.push(new BuildWindow(this));
     }
 
     moveDown(rate = 1) {
@@ -254,7 +262,7 @@ export class MapView {
         ];
     }
 
-    draw() {
+    render() {
         let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
@@ -771,19 +779,10 @@ export class MapView {
                 );
             }
         }
-        drawSprite(
-            MENU_BUILD_SPRITES,
-            [0, 0],
-            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
-            [10, 10],
-            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
-            () => {
-                // CLICK_MENU = 'build';
-                this.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
-                this.addToView(this.newBuildingGhost);
-            },
-            undefined
-        );
+        // render the windows
+        for(let w of this.windows) {
+            w.render();
+        }
         if (clickCallback !== undefined) {
             clickCallback();
             clickCallback = undefined;
