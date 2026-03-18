@@ -1,3 +1,5 @@
+import { removeIfExists } from "../util/list-util";
+
 export class Race {
     /**
      * Key of this race for dictionary lookups.
@@ -35,5 +37,35 @@ RACES.dragon = new Race('dragon');
 RACES.changeling = new Race('changeling');
 
 export class Pop {
+    /**
+     * In what building this pop works if it is employed.
+     * @type {Building?}
+     */
+    workplace;
+    /**
+     * What occupation this pop has at its workplace if it is employed.
+     * @type {Occupation?}
+     */
+    occupation;
+    /**
+     * In what building this pop lives if it is housed.
+     * @type {Building?}
+     */
+    residence;
 
+    setWorkplace(building) {
+        if(this.workplace) {
+            removeIfExists(this.workplace.workers, this);
+        }
+        this.workplace = building;
+        this.workplace?.workers?.push(this);
+    }
+
+    setResidence(building) {
+        if(this.residence) {
+            removeIfExists(this.residence.residents, this);
+        }
+        this.residence = building;
+        this.residence?.residents?.push(this);
+    }
 }

@@ -2,9 +2,6 @@
 
 ## Version 0.0.1
 
-Date: _2024-11-11_
+Date: _2026-03-16_
 
-- Add readme
-- Add license
-- Add changelog
-- Add main page with some basic features
+- Initialize project

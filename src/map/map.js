@@ -40,6 +40,11 @@ export class Map {
      * @type {Unit[]}
      */
     units;
+    /**
+     * List of pops in this map.
+     * @type {Pop[]}
+     */
+    pops;
 
     /**
      * 
@@ -72,6 +77,12 @@ export class Map {
         this.buildings = [];
         this.features = [];
         this.units = [];
+        this.pops = [];
+    }
+
+    tick() {
+        // TODO
+        console.log('tick')
     }
 
     isTileOccupied(x, y) {

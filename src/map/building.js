@@ -52,6 +52,16 @@ export class Building {
      * Orientation of this building.
      */
     orientation;
+    /**
+     * Workers of this building.
+     * @type {Pop[]}
+     */
+    workers = [];
+    /**
+     * Residents of this building.
+     * @type {Pop[]}
+     */
+    residents = [];
 
     /**
      * Lowest tile index of the range of tiles occupied by this building along the x (west-east) axis.
@@ -121,6 +131,12 @@ export class Building {
 }
 
 export class FarmBuilding extends Building {
+    constructor(x, y, orientation) {
+        super(BUILDING_TYPES.farm, x, y, orientation)
+    }
+}
+
+export class TenementBuilding extends Building {
     constructor(x, y, orientation) {
         super(BUILDING_TYPES.farm, x, y, orientation)
     }
