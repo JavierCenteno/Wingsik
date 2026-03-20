@@ -82,7 +82,6 @@ export class Map {
 
     tick() {
         // TODO
-        console.log('tick')
     }
 
     isTileOccupied(x, y) {

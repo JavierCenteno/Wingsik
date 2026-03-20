@@ -61,6 +61,10 @@ export const RESOURCE_TUNGSTEN_SPRITES = await loadSprite("assets/sprites/tile/r
 // Building sprites
 export const BUILDING_FARM_SPRITES = await loadSprite("assets/sprites/building/farm.png", true);
 export const BUILDING_FARM_ICON_SPRITES = await loadSprite("assets/sprites/building/icon/farm.png", true);
+export const BUILDING_MINE_SPRITES = await loadSprite("assets/sprites/building/mine.png", true);
+export const BUILDING_MINE_ICON_SPRITES = await loadSprite("assets/sprites/building/icon/mine.png", true);
+export const BUILDING_TENEMENT_SPRITES = await loadSprite("assets/sprites/building/tenement.png", true);
+export const BUILDING_TENEMENT_ICON_SPRITES = await loadSprite("assets/sprites/building/icon/tenement.png", true);
 
 // Feature sprites
 export const FEATURE_TREE_SPRITES = await loadSprite("assets/sprites/feature/tree.png", true);

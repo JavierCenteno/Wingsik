@@ -140,6 +140,48 @@
         "description": ""
       }
     },
+    "polity": {
+      "crystalEmpire": {
+        "name": "Crystal Empire",
+        "demonym": "Crystalline",
+        "description": ""
+      },
+      "deerConfederacy": {
+        "name": "Deer Confederacy",
+        "demonym": "",
+        "description": ""
+      },
+      "dragonLands": {
+        "name": "Dragon Lands",
+        "demonym": "Draconic",
+        "description": ""
+      },
+      "equestria": {
+        "name": "Equestria",
+        "demonym": "Equestrian",
+        "description": ""
+      },
+      "farasi": {
+        "name": "Farasi",
+        "demonym": "",
+        "description": ""
+      },
+      "griffonstone": {
+        "name": "Griffonstone",
+        "demonym": "Griffonstonian",
+        "description": ""
+      },
+      "qilinia": {
+        "name": "Qilinia",
+        "demonym": "Qilinian",
+        "description": ""
+      },
+      "yakyakistan": {
+        "name": "Yakyakistan",
+        "demonym": "Yakyakistani",
+        "description": ""
+      }
+    },
     "race": {
       "buffalo": {
         "name": "Buffalo",

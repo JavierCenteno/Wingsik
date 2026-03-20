@@ -12,9 +12,14 @@ import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, MapView } f
 const MAXIMUM_FRAMES_PER_SECOND = 50;
 
 /**
- * How many milliseconds a frame lasts.
+ * How many seconds a single frame lasts.
  */
-const FRAME_DURATION_MS = 1_000 / MAXIMUM_FRAMES_PER_SECOND;
+const FRAME_DURATION_SECONDS = 1 / MAXIMUM_FRAMES_PER_SECOND;
+
+/**
+ * How many milliseconds a single frame lasts.
+ */
+const FRAME_DURATION_MILLISECONDS = 1000 * FRAME_DURATION_SECONDS;
 
 /**
  * Current map view.
@@ -96,14 +101,11 @@ export const game = async () => {
   while (true) {
     const timeAtStartOfFrameMs = Date.now();
     frame();
-    const timeAtEndOfFrameMs = Date.now();
-    const timeToRenderFrameMs = timeAtEndOfFrameMs - timeAtStartOfFrameMs;
-    const timeToNextFrameMs = FRAME_DURATION_MS - timeToRenderFrameMs;
+    const timeToNextFrameMs = timeAtStartOfFrameMs + FRAME_DURATION_MILLISECONDS - Date.now();
     if (timeToNextFrameMs > 0) {
       // wait timeToNextFrameMs milliseconds until the next iteration
       await new Promise(resolve => setTimeout(resolve, timeToNextFrameMs));
     }
-    // framesPerSecond = 1000 / timeToRenderFrameMs
   }
 }
 

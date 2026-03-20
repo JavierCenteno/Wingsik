@@ -140,6 +140,48 @@
         "description": ""
       }
     },
+    "polity": {
+      "crystalEmpire": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "deerConfederacy": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "dragonLands": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "equestria": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "farasi": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "griffonstone": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "qilinia": {
+        "name": "Chiline",
+        "demonym": "chilinois",
+        "description": ""
+      },
+      "yakyakistan": {
+        "name": "Yakyakistan",
+        "demonym": "yakyakistanais",
+        "description": ""
+      }
+    },
     "race": {
       "buffalo": {
         "name": "Buffle",

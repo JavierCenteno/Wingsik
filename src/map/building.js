@@ -1,4 +1,4 @@
-import { BUILDING_FARM_SPRITES } from "../sprites.js";
+import { BUILDING_FARM_SPRITES, BUILDING_MINE_SPRITES, BUILDING_TENEMENT_SPRITES } from "../sprites.js";
 import { ORIENTATION } from "../views/map-view.js";
 
 export class BuildingType {
@@ -34,6 +34,8 @@ export class BuildingType {
 export const BUILDING_TYPES = {};
 
 BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES);
+BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES);
+BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES);
 
 export class Building {
     /**
@@ -136,8 +138,14 @@ export class FarmBuilding extends Building {
     }
 }
 
+export class MineBuilding extends Building {
+    constructor(x, y, orientation) {
+        super(BUILDING_TYPES.mine, x, y, orientation)
+    }
+}
+
 export class TenementBuilding extends Building {
     constructor(x, y, orientation) {
-        super(BUILDING_TYPES.farm, x, y, orientation)
+        super(BUILDING_TYPES.tenement, x, y, orientation)
     }
 }

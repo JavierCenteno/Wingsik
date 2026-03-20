@@ -1,7 +1,7 @@
 
 import { drawSprite } from "../../graphics.js";
-import { FarmBuilding } from "../../map/building.js";
-import { MENU_BUILD_SPRITES, BUILDING_FARM_ICON_SPRITES } from "../../sprites.js";
+import { FarmBuilding, MineBuilding, TenementBuilding } from "../../map/building.js";
+import { MENU_BUILD_SPRITES, BUILDING_FARM_ICON_SPRITES, BUILDING_MINE_ICON_SPRITES, BUILDING_TENEMENT_ICON_SPRITES } from "../../sprites.js";
 import { ORIENTATION } from "../map-view.js";
 import { GameWindow } from "./game-window.js";
 
@@ -36,25 +36,25 @@ export class BuildWindow extends GameWindow {
             undefined
         );
         drawSprite(
-            BUILDING_FARM_ICON_SPRITES,
+            BUILDING_MINE_ICON_SPRITES,
             [0, 0],
-            [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
+            [BUILDING_MINE_ICON_SPRITES.image.width, BUILDING_MINE_ICON_SPRITES.image.height],
             [this.x + 10, this.y + 100],
-            [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
+            [BUILDING_MINE_ICON_SPRITES.image.width, BUILDING_MINE_ICON_SPRITES.image.height],
             () => {
-                this.view.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.view.newBuildingGhost = new MineBuilding(0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
             undefined
         );
         drawSprite(
-            BUILDING_FARM_ICON_SPRITES,
+            BUILDING_TENEMENT_ICON_SPRITES,
             [0, 0],
-            [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
+            [BUILDING_TENEMENT_ICON_SPRITES.image.width, BUILDING_TENEMENT_ICON_SPRITES.image.height],
             [this.x + 10, this.y + 190],
-            [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
+            [BUILDING_TENEMENT_ICON_SPRITES.image.width, BUILDING_TENEMENT_ICON_SPRITES.image.height],
             () => {
-                this.view.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.view.newBuildingGhost = new TenementBuilding(0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
             undefined
