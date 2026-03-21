@@ -1,5 +1,5 @@
 import { BUILDING_FARM_SPRITES, BUILDING_MINE_SPRITES, BUILDING_TENEMENT_SPRITES } from "../sprites.js";
-import { ORIENTATION } from "../views/map-view.js";
+import { ORIENTATION } from "./orientation.js";
 
 export class BuildingType {
     /**
@@ -129,6 +129,9 @@ export class Building {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+    }
+    
+    tick() {
     }
 }
 

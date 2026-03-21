@@ -81,7 +81,15 @@ export class Map {
     }
 
     tick() {
-        // TODO
+        for(const building of this.buildings) {
+            building.tick();
+        }
+        for(const feature of this.features) {
+            feature.tick();
+        }
+        for(const unit of this.units) {
+            unit.tick();
+        }
     }
 
     isTileOccupied(x, y) {

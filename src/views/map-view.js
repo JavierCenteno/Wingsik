@@ -2,28 +2,11 @@ import { CANVAS, drawSprite } from "../graphics.js";
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
+import { GRANULAR_ORIENTATION, ORIENTATION } from "../map/orientation.js";
 import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
 import { BuildWindow } from "./windows/build-window.js";
-
-export const ORIENTATION = {
-    NORTH_EAST: 'NE',
-    NORTH_WEST: 'NW',
-    SOUTH_EAST: 'SE',
-    SOUTH_WEST: 'SW'
-}
-
-export const GRANULAR_ORIENTATION = {
-    EAST: 'E',
-    NORTH: 'N',
-    NORTH_EAST: 'NE',
-    NORTH_WEST: 'NW',
-    SOUTH: 'S',
-    SOUTH_EAST: 'SE',
-    SOUTH_WEST: 'SW',
-    WEST: 'W'
-}
 
 export const TILE_WIDTH = 32;
 export const TILE_HEIGHT = 16;
@@ -263,7 +246,6 @@ export class MapView {
     }
 
     render() {
-        this.map.tick();
         let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
@@ -626,8 +608,13 @@ export class MapView {
                     },
                 );
             } else if (o instanceof Unit) {
-                // TODO: CALCULATE UNIT HEIGHT BETTER
-                const unitZ = this.map.heights[Math.floor(o.y)][Math.floor(o.x)];
+                const unitZ = 
+                    (
+                        this.map.heights[Math.floor(o.y)][Math.floor(o.x)] +
+                        this.map.heights[Math.floor(o.y)][Math.ceil(o.x)] +
+                        this.map.heights[Math.ceil(o.y)][Math.floor(o.x)] +
+                        this.map.heights[Math.ceil(o.y)][Math.ceil(o.x)]
+                    ) / 4;
                 const topTileCoordinates = [o.x, o.y, unitZ];
                 let spriteIndex = 0;
                 switch (this.orientation) {
@@ -792,6 +779,10 @@ export class MapView {
             hoverCallback();
             hoverCallback = undefined;
         }
+    }
+
+    tick() {
+        this.map.tick();
     }
 }
 

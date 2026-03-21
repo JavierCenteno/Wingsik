@@ -1,5 +1,5 @@
 import { UNIT_CARGO_SHIP_SPRITES, UNIT_INFANTRY_SPRITES } from "../sprites.js";
-import { ORIENTATION, GRANULAR_ORIENTATION } from "../views/map-view.js";
+import { GRANULAR_ORIENTATION, ORIENTATION, relativeGranularOrientation } from "./orientation.js";
 
 export class UnitType {
     /**
@@ -9,14 +9,17 @@ export class UnitType {
     key;
     /**
      * How many tiles along the x (west-east) axis units of this type take in their default orientation (north).
+     * @type {number}
      */
     sizeX;
     /**
      * How many tiles along the y (south-north) axis units of this type take in their default orientation (north).
+     * @type {number}
      */
     sizeY;
     /**
      * How many tiles along the diagonal axis units of this type take in their default orientation (north).
+     * @type {number}
      */
     sizeXY;
     /**
@@ -39,24 +42,32 @@ export const UNIT_TYPES = {};
 UNIT_TYPES.infantry = new UnitType('infantry', 1, 1, UNIT_INFANTRY_SPRITES);
 UNIT_TYPES.cargoShip = new UnitType('cargoShip', 2, 6, UNIT_CARGO_SHIP_SPRITES);
 
-
 export class Unit {
     /**
      * Type of this unit.
+     * @type {UnitType}
      */
     type;
     /**
      * Location of this unit along the x (west-east) axis. This is a continuous tile coordinate.
+     * @type {number}
      */
     x;
     /**
      * Location of this unit along the y (south-north) axis. This is a continuous tile coordinate.
+     * @type {number}
      */
     y;
     /**
      * Orientation of this unit.
+     * @type {GranularOrientation}
      */
     orientation;
+    /**
+     * Towards which location this unit is going.
+     * @type {[number,number]}
+     */
+    goingTowards;
 
     /**
      * Lowest tile index of the range of tiles occupied by this unit along the x (west-east) axis.
@@ -142,6 +153,53 @@ export class Unit {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+    }
+
+    tick() {
+        const unitSpeed = 0.1;
+        const squareRootOfHalf = Math.sqrt(1/2);
+        if(this.goingTowards) {
+            this.orientation = relativeGranularOrientation(this.x, this.y, this.goingTowards[0], this.goingTowards[1], unitSpeed);
+            // TODO: minimal pathfinding
+            switch(this.orientation) {
+                case GRANULAR_ORIENTATION.SOUTH_WEST:
+                    this.x -= squareRootOfHalf * unitSpeed;
+                    this.y -= squareRootOfHalf * unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.SOUTH:
+                    this.y -= unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.SOUTH_EAST:
+                    this.x += squareRootOfHalf * unitSpeed;
+                    this.y -= squareRootOfHalf * unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.WEST:
+                    this.x -= unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.EAST:
+                    this.x += unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.NORTH_WEST:
+                    this.x -= squareRootOfHalf * unitSpeed;
+                    this.y += squareRootOfHalf * unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.NORTH:
+                    this.y += unitSpeed;
+                    break;
+                case GRANULAR_ORIENTATION.NORTH_EAST:
+                    this.x += squareRootOfHalf * unitSpeed;
+                    this.y += squareRootOfHalf * unitSpeed;
+                    break;
+            }
+            if(
+                Math.abs(this.x - this.goingTowards[0]) <= (unitSpeed / 2) &&
+                Math.abs(this.y - this.goingTowards[1]) <= (unitSpeed / 2)
+            ) {
+                this.x = this.goingTowards[0];
+                this.y = this.goingTowards[1];
+                this.goingTowards = undefined;
+            }
+        }
     }
 }
 

@@ -4,7 +4,8 @@ import { TestDiceFeature } from './map/feature.js';
 import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
 import { TERRAIN_TYPES } from './map/terrain-type.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
-import { GRANULAR_ORIENTATION, ORIENTATION, TILE_HEIGHT, TILE_WIDTH, MapView } from './views/map-view.js';
+import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
+import { MapView, TILE_HEIGHT, TILE_WIDTH } from './views/map-view.js';
 
 /**
  * The maximum amount of frames per second. Affects game speed.
@@ -92,7 +93,9 @@ view.map.addUnit(new CargoShipUnit(5, 28, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new CargoShipUnit(5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
 view.map.addUnit(new CargoShipUnit(11, 34, GRANULAR_ORIENTATION.NORTH));
 
-view.map.addUnit(new InfantryUnit(0.5, 0.5, GRANULAR_ORIENTATION.NORTH_EAST));
+var infantryUnit = new InfantryUnit(0.5, 0.5, GRANULAR_ORIENTATION.NORTH_EAST);
+view.map.addUnit(infantryUnit);
+infantryUnit.goingTowards = [10, 20];
 
 /**
  * Main game loop function.
@@ -114,6 +117,7 @@ export const game = async () => {
  */
 const frame = () => {
   processEvents();
+  view.tick();
   // No need to render the frame if the user isn't looking at the tab
   if (!document.hidden) {
     clear();

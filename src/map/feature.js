@@ -1,5 +1,5 @@
 import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_DICE_SPRITES, FEATURE_TEST_SPHERE_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
-import { ORIENTATION } from "../views/map-view.js";
+import { ORIENTATION } from "./orientation.js";
 
 export class FeatureType {
     /**
@@ -120,6 +120,9 @@ export class Feature {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+    }
+    
+    tick() {
     }
 }
 

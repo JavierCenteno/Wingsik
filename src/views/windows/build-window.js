@@ -1,8 +1,8 @@
 
 import { drawSprite } from "../../graphics.js";
 import { FarmBuilding, MineBuilding, TenementBuilding } from "../../map/building.js";
-import { MENU_BUILD_SPRITES, BUILDING_FARM_ICON_SPRITES, BUILDING_MINE_ICON_SPRITES, BUILDING_TENEMENT_ICON_SPRITES } from "../../sprites.js";
-import { ORIENTATION } from "../map-view.js";
+import { ORIENTATION } from "../../map/orientation.js";
+import { BUILDING_FARM_ICON_SPRITES, BUILDING_MINE_ICON_SPRITES, BUILDING_TENEMENT_ICON_SPRITES, MENU_BUILD_SPRITES } from "../../sprites.js";
 import { GameWindow } from "./game-window.js";
 
 /**
