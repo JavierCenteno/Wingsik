@@ -7,6 +7,7 @@ import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
 import { BuildWindow } from "./windows/build-window.js";
+import { SelectionWindow } from "./windows/selection-window.js";
 
 export const TILE_WIDTH = 32;
 export const TILE_HEIGHT = 16;
@@ -42,6 +43,10 @@ export class MapView {
 
     newBuildingGhost = undefined;
     /**
+     * Which building, feature or unit is currently selected.
+     */
+    selectedObject = undefined;
+    /**
      * Windows that are open in the map.
      * 
      * @type { GameWindow[] }
@@ -60,7 +65,6 @@ export class MapView {
         this.renderOrder[ORIENTATION.NORTH_WEST] = [];
         this.renderOrder[ORIENTATION.SOUTH_EAST] = [];
         this.renderOrder[ORIENTATION.SOUTH_WEST] = [];
-        this.windows.push(new BuildWindow(this));
     }
 
     moveDown(rate = 1) {
@@ -243,6 +247,28 @@ export class MapView {
             zoomLevel * (reverseXMultiplier * (TILE_WIDTH / 2) * (y - reverseXMultiplier * reverseYMultiplier * x)),
             zoomLevel * (reverseYMultiplier * (TILE_HEIGHT / 2) * (y + reverseXMultiplier * reverseYMultiplier * x) - (k * BLOCK_HEIGHT))
         ];
+    }
+
+    openBuildMenu() {
+        this.windows.push(new BuildWindow(this));
+    }
+
+    closeBuildMenu() {
+        const index = this.windows.findIndex(w => w instanceof BuildWindow);
+        if(index >= 0) {
+            this.windows.splice(index, 1);
+        }
+    }
+
+    openSelectionMenu(object) {
+        this.windows.push(new SelectionWindow(this, object));
+    }
+
+    closeSelectionMenu() {
+        const index = this.windows.findIndex(w => w instanceof SelectionWindow);
+        if(index >= 0) {
+            this.windows.splice(index, 1);
+        }
     }
 
     render() {
@@ -595,10 +621,10 @@ export class MapView {
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                     () => {
-                        /* TODO
-                        set clickCallback to the function that needs to be called when clicking on this sprite, if any
-                        */
-                        clickCallback = undefined;
+                        clickCallback = () => {
+                            this.selectedObject = o;
+                            this.openSelectionMenu(o);
+                        };
                     },
                     () => {
                         /* TODO
@@ -753,10 +779,10 @@ export class MapView {
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                     () => {
-                        /* TODO
-                        set clickCallback to the function that needs to be called when clicking on this sprite, if any
-                        */
-                        clickCallback = undefined;
+                        clickCallback = () => {
+                            this.selectedObject = o;
+                            this.openSelectionMenu(o);
+                        };;
                     },
                     () => {
                         /* TODO

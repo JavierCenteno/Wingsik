@@ -78,6 +78,7 @@ export const UNIT_CARGO_SHIP_SPRITES = await loadSprite("assets/sprites/unit/car
 
 // Menu sprites
 export const MENU_BUILD_SPRITES = await loadSprite("assets/sprites/menu/build.png", true);
+export const MENU_SELECTION_SPRITES = await loadSprite("assets/sprites/menu/selection.png", true);
 
 const loadFont = async (name, source) => {
     const font = new FontFace(name, `url(${source})`);
