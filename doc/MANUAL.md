@@ -52,6 +52,16 @@ Appears as black in the map.
 
 ## Oil rig
 
+## Weather station
+
+Gives some control over the weather.
+
+Workmodes:
+
+- Weather patrol: Default workmode. Reduces likelihood of extreme weather events.
+- Sunny paradise: Cloudbusting patrols ensure it rains as little as possible.
+- Rainy days: Weather patrols travel far and wide to bring any raincloud they can find, making the climate wetter.
+
 ## Department store
 
 Allows creatures to buy appliances.

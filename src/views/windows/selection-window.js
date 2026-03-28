@@ -27,4 +27,8 @@ export class SelectionWindow extends GameWindow {
             undefined
         );
     }
+
+    tick() {
+        // nothing
+    }
 }

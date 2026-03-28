@@ -1,4 +1,5 @@
 import { CANVAS, drawSprite } from "../graphics.js";
+import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, WHEEL } from '../input.js';
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
@@ -808,6 +809,64 @@ export class MapView {
     }
 
     tick() {
+        for (const key in KEYS_PRESSED) {
+            if (KEYS_PRESSED[key] > 0) {
+                switch (key) {
+                    case KEY_BINDINGS.MOVE_DOWN:
+                        this.moveDown();
+                        break;
+                    case KEY_BINDINGS.MOVE_UP:
+                        this.moveUp();
+                        break;
+                    case KEY_BINDINGS.MOVE_LEFT:
+                        this.moveLeft();
+                        break;
+                    case KEY_BINDINGS.MOVE_RIGHT:
+                        this.moveRight();
+                        break;
+                    case KEY_BINDINGS.ROTATE_CLOCKWISE:
+                        this.rotateClockwise();
+                        break;
+                    case KEY_BINDINGS.ROTATE_COUNTERCLOCKWISE:
+                        this.rotateCounterclockwise();
+                        break;
+                    case KEY_BINDINGS.INCREASE_ZOOM:
+                        this.increaseZoom();
+                        break;
+                    case KEY_BINDINGS.DECREASE_ZOOM:
+                        this.decreaseZoom();
+                        break;
+                }
+            }
+        }
+        for (const key in KEYS_HELD_DOWN) {
+            if (KEYS_HELD_DOWN[key] > 0) {
+                switch (key) {
+                    case KEY_BINDINGS.MOVE_DOWN:
+                        this.moveDown();
+                        break;
+                    case KEY_BINDINGS.MOVE_UP:
+                        this.moveUp();
+                        break;
+                    case KEY_BINDINGS.MOVE_LEFT:
+                        this.moveLeft();
+                        break;
+                    case KEY_BINDINGS.MOVE_RIGHT:
+                        this.moveRight();
+                        break;
+                }
+            }
+        }
+        if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
+            this.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / (TILE_WIDTH * this.zoomLevel));
+            this.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * this.zoomLevel));
+        }
+        if (WHEEL < 0) {
+            this.increaseZoom();
+        }
+        if (WHEEL > 0) {
+            this.decreaseZoom();
+        }
         this.map.tick();
     }
 }

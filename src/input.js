@@ -55,6 +55,10 @@ export let CLICK_ENDED = undefined;
  */
 export let CURSOR_CURRENT = undefined;
 /**
+ * Whether the click event is a secondary click.
+ */
+export let SECONDARY_CLICK = undefined;
+/**
  * Whether the window has been resized since the last frame.
  */
 export let RESIZED = false;
@@ -73,6 +77,7 @@ export const updateEvents = () => {
             CLICK_LAST_FRAME = undefined;
             CLICK_CURRENT = undefined;
             CLICK_ENDED = undefined;
+            SECONDARY_CLICK = undefined;
         }
     }
     RESIZED = false;
@@ -101,6 +106,9 @@ document.addEventListener('mousedown', (event) => {
     CLICK_LAST_FRAME = getPixelCoordinates(event);
     CLICK_CURRENT = getPixelCoordinates(event);
     CURSOR_CURRENT = getPixelCoordinates(event);
+    if(event.button === 2) {
+        SECONDARY_CLICK = true;
+    }
 })
 
 document.addEventListener('mouseup', (event) => {

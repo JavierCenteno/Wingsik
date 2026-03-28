@@ -60,4 +60,8 @@ export class BuildWindow extends GameWindow {
             undefined
         );
     }
+
+    tick() {
+        // nothing
+    }
 }
