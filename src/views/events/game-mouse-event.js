@@ -91,7 +91,6 @@ export class GameClickEvent extends GameEvent {
     }
 
     cancel() {
-        console.trace();
         clickEvent = undefined;
     }
 }
