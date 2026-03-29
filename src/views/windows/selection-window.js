@@ -1,6 +1,7 @@
 
 import { drawSprite } from "../../graphics.js";
 import { MENU_SELECTION_SPRITES } from "../../sprites.js";
+import { clickEvent, hoverEvent } from "../events/game-mouse-event.js";
 import { GameWindow } from "./game-window.js";
 
 /**
@@ -23,12 +24,18 @@ export class SelectionWindow extends GameWindow {
             [MENU_SELECTION_SPRITES.image.width, MENU_SELECTION_SPRITES.image.height],
             [this.x, this.y],
             [MENU_SELECTION_SPRITES.image.width, MENU_SELECTION_SPRITES.image.height],
-            undefined,
-            undefined
+            clickEvent?.coordinates,
+            () => {
+                clickEvent?.cancel();
+            },
+            hoverEvent?.coordinates,
+            () => {
+                hoverEvent?.cancel();
+            }
         );
     }
 
     tick() {
-        // nothing
+        super.tick();
     }
 }

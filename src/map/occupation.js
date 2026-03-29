@@ -34,7 +34,7 @@ OCCUPATIONS.attendant = new Occupation('attendant',
     []
 );
 OCCUPATIONS.banker = new Occupation('banker',
-    [],
+    [ RACES.griffon ],
     []
 );
 OCCUPATIONS.builder = new Occupation('builder',
@@ -43,7 +43,7 @@ OCCUPATIONS.builder = new Occupation('builder',
 );
 OCCUPATIONS.chemist = new Occupation('chemist',
     [ RACES.unicorn, RACES.kirin ],
-    []
+    [ RACES.zebra ]
 );
 OCCUPATIONS.engineer = new Occupation('engineer',
     [],
@@ -97,7 +97,7 @@ OCCUPATIONS.secretAgent = new Occupation('secretAgent',
     [ RACES.unicorn, RACES.kirin ],
     [ RACES.changeling ]
 );
-OCCUPATIONS.secretAgent = new Occupation('soldier',
+OCCUPATIONS.soldier = new Occupation('soldier',
     [],
     []
 );

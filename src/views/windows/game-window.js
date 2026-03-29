@@ -1,3 +1,5 @@
+import { dragEvents } from "../events/game-mouse-event.js";
+
 /**
  * A view of a window that can appear on top of another view.
  */
@@ -40,6 +42,17 @@ export class GameWindow {
     }
 
     tick() {
-        console.error('Unimplemented method');
+        for (const dragEvent of dragEvents) {
+            if(
+                dragEvent.from[0] >= this.x && 
+                dragEvent.from[0] <= this.x + this.width && 
+                dragEvent.from[1] >= this.y && 
+                dragEvent.from[1] <= this.y + this.height
+            ) {
+                this.x += dragEvent.to[0] - dragEvent.from[0];
+                this.y += dragEvent.to[1] - dragEvent.from[1];
+                dragEvent.cancel();
+            }
+        }
     }
 }

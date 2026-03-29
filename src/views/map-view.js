@@ -1,5 +1,4 @@
 import { CANVAS, drawSprite } from "../graphics.js";
-import { CLICK_CURRENT, CLICK_LAST_FRAME, KEY_BINDINGS, KEYS_HELD_DOWN, KEYS_PRESSED, WHEEL } from '../input.js';
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
@@ -7,6 +6,8 @@ import { GRANULAR_ORIENTATION, ORIENTATION } from "../map/orientation.js";
 import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
+import { KEY_BINDINGS, keyHeldDownEvents, keyPressedEvents } from "./events/game-keyboard-event.js";
+import { clickEvent, dragEvents, hoverEvent, wheelEvents } from "./events/game-mouse-event.js";
 import { BuildWindow } from "./windows/build-window.js";
 import { SelectionWindow } from "./windows/selection-window.js";
 
@@ -337,11 +338,15 @@ export class MapView {
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
+                    clickEvent?.coordinates,
                     () => {
                         this.clickingOnTile = [j, i];
+                        clickEvent?.cancel();
                     },
+                    hoverEvent?.coordinates,
                     () => {
                         this.hoveringOverTile = [j, i];
+                        hoverEvent?.cancel();
                     }
                 );
                 if(this.map.terrain[j][i] !== undefined) {
@@ -414,8 +419,16 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        undefined,
-                        undefined
+                        clickEvent?.coordinates,
+                        () => {
+                            this.clickingOnTile = [j, i];
+                            clickEvent?.cancel();
+                        },
+                        hoverEvent?.coordinates,
+                        () => {
+                            this.hoveringOverTile = [j, i];
+                            hoverEvent?.cancel();
+                        }
                     );
                     if(adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
                         spriteIndex = 5;
@@ -434,8 +447,16 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        undefined,
-                        undefined
+                        clickEvent?.coordinates,
+                        () => {
+                            this.clickingOnTile = [j, i];
+                            clickEvent?.cancel();
+                        },
+                        hoverEvent?.coordinates,
+                        () => {
+                            this.hoveringOverTile = [j, i];
+                            hoverEvent?.cancel();
+                        }
                     );
                     if(adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
                         spriteIndex = 10;
@@ -454,8 +475,16 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        undefined,
-                        undefined
+                        clickEvent?.coordinates,
+                        () => {
+                            this.clickingOnTile = [j, i];
+                            clickEvent?.cancel();
+                        },
+                        hoverEvent?.coordinates,
+                        () => {
+                            this.hoveringOverTile = [j, i];
+                            hoverEvent?.cancel();
+                        }
                     );
                     if(adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
                         spriteIndex = 15;
@@ -474,8 +503,16 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        undefined,
-                        undefined
+                        clickEvent?.coordinates,
+                        () => {
+                            this.clickingOnTile = [j, i];
+                            clickEvent?.cancel();
+                        },
+                        hoverEvent?.coordinates,
+                        () => {
+                            this.hoveringOverTile = [j, i];
+                            hoverEvent?.cancel();
+                        }
                     );
                 }
                 if(this.map.resources[j][i] !== undefined) {
@@ -486,8 +523,16 @@ export class MapView {
                         [TILE_WIDTH, resourceSprite.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * resourceSprite.image.height],
                         [TILE_WIDTH * this.zoomLevel, resourceSprite.image.height * this.zoomLevel],
-                        undefined,
-                        undefined
+                        clickEvent?.coordinates,
+                        () => {
+                            this.clickingOnTile = [j, i];
+                            clickEvent?.cancel();
+                        },
+                        hoverEvent?.coordinates,
+                        () => {
+                            this.hoveringOverTile = [j, i];
+                            hoverEvent?.cancel();
+                        }
                     );
                 }
             }
@@ -621,17 +666,21 @@ export class MapView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    clickEvent?.coordinates,
                     () => {
                         clickCallback = () => {
                             this.selectedObject = o;
                             this.openSelectionMenu(o);
                         };
+                        clickEvent?.cancel();
                     },
+                    hoverEvent?.coordinates,
                     () => {
                         /* TODO
                         set hoverCallback to the function that needs to be called when hovering over this sprite, if any
                         */
                         hoverCallback = undefined;
+                        hoverEvent?.cancel();
                     },
                 );
             } else if (o instanceof Unit) {
@@ -779,24 +828,28 @@ export class MapView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    clickEvent?.coordinates,
                     () => {
                         clickCallback = () => {
                             this.selectedObject = o;
                             this.openSelectionMenu(o);
-                        };;
+                        };
+                        clickEvent?.cancel();
                     },
+                    hoverEvent?.coordinates,
                     () => {
                         /* TODO
                         set hoverCallback to the function that needs to be called when hovering over this sprite, if any
                         */
                         hoverCallback = undefined;
+                        hoverEvent?.cancel();
                     },
                 );
             }
         }
         // render the windows
-        for(let w of this.windows) {
-            w.render();
+        for(let window of this.windows) {
+            window.render();
         }
         if (clickCallback !== undefined) {
             clickCallback();
@@ -806,66 +859,82 @@ export class MapView {
             hoverCallback();
             hoverCallback = undefined;
         }
+        this.clickingOnCoordinates = undefined;
+        this.hoveringOverCoordinates = undefined;
     }
 
     tick() {
-        for (const key in KEYS_PRESSED) {
-            if (KEYS_PRESSED[key] > 0) {
-                switch (key) {
-                    case KEY_BINDINGS.MOVE_DOWN:
-                        this.moveDown();
-                        break;
-                    case KEY_BINDINGS.MOVE_UP:
-                        this.moveUp();
-                        break;
-                    case KEY_BINDINGS.MOVE_LEFT:
-                        this.moveLeft();
-                        break;
-                    case KEY_BINDINGS.MOVE_RIGHT:
-                        this.moveRight();
-                        break;
-                    case KEY_BINDINGS.ROTATE_CLOCKWISE:
-                        this.rotateClockwise();
-                        break;
-                    case KEY_BINDINGS.ROTATE_COUNTERCLOCKWISE:
-                        this.rotateCounterclockwise();
-                        break;
-                    case KEY_BINDINGS.INCREASE_ZOOM:
-                        this.increaseZoom();
-                        break;
-                    case KEY_BINDINGS.DECREASE_ZOOM:
-                        this.decreaseZoom();
-                        break;
-                }
+        for (const window of this.windows) {
+            window.tick();
+        }
+        for (const keyPressedEvent of keyPressedEvents) {
+            switch (keyPressedEvent.key) {
+                case KEY_BINDINGS.MOVE_DOWN:
+                    this.moveDown();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_UP:
+                    this.moveUp();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_LEFT:
+                    this.moveLeft();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_RIGHT:
+                    this.moveRight();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.ROTATE_CLOCKWISE:
+                    this.rotateClockwise();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.ROTATE_COUNTERCLOCKWISE:
+                    this.rotateCounterclockwise();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.INCREASE_ZOOM:
+                    this.increaseZoom();
+                    keyPressedEvent.cancel();
+                    break;
+                case KEY_BINDINGS.DECREASE_ZOOM:
+                    this.decreaseZoom();
+                    keyPressedEvent.cancel();
+                    break;
             }
         }
-        for (const key in KEYS_HELD_DOWN) {
-            if (KEYS_HELD_DOWN[key] > 0) {
-                switch (key) {
-                    case KEY_BINDINGS.MOVE_DOWN:
-                        this.moveDown();
-                        break;
-                    case KEY_BINDINGS.MOVE_UP:
-                        this.moveUp();
-                        break;
-                    case KEY_BINDINGS.MOVE_LEFT:
-                        this.moveLeft();
-                        break;
-                    case KEY_BINDINGS.MOVE_RIGHT:
-                        this.moveRight();
-                        break;
-                }
+        for (const keyHeldDownEvent of keyHeldDownEvents) {
+            switch (keyHeldDownEvent.key) {
+                case KEY_BINDINGS.MOVE_DOWN:
+                    this.moveDown();
+                    keyHeldDownEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_UP:
+                    this.moveUp();
+                    keyHeldDownEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_LEFT:
+                    this.moveLeft();
+                    keyHeldDownEvent.cancel();
+                    break;
+                case KEY_BINDINGS.MOVE_RIGHT:
+                    this.moveRight();
+                    keyHeldDownEvent.cancel();
+                    break;
             }
         }
-        if (CLICK_CURRENT !== undefined && CLICK_LAST_FRAME !== undefined) {
-            this.moveLeft((CLICK_CURRENT[0] - CLICK_LAST_FRAME[0]) / (TILE_WIDTH * this.zoomLevel));
-            this.moveUp((CLICK_CURRENT[1] - CLICK_LAST_FRAME[1]) / (TILE_HEIGHT * this.zoomLevel));
+        for (const dragEvent of dragEvents) {
+            this.moveLeft((dragEvent.to[0] - dragEvent.from[0]) / (TILE_WIDTH * this.zoomLevel));
+            this.moveUp((dragEvent.to[1] - dragEvent.from[1]) / (TILE_HEIGHT * this.zoomLevel));
+            dragEvent.cancel();
         }
-        if (WHEEL < 0) {
-            this.increaseZoom();
-        }
-        if (WHEEL > 0) {
-            this.decreaseZoom();
+        for (const wheelEvent of wheelEvents) {
+            if (wheelEvent.delta < 0) {
+                this.increaseZoom();
+            } else if (wheelEvent.delta > 0) {
+                this.decreaseZoom();
+            }
+            wheelEvent.cancel();
         }
         this.map.tick();
     }
