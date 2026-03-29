@@ -1,4 +1,3 @@
-import { removeIfExists } from "../../util/list-util.js";
 import { GameEvent } from "./game-event.js";
 
 /**
@@ -10,9 +9,13 @@ let CLICK_STARTED = undefined;
  */
 let DRAGGING = false;
 /**
- * At which coordinates of the screen the current click was in the last dragging event.
+ * At which coordinates of the screen the current click was in the last frame.
  */
 let CLICK_LAST_DRAG = undefined;
+/**
+ * At which coordinates of the screen the current click is.
+ */
+let CLICK_CURRENT_DRAG = undefined;
 /**
  * Whether the click event is a secondary click.
  */
@@ -27,10 +30,12 @@ document.addEventListener('mousedown', (event) => {
     if(event.button === 0) {
         CLICK_STARTED = getPixelCoordinates(event);
         CLICK_LAST_DRAG = CLICK_STARTED;
+        CLICK_CURRENT_DRAG = CLICK_STARTED;
         SECONDARY_CLICK = false;
     } if(event.button === 2) {
         CLICK_STARTED = getPixelCoordinates(event);
         CLICK_LAST_DRAG = CLICK_STARTED;
+        CLICK_CURRENT_DRAG = CLICK_STARTED;
         SECONDARY_CLICK = true;
     }
 })
@@ -40,10 +45,13 @@ document.addEventListener('mouseup', (event) => {
     const coordinates = getPixelCoordinates(event);
     if (!DRAGGING) {
         clickEvent = new GameClickEvent(SECONDARY_CLICK, coordinates);
+    } else {
+        dragEvent = new GameDragEvent(SECONDARY_CLICK, CLICK_LAST_DRAG, coordinates);
     }
     CLICK_STARTED = undefined;
     DRAGGING = false;
     CLICK_LAST_DRAG = undefined;
+    CLICK_CURRENT_DRAG = undefined;
     SECONDARY_CLICK = false;
 })
 
@@ -52,8 +60,7 @@ document.addEventListener('mousemove', (event) => {
     const coordinates = getPixelCoordinates(event);
     if (CLICK_STARTED) {
         DRAGGING = true;
-        dragEvents.push(new GameDragEvent(SECONDARY_CLICK, CLICK_LAST_DRAG, coordinates));
-        CLICK_LAST_DRAG = coordinates;
+        CLICK_CURRENT_DRAG = coordinates;
     } else {
         hoverEvent = new GameHoverEvent(SECONDARY_CLICK, coordinates);
     }
@@ -84,7 +91,8 @@ export class GameClickEvent extends GameEvent {
     }
 
     cancel() {
-        this.clickEvent = undefined;
+        console.trace();
+        clickEvent = undefined;
     }
 }
 
@@ -104,11 +112,11 @@ export class GameHoverEvent extends GameEvent {
     }
 
     cancel() {
-        this.hoverEvent = undefined;
+        hoverEvent = undefined;
     }
 }
 
-export const dragEvents = [];
+export let dragEvent = undefined;
 
 export class GameDragEvent extends GameEvent {
     /**
@@ -135,11 +143,11 @@ export class GameDragEvent extends GameEvent {
     }
 
     cancel() {
-        removeIfExists(dragEvents, this);
+        dragEvent = undefined;
     }
 }
 
-export const wheelEvents = [];
+export let wheelEvent = undefined;
 
 export class GameWheelEvent extends GameEvent {
     /**
@@ -154,7 +162,7 @@ export class GameWheelEvent extends GameEvent {
     }
 
     cancel() {
-        removeIfExists(wheelEvents, this);
+        wheelEvent = undefined;
     }
 }
 
@@ -163,8 +171,12 @@ const getPixelCoordinates = (event) => {
 }
 
 export const updateMouseEvents = () => {
+    if(DRAGGING) {
+        dragEvent = new GameDragEvent(SECONDARY_CLICK, CLICK_LAST_DRAG, CLICK_CURRENT_DRAG);
+        CLICK_LAST_DRAG = CLICK_CURRENT_DRAG;
+    }
     if(WHEEL !== 0) {
-        wheelEvents.push(new GameWheelEvent(WHEEL));
+        wheelEvent = new GameWheelEvent(WHEEL);
     }
     WHEEL = 0;
 }

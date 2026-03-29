@@ -18,6 +18,8 @@ export class SelectionWindow extends GameWindow {
     }
 
     render() {
+        let clickCallback = undefined;
+        let hoverCallback = undefined;
         drawSprite(
             MENU_SELECTION_SPRITES,
             [0, 0],
@@ -26,13 +28,23 @@ export class SelectionWindow extends GameWindow {
             [MENU_SELECTION_SPRITES.image.width, MENU_SELECTION_SPRITES.image.height],
             clickEvent?.coordinates,
             () => {
-                clickEvent?.cancel();
+                clickCallback = undefined;
             },
             hoverEvent?.coordinates,
             () => {
-                hoverEvent?.cancel();
+                hoverCallback = undefined;
             }
         );
+        if (clickCallback !== undefined) {
+            clickCallback();
+            clickCallback = undefined;
+            clickEvent?.cancel();
+        }
+        if (hoverCallback !== undefined) {
+            hoverCallback();
+            hoverCallback = undefined;
+            hoverEvent?.cancel();
+        }
     }
 
     tick() {

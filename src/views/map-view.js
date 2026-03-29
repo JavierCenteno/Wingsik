@@ -7,7 +7,7 @@ import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
 import { KEY_BINDINGS, keyHeldDownEvents, keyPressedEvents } from "./events/game-keyboard-event.js";
-import { clickEvent, dragEvents, hoverEvent, wheelEvents } from "./events/game-mouse-event.js";
+import { clickEvent, dragEvent, hoverEvent, wheelEvent } from "./events/game-mouse-event.js";
 import { BuildWindow } from "./windows/build-window.js";
 import { SelectionWindow } from "./windows/selection-window.js";
 
@@ -341,12 +341,10 @@ export class MapView {
                     clickEvent?.coordinates,
                     () => {
                         this.clickingOnTile = [j, i];
-                        clickEvent?.cancel();
                     },
                     hoverEvent?.coordinates,
                     () => {
                         this.hoveringOverTile = [j, i];
-                        hoverEvent?.cancel();
                     }
                 );
                 if(this.map.terrain[j][i] !== undefined) {
@@ -422,12 +420,10 @@ export class MapView {
                         clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
-                            clickEvent?.cancel();
                         },
                         hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
-                            hoverEvent?.cancel();
                         }
                     );
                     if(adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
@@ -450,12 +446,10 @@ export class MapView {
                         clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
-                            clickEvent?.cancel();
                         },
                         hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
-                            hoverEvent?.cancel();
                         }
                     );
                     if(adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
@@ -478,12 +472,10 @@ export class MapView {
                         clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
-                            clickEvent?.cancel();
                         },
                         hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
-                            hoverEvent?.cancel();
                         }
                     );
                     if(adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
@@ -506,12 +498,10 @@ export class MapView {
                         clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
-                            clickEvent?.cancel();
                         },
                         hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
-                            hoverEvent?.cancel();
                         }
                     );
                 }
@@ -526,12 +516,10 @@ export class MapView {
                         clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
-                            clickEvent?.cancel();
                         },
                         hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
-                            hoverEvent?.cancel();
                         }
                     );
                 }
@@ -672,7 +660,6 @@ export class MapView {
                             this.selectedObject = o;
                             this.openSelectionMenu(o);
                         };
-                        clickEvent?.cancel();
                     },
                     hoverEvent?.coordinates,
                     () => {
@@ -680,7 +667,6 @@ export class MapView {
                         set hoverCallback to the function that needs to be called when hovering over this sprite, if any
                         */
                         hoverCallback = undefined;
-                        hoverEvent?.cancel();
                     },
                 );
             } else if (o instanceof Unit) {
@@ -834,7 +820,6 @@ export class MapView {
                             this.selectedObject = o;
                             this.openSelectionMenu(o);
                         };
-                        clickEvent?.cancel();
                     },
                     hoverEvent?.coordinates,
                     () => {
@@ -842,7 +827,6 @@ export class MapView {
                         set hoverCallback to the function that needs to be called when hovering over this sprite, if any
                         */
                         hoverCallback = undefined;
-                        hoverEvent?.cancel();
                     },
                 );
             }
@@ -854,10 +838,12 @@ export class MapView {
         if (clickCallback !== undefined) {
             clickCallback();
             clickCallback = undefined;
+            clickEvent?.cancel();
         }
         if (hoverCallback !== undefined) {
             hoverCallback();
             hoverCallback = undefined;
+            hoverEvent?.cancel();
         }
         this.clickingOnCoordinates = undefined;
         this.hoveringOverCoordinates = undefined;
@@ -923,12 +909,12 @@ export class MapView {
                     break;
             }
         }
-        for (const dragEvent of dragEvents) {
+        if(dragEvent) {
             this.moveLeft((dragEvent.to[0] - dragEvent.from[0]) / (TILE_WIDTH * this.zoomLevel));
             this.moveUp((dragEvent.to[1] - dragEvent.from[1]) / (TILE_HEIGHT * this.zoomLevel));
             dragEvent.cancel();
         }
-        for (const wheelEvent of wheelEvents) {
+        if(wheelEvent) {
             if (wheelEvent.delta < 0) {
                 this.increaseZoom();
             } else if (wheelEvent.delta > 0) {
