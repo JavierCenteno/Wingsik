@@ -42,7 +42,7 @@ export class GameWindow {
     }
 
     tick() {
-        if(
+        if (
             dragEvent &&
             dragEvent.from[0] >= this.x && 
             dragEvent.from[0] <= this.x + this.width && 

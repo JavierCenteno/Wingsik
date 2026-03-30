@@ -81,13 +81,13 @@ export class Map {
     }
 
     tick() {
-        for(const building of this.buildings) {
+        for (const building of this.buildings) {
             building.tick();
         }
-        for(const feature of this.features) {
+        for (const feature of this.features) {
             feature.tick();
         }
-        for(const unit of this.units) {
+        for (const unit of this.units) {
             unit.tick();
         }
     }

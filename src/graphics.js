@@ -81,7 +81,7 @@ export const writeText = (text, [atX, atY], font, fontSize = 1, color = '#000000
     const lines = text.split('\n');
     const fontSizePx = Math.round(fontSize) * 16 * window.devicePixelRatio;
     let accumulator = atY;
-    for(const line of lines) {
+    for (const line of lines) {
         CONTEXT.font = `${fontSizePx}px ${font}`;
         CONTEXT.fillStyle = color;
         CONTEXT.textBaseline = 'top';

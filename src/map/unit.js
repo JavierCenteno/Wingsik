@@ -158,7 +158,7 @@ export class Unit {
     tick() {
         const unitSpeed = 0.1;
         const squareRootOfHalf = Math.sqrt(1/2);
-        if(this.goingTowards) {
+        if (this.goingTowards) {
             this.orientation = relativeGranularOrientation(this.x, this.y, this.goingTowards[0], this.goingTowards[1], unitSpeed);
             // TODO: minimal pathfinding
             switch(this.orientation) {
@@ -191,7 +191,7 @@ export class Unit {
                     this.y += squareRootOfHalf * unitSpeed;
                     break;
             }
-            if(
+            if (
                 Math.abs(this.x - this.goingTowards[0]) <= (unitSpeed / 2) &&
                 Math.abs(this.y - this.goingTowards[1]) <= (unitSpeed / 2)
             ) {

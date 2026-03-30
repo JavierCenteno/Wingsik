@@ -54,33 +54,33 @@ export const GRANULAR_ORIENTATION = {
 }
 
 export const relativeOrientation = (fromX, fromY, toX, toY) => {
-    if(toX - fromX > 0) {
+    if (toX - fromX > 0) {
 
     }
 }
 
 
 export const relativeGranularOrientation = (fromX, fromY, toX, toY, speed) => {
-    if(toX + (speed / 2) < fromX) {
-        if(toY + (speed / 2) < fromY) {
+    if (toX + (speed / 2) < fromX) {
+        if (toY + (speed / 2) < fromY) {
             return GRANULAR_ORIENTATION.SOUTH_WEST;
-        } else if(toY - (speed / 2) > fromY) {
+        } else if (toY - (speed / 2) > fromY) {
             return GRANULAR_ORIENTATION.NORTH_WEST;
         } else {
             return GRANULAR_ORIENTATION.WEST;
         }
-    } else if(toX - (speed / 2) > fromX) {
-        if(toY + (speed / 2) < fromY) {
+    } else if (toX - (speed / 2) > fromX) {
+        if (toY + (speed / 2) < fromY) {
             return GRANULAR_ORIENTATION.SOUTH_EAST;
-        } else if(toY - (speed / 2) > fromY) {
+        } else if (toY - (speed / 2) > fromY) {
             return GRANULAR_ORIENTATION.NORTH_EAST;
         } else {
             return GRANULAR_ORIENTATION.EAST;
         }
     } else {
-        if(toY + (speed / 2) < fromY) {
+        if (toY + (speed / 2) < fromY) {
             return GRANULAR_ORIENTATION.SOUTH;
-        } else if(toY - (speed / 2) > fromY) {
+        } else if (toY - (speed / 2) > fromY) {
             return GRANULAR_ORIENTATION.NORTH;
         } else {
             return undefined;

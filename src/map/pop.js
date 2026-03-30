@@ -54,7 +54,7 @@ export class Pop {
     residence;
 
     setWorkplace(building) {
-        if(this.workplace) {
+        if (this.workplace) {
             removeIfExists(this.workplace.workers, this);
         }
         this.workplace = building;
@@ -62,7 +62,7 @@ export class Pop {
     }
 
     setResidence(building) {
-        if(this.residence) {
+        if (this.residence) {
             removeIfExists(this.residence.residents, this);
         }
         this.residence = building;

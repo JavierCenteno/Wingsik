@@ -257,7 +257,7 @@ export class MapView {
 
     closeBuildMenu() {
         const index = this.windows.findIndex(w => w instanceof BuildWindow);
-        if(index >= 0) {
+        if (index >= 0) {
             this.windows.splice(index, 1);
         }
     }
@@ -268,7 +268,7 @@ export class MapView {
 
     closeSelectionMenu() {
         const index = this.windows.findIndex(w => w instanceof SelectionWindow);
-        if(index >= 0) {
+        if (index >= 0) {
             this.windows.splice(index, 1);
         }
     }
@@ -347,7 +347,7 @@ export class MapView {
                         this.hoveringOverTile = [j, i];
                     }
                 );
-                if(this.map.terrain[j][i] !== undefined) {
+                if (this.map.terrain[j][i] !== undefined) {
                     let terrainSprites = this.map.terrain[j][i].sprite;
                     let adjacencyUp; // tile up of this tile in the view
                     let adjacencyUpLeft; // tile up and left of this tile in the view
@@ -400,13 +400,13 @@ export class MapView {
                             break;
                     }
                     let spriteIndex;
-                    if(adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
+                    if (adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
                         spriteIndex = 0;
-                    } else if(!adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
+                    } else if (!adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
                         spriteIndex = 1;
-                    } else if(adjacencyDownLeft && !adjacencyUpLeft) {
+                    } else if (adjacencyDownLeft && !adjacencyUpLeft) {
                         spriteIndex = 2;
-                    } else if(!adjacencyDownLeft && adjacencyUpLeft) {
+                    } else if (!adjacencyDownLeft && adjacencyUpLeft) {
                         spriteIndex = 3;
                     } else {
                         spriteIndex = 4;
@@ -426,13 +426,13 @@ export class MapView {
                             this.hoveringOverTile = [j, i];
                         }
                     );
-                    if(adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
+                    if (adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
                         spriteIndex = 5;
-                    } else if(!adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
+                    } else if (!adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
                         spriteIndex = 6;
-                    } else if(adjacencyUpLeft && !adjacencyUpRight) {
+                    } else if (adjacencyUpLeft && !adjacencyUpRight) {
                         spriteIndex = 7;
-                    } else if(!adjacencyUpLeft && adjacencyUpRight) {
+                    } else if (!adjacencyUpLeft && adjacencyUpRight) {
                         spriteIndex = 8;
                     } else {
                         spriteIndex = 9;
@@ -452,13 +452,13 @@ export class MapView {
                             this.hoveringOverTile = [j, i];
                         }
                     );
-                    if(adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
+                    if (adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
                         spriteIndex = 10;
-                    } else if(!adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
+                    } else if (!adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
                         spriteIndex = 11;
-                    } else if(adjacencyUpRight && !adjacencyDownRight) {
+                    } else if (adjacencyUpRight && !adjacencyDownRight) {
                         spriteIndex = 12;
-                    } else if(!adjacencyUpRight && adjacencyDownRight) {
+                    } else if (!adjacencyUpRight && adjacencyDownRight) {
                         spriteIndex = 13;
                     } else {
                         spriteIndex = 14;
@@ -478,13 +478,13 @@ export class MapView {
                             this.hoveringOverTile = [j, i];
                         }
                     );
-                    if(adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
+                    if (adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
                         spriteIndex = 15;
-                    } else if(!adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
+                    } else if (!adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
                         spriteIndex = 16;
-                    } else if(adjacencyDownRight && !adjacencyDownLeft) {
+                    } else if (adjacencyDownRight && !adjacencyDownLeft) {
                         spriteIndex = 17;
-                    } else if(!adjacencyDownRight && adjacencyDownLeft) {
+                    } else if (!adjacencyDownRight && adjacencyDownLeft) {
                         spriteIndex = 18;
                     } else {
                         spriteIndex = 19;
@@ -505,7 +505,7 @@ export class MapView {
                         }
                     );
                 }
-                if(this.map.resources[j][i] !== undefined) {
+                if (this.map.resources[j][i] !== undefined) {
                     let resourceSprite = this.map.resources[j][i].sprite;
                     drawSprite(
                         resourceSprite,
@@ -525,15 +525,15 @@ export class MapView {
                 }
             }
         }
-        if(this.newBuildingGhost) {
-            if(this.hoveringOverTile !== undefined) {
+        if (this.newBuildingGhost) {
+            if (this.hoveringOverTile !== undefined) {
                 this.newBuildingGhost.y = this.hoveringOverTile[0];
                 this.newBuildingGhost.x = this.hoveringOverTile[1];
                 this.updateRenderOrderInView(this.newBuildingGhost);
             } else {
                 this.removeFromView(this.newBuildingGhost);
             }
-            if(this.clickingOnTile !== undefined) {
+            if (this.clickingOnTile !== undefined) {
                 this.map.buildings.push(this.newBuildingGhost);
                 this.newBuildingGhost = undefined;
             }
@@ -832,7 +832,7 @@ export class MapView {
             }
         }
         // render the windows
-        for(let window of this.windows) {
+        for (let window of this.windows) {
             window.render();
         }
         if (clickCallback !== undefined) {
@@ -909,12 +909,12 @@ export class MapView {
                     break;
             }
         }
-        if(dragEvent) {
+        if (dragEvent) {
             this.moveLeft((dragEvent.to[0] - dragEvent.from[0]) / (TILE_WIDTH * this.zoomLevel));
             this.moveUp((dragEvent.to[1] - dragEvent.from[1]) / (TILE_HEIGHT * this.zoomLevel));
             dragEvent.cancel();
         }
-        if(wheelEvent) {
+        if (wheelEvent) {
             if (wheelEvent.delta < 0) {
                 this.increaseZoom();
             } else if (wheelEvent.delta > 0) {

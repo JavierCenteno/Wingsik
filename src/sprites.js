@@ -1,4 +1,3 @@
-import { CONTEXT } from './graphics.js';
 
 /**
  * Given an image element, returns a promise that resolves when an image is loaded or fails to load.

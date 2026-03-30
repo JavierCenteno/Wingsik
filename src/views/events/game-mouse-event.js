@@ -27,12 +27,12 @@ let WHEEL = 0;
 
 document.addEventListener('mousedown', (event) => {
     event.preventDefault();
-    if(event.button === 0) {
+    if (event.button === 0) {
         CLICK_STARTED = getPixelCoordinates(event);
         CLICK_LAST_DRAG = CLICK_STARTED;
         CLICK_CURRENT_DRAG = CLICK_STARTED;
         SECONDARY_CLICK = false;
-    } if(event.button === 2) {
+    } if (event.button === 2) {
         CLICK_STARTED = getPixelCoordinates(event);
         CLICK_LAST_DRAG = CLICK_STARTED;
         CLICK_CURRENT_DRAG = CLICK_STARTED;
@@ -170,11 +170,11 @@ const getPixelCoordinates = (event) => {
 }
 
 export const updateMouseEvents = () => {
-    if(DRAGGING) {
+    if (DRAGGING) {
         dragEvent = new GameDragEvent(SECONDARY_CLICK, CLICK_LAST_DRAG, CLICK_CURRENT_DRAG);
         CLICK_LAST_DRAG = CLICK_CURRENT_DRAG;
     }
-    if(WHEEL !== 0) {
+    if (WHEEL !== 0) {
         wheelEvent = new GameWheelEvent(WHEEL);
     }
     WHEEL = 0;

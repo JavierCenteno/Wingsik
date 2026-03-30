@@ -93,7 +93,7 @@ export class GameKeyHeldDownEvent extends GameEvent {
 export const updateKeyboardEvents = () => {
     for (const key in KEYS_HELD_DOWN) {
         const time = KEYS_HELD_DOWN[key];
-        if(time > 0) {
+        if (time > 0) {
             keyHeldDownEvents.push(new GameKeyHeldDownEvent(key, time));
         }
     }
