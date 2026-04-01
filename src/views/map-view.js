@@ -36,7 +36,7 @@ export class MapView {
     /**
      * In which order the objects in the view are rendered for each orientation.
      * 
-     * @type { [orientation: ORIENTATION]: Placeable[] }
+     * @type { { [orientation: ORIENTATION]: Placeable[] } }
      */
     renderOrder;
 

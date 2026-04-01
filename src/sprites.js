@@ -85,3 +85,5 @@ const loadFont = async (name, source) => {
         document.fonts.add(font);
     });
 }
+
+await loadFont("typewriterhorse", "assets/fonts/typewriterhorse.ttf");
