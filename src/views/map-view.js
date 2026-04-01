@@ -670,13 +670,15 @@ export class MapView {
                     },
                 );
             } else if (o instanceof Unit) {
-                const unitZ = 
-                    (
-                        this.map.heights[Math.floor(o.y)][Math.floor(o.x)] +
-                        this.map.heights[Math.floor(o.y)][Math.ceil(o.x)] +
-                        this.map.heights[Math.ceil(o.y)][Math.floor(o.x)] +
-                        this.map.heights[Math.ceil(o.y)][Math.ceil(o.x)]
-                    ) / 4;
+                const unitXDecimal = o.x % 1;
+                const unitYDecimal = o.y % 1;
+                const unitHeightA =
+                    this.map.heights[Math.floor(o.y)][Math.floor(o.x)] * (1 - unitXDecimal) +
+                    this.map.heights[Math.floor(o.y)][Math.ceil(o.x)] * (unitXDecimal);
+                const unitHeightB =
+                    this.map.heights[Math.ceil(o.y)][Math.floor(o.x)] * (1 - unitXDecimal) +
+                    this.map.heights[Math.ceil(o.y)][Math.ceil(o.x)] * (unitXDecimal);
+                const unitZ = unitHeightA * (1 - unitYDecimal) + unitHeightB * (unitYDecimal);
                 const topTileCoordinates = [o.x, o.y, unitZ];
                 let spriteIndex = 0;
                 switch (this.orientation) {
