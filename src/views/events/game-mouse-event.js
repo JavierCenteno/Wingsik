@@ -29,6 +29,10 @@ let MOUSE_ON_DOCUMENT = false;
  */
 let WHEEL = 0;
 
+document.addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
+
 document.addEventListener('mousedown', (event) => {
     event.preventDefault();
     if (event.button === 0) {
@@ -42,7 +46,7 @@ document.addEventListener('mousedown', (event) => {
         CLICK_CURRENT_DRAG = CLICK_STARTED;
         SECONDARY_CLICK = true;
     }
-})
+});
 
 document.addEventListener('mouseup', (event) => {
     event.preventDefault();
@@ -57,7 +61,7 @@ document.addEventListener('mouseup', (event) => {
     CLICK_LAST_DRAG = undefined;
     CLICK_CURRENT_DRAG = undefined;
     SECONDARY_CLICK = false;
-})
+});
 
 document.addEventListener('mousemove', (event) => {
     event.preventDefault();
@@ -69,16 +73,16 @@ document.addEventListener('mousemove', (event) => {
         hoverEvent = new GameHoverEvent(SECONDARY_CLICK, coordinates);
     }
     MOUSE_ON_DOCUMENT = true;
-})
+});
 
 document.addEventListener('mouseout', (event) => {
     event.preventDefault();
     MOUSE_ON_DOCUMENT = false;
-})
+});
 
 document.addEventListener('wheel', (event) => {
     WHEEL += event.deltaY;
-})
+});
 
 /**
  * Click event active in the current frame.

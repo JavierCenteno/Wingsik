@@ -25,6 +25,8 @@ export class SelectionWindow extends GameWindow {
             [this.x, this.y],
             [MENU_SELECTION_SPRITES.image.width, MENU_SELECTION_SPRITES.image.height],
             undefined,
+            undefined,
+            undefined,
             undefined
         );
     }

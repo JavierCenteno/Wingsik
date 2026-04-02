@@ -40,11 +40,11 @@ document.addEventListener('keydown', (event) => {
     }
     keyPressedEvents.push(new GameKeyPressedEvent(event.key));
     KEYS_HELD_DOWN[event.key] = (KEYS_HELD_DOWN[event.key] || 0) + 1;
-})
+});
 
 document.addEventListener('keyup', (event) => {
     KEYS_HELD_DOWN[event.key] = 0;
-})
+});
 
 /**
  * Key pressed events active in the current frame.

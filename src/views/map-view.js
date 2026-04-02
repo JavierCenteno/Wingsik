@@ -7,7 +7,8 @@ import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
 import { binaryInsert, removeIfExists } from "../util/list-util.js";
 import { KEY_BINDINGS, keyHeldDownEvents, keyPressedEvents } from "./events/game-keyboard-event.js";
-import { clickEvent, dragEvent, hoverEvent, wheelEvent } from "./events/game-mouse-event.js";
+import { clickEvent, dragEvent, wheelEvent } from "./events/game-mouse-event.js";
+import { GameView } from "./game-view.js";
 import { BuildWindow } from "./windows/build-window.js";
 import { SelectionWindow } from "./windows/selection-window.js";
 
@@ -18,7 +19,7 @@ export const BLOCK_HEIGHT = 8;
 /**
  * A view of a map.
  */
-export class MapView {
+export class MapView extends GameView {
     /**
      * Current map on display.
      */
@@ -41,7 +42,6 @@ export class MapView {
     renderOrder;
 
     hoveringOverTile = undefined;
-    clickingOnTile = undefined;
 
     newBuildingGhost = undefined;
     /**
@@ -61,6 +61,7 @@ export class MapView {
      * @param {number} y Number of tiles along the y (south-north) axis. Positive y is north while negative y is south.
      */
     constructor(x, y) {
+        super();
         this.map = new Map(this, x, y);
         this.renderOrder = {};
         this.renderOrder[ORIENTATION.NORTH_EAST] = [];
@@ -237,7 +238,7 @@ export class MapView {
         removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], placeable);
     }
 
-    updateRenderOrderInView(placeable) {
+    updateInView(placeable) {
         this.removeFromView(placeable);
         this.addToView(placeable);
     }
@@ -273,15 +274,18 @@ export class MapView {
         }
     }
 
+    buildBuildingGhost() {
+        this.map.buildings.push(this.newBuildingGhost);
+        this.updateInView(this.newBuildingGhost);
+        this.newBuildingGhost = undefined;
+    }
+
     render() {
         let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
         const canvasCenter = [CANVAS.width / 2, CANVAS.height / 2];
-        let clickCallback = undefined;
-        let hoverCallback = undefined;
         this.hoveringOverTile = undefined;
-        this.clickingOnTile = undefined;
         // render the tiles
         // we start rendering from the top corner in the view
         for (
@@ -339,8 +343,16 @@ export class MapView {
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
                     () => {
-                        this.clickingOnTile = [j, i];
+                        if (!clickEvent.secondary) {
+                            if (this.newBuildingGhost) {
+                                this.buildBuildingGhost();
+                            }
+                        } else {
+                            this.openBuildMenu();
+                        }
                     },
+                    undefined,
+                    undefined,
                     () => {
                         this.hoveringOverTile = [j, i];
                     }
@@ -416,8 +428,16 @@ export class MapView {
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         () => {
-                            this.clickingOnTile = [j, i];
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
+                            } else {
+                                this.openBuildMenu();
+                            }
                         },
+                        undefined,
+                        undefined,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -440,8 +460,16 @@ export class MapView {
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         () => {
-                            this.clickingOnTile = [j, i];
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
+                            } else {
+                                this.openBuildMenu();
+                            }
                         },
+                        undefined,
+                        undefined,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -464,8 +492,16 @@ export class MapView {
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         () => {
-                            this.clickingOnTile = [j, i];
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
+                            } else {
+                                this.openBuildMenu();
+                            }
                         },
+                        undefined,
+                        undefined,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -488,8 +524,16 @@ export class MapView {
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
                         () => {
-                            this.clickingOnTile = [j, i];
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
+                            } else {
+                                this.openBuildMenu();
+                            }
                         },
+                        undefined,
+                        undefined,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -504,8 +548,16 @@ export class MapView {
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * resourceSprite.image.height],
                         [TILE_WIDTH * this.zoomLevel, resourceSprite.image.height * this.zoomLevel],
                         () => {
-                            this.clickingOnTile = [j, i];
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
+                            } else {
+                                this.openBuildMenu();
+                            }
                         },
+                        undefined,
+                        undefined,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -517,13 +569,9 @@ export class MapView {
             if (this.hoveringOverTile !== undefined) {
                 this.newBuildingGhost.y = this.hoveringOverTile[0];
                 this.newBuildingGhost.x = this.hoveringOverTile[1];
-                this.updateRenderOrderInView(this.newBuildingGhost);
+                this.updateInView(this.newBuildingGhost);
             } else {
                 this.removeFromView(this.newBuildingGhost);
-            }
-            if (this.clickingOnTile !== undefined) {
-                this.map.buildings.push(this.newBuildingGhost);
-                this.newBuildingGhost = undefined;
             }
         }
         // render the objects in the view
@@ -643,12 +691,20 @@ export class MapView {
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                     () => {
-                        this.selectedObject = o;
-                        this.openSelectionMenu(o);
+                        if (!clickEvent.secondary) {
+                            if (this.newBuildingGhost) {
+                                this.buildBuildingGhost();
+                            } else {
+                                this.selectedObject = o;
+                                this.openSelectionMenu(o);
+                            }
+                        } else {
+                            this.openBuildMenu();
+                        }
                     },
-                    () => {
-                        // TODO
-                    },
+                    undefined,
+                    undefined,
+                    undefined,
                 );
             } else if (o instanceof Unit) {
                 const unitXDecimal = o.x % 1;
@@ -798,12 +854,20 @@ export class MapView {
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                     () => {
-                        this.selectedObject = o;
-                        this.openSelectionMenu(o);
+                        if (!clickEvent.secondary) {
+                            if (this.newBuildingGhost) {
+                                this.buildBuildingGhost();
+                            } else {
+                                this.selectedObject = o;
+                                this.openSelectionMenu(o);
+                            }
+                        } else {
+                            this.openBuildMenu();
+                        }
                     },
-                    () => {
-                        // TODO
-                    },
+                    undefined,
+                    undefined,
+                    undefined,
                 );
             }
         }
@@ -811,8 +875,6 @@ export class MapView {
         for (let window of this.windows) {
             window.render();
         }
-        this.clickingOnCoordinates = undefined;
-        this.hoveringOverCoordinates = undefined;
     }
 
     tick() {
@@ -873,6 +935,14 @@ export class MapView {
                     this.moveRight();
                     keyHeldDownEvent.cancel();
                     break;
+            }
+        }
+        if (clickEvent) {
+            if (!clickEvent.secondary) {
+                this.selectedObject = undefined;
+                this.closeBuildMenu();
+            } else {
+                this.openBuildMenu();
             }
         }
         if (dragEvent) {

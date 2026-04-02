@@ -3,7 +3,7 @@ import { drawSprite } from "../../graphics.js";
 import { FarmBuilding, MineBuilding, TenementBuilding } from "../../map/building.js";
 import { ORIENTATION } from "../../map/orientation.js";
 import { BUILDING_FARM_ICON_SPRITES, BUILDING_MINE_ICON_SPRITES, BUILDING_TENEMENT_ICON_SPRITES, MENU_BUILD_SPRITES } from "../../sprites.js";
-import { clickEvent, hoverEvent } from "../events/game-mouse-event.js";
+import { MapView } from "../map-view.js";
 import { GameWindow } from "./game-window.js";
 
 /**
@@ -22,6 +22,8 @@ export class BuildWindow extends GameWindow {
             [this.x, this.y],
             [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
             undefined,
+            undefined,
+            undefined,
             undefined
         );
         drawSprite(
@@ -34,6 +36,8 @@ export class BuildWindow extends GameWindow {
                 this.view.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
+            undefined,
+            undefined,
             undefined
         );
         drawSprite(
@@ -46,6 +50,8 @@ export class BuildWindow extends GameWindow {
                 this.view.newBuildingGhost = new MineBuilding(0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
+            undefined,
+            undefined,
             undefined
         );
         drawSprite(
@@ -58,6 +64,8 @@ export class BuildWindow extends GameWindow {
                 this.view.newBuildingGhost = new TenementBuilding(0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
+            undefined,
+            undefined,
             undefined
         );
     }

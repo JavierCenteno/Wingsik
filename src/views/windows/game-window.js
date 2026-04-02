@@ -6,6 +6,7 @@ import { dragEvent } from "../events/game-mouse-event.js";
 export class GameWindow {
     /**
      * View that this window belongs to.
+     * @type {GameView}
      */
     view;
     /**
