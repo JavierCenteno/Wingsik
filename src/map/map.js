@@ -1,4 +1,8 @@
 export class Map {
+    /**
+     * View of this map.
+     * @type {MapView}
+     */
     view;
     /**
      * Number of tiles along the x (west-east) axis. Positive x is east while negative x is west.

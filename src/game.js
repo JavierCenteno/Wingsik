@@ -1,4 +1,5 @@
 import { clear, resetCanvasSize, runCallbacks } from './graphics.js';
+import { FarmBuilding } from './map/building.js';
 import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
 import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
@@ -68,10 +69,10 @@ for (let j = 1; j < 6; ++j) {
     }
 }
 
-view.map.addFeature(new TestDiceFeature(view.map, 2, 2, ORIENTATION.NORTH_EAST));
-view.map.addFeature(new TestDiceFeature(view.map, 2, 6, ORIENTATION.SOUTH_EAST));
-view.map.addFeature(new TestDiceFeature(view.map, 6, 2, ORIENTATION.NORTH_WEST));
-view.map.addFeature(new TestDiceFeature(view.map, 6, 6, ORIENTATION.SOUTH_WEST));
+view.map.addFeature(new TestDiceFeature(view.map, 1, 1, ORIENTATION.NORTH_EAST));
+view.map.addFeature(new TestDiceFeature(view.map, 1, 5, ORIENTATION.SOUTH_EAST));
+view.map.addFeature(new TestDiceFeature(view.map, 5, 1, ORIENTATION.NORTH_WEST));
+view.map.addFeature(new TestDiceFeature(view.map, 5, 5, ORIENTATION.SOUTH_WEST));
 
 view.map.addUnit(new InfantryUnit(view.map, 5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
 view.map.addUnit(new InfantryUnit(view.map, 5, 10, GRANULAR_ORIENTATION.EAST));

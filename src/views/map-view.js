@@ -237,7 +237,6 @@ export class MapView extends GameView {
             element,
             RENDER_ORDER_COMPARATOR_SW
         );
-        console.log(this.renderOrder);
     }
 
     removeFromView(element) {
