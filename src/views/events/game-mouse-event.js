@@ -21,6 +21,10 @@ let CLICK_CURRENT_DRAG = undefined;
  */
 let SECONDARY_CLICK = false;
 /**
+ * Whether the mouse is in the document.
+ */
+let MOUSE_ON_DOCUMENT = false;
+/**
  * How much the mouse wheel has scrolled in or out since the last frame.
  */
 let WHEEL = 0;
@@ -64,6 +68,12 @@ document.addEventListener('mousemove', (event) => {
     } else {
         hoverEvent = new GameHoverEvent(SECONDARY_CLICK, coordinates);
     }
+    MOUSE_ON_DOCUMENT = true;
+})
+
+document.addEventListener('mouseout', (event) => {
+    event.preventDefault();
+    MOUSE_ON_DOCUMENT = false;
 })
 
 document.addEventListener('wheel', (event) => {
@@ -170,6 +180,10 @@ const getPixelCoordinates = (event) => {
 }
 
 export const updateMouseEvents = () => {
+    clickEvent = undefined;
+    if(!MOUSE_ON_DOCUMENT) {
+        hoverEvent = undefined;
+    }
     if (DRAGGING) {
         dragEvent = new GameDragEvent(SECONDARY_CLICK, CLICK_LAST_DRAG, CLICK_CURRENT_DRAG);
         CLICK_LAST_DRAG = CLICK_CURRENT_DRAG;
