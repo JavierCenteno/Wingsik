@@ -33,7 +33,7 @@ export class BuildWindow extends GameWindow {
             [this.x + 10, this.y + 10],
             [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
             () => {
-                this.view.newBuildingGhost = new FarmBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.view.newBuildingGhost = new FarmBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
             undefined,
@@ -47,7 +47,7 @@ export class BuildWindow extends GameWindow {
             [this.x + 10, this.y + 100],
             [BUILDING_MINE_ICON_SPRITES.image.width, BUILDING_MINE_ICON_SPRITES.image.height],
             () => {
-                this.view.newBuildingGhost = new MineBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.view.newBuildingGhost = new MineBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
             undefined,
@@ -61,7 +61,7 @@ export class BuildWindow extends GameWindow {
             [this.x + 10, this.y + 190],
             [BUILDING_TENEMENT_ICON_SPRITES.image.width, BUILDING_TENEMENT_ICON_SPRITES.image.height],
             () => {
-                this.view.newBuildingGhost = new TenementBuilding(0, 0, ORIENTATION.NORTH_EAST);
+                this.view.newBuildingGhost = new TenementBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                 this.view.addToView(this.view.newBuildingGhost);
             },
             undefined,

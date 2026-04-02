@@ -68,33 +68,33 @@ for (let j = 1; j < 6; ++j) {
     }
 }
 
-view.map.addFeature(new TestDiceFeature(1, 1, ORIENTATION.NORTH_EAST));
-view.map.addFeature(new TestDiceFeature(1, 5, ORIENTATION.SOUTH_EAST));
-view.map.addFeature(new TestDiceFeature(5, 1, ORIENTATION.NORTH_WEST));
-view.map.addFeature(new TestDiceFeature(5, 5, ORIENTATION.SOUTH_WEST));
+view.map.addFeature(new TestDiceFeature(view.map, 1, 1, ORIENTATION.NORTH_EAST));
+view.map.addFeature(new TestDiceFeature(view.map, 1, 5, ORIENTATION.SOUTH_EAST));
+view.map.addFeature(new TestDiceFeature(view.map, 5, 1, ORIENTATION.NORTH_WEST));
+view.map.addFeature(new TestDiceFeature(view.map, 5, 5, ORIENTATION.SOUTH_WEST));
 
-view.map.addUnit(new InfantryUnit(5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
-view.map.addUnit(new InfantryUnit(5, 10, GRANULAR_ORIENTATION.EAST));
-view.map.addUnit(new InfantryUnit(5, 8, GRANULAR_ORIENTATION.SOUTH_EAST));
-view.map.addUnit(new InfantryUnit(3, 8, GRANULAR_ORIENTATION.SOUTH));
-view.map.addUnit(new InfantryUnit(1, 8, GRANULAR_ORIENTATION.SOUTH_WEST));
-view.map.addUnit(new InfantryUnit(1, 10, GRANULAR_ORIENTATION.WEST));
-view.map.addUnit(new InfantryUnit(1, 12, GRANULAR_ORIENTATION.NORTH_WEST));
-view.map.addUnit(new InfantryUnit(3, 12, GRANULAR_ORIENTATION.NORTH));
+view.map.addUnit(new InfantryUnit(view.map, 5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
+view.map.addUnit(new InfantryUnit(view.map, 5, 10, GRANULAR_ORIENTATION.EAST));
+view.map.addUnit(new InfantryUnit(view.map, 5, 8, GRANULAR_ORIENTATION.SOUTH_EAST));
+view.map.addUnit(new InfantryUnit(view.map, 3, 8, GRANULAR_ORIENTATION.SOUTH));
+view.map.addUnit(new InfantryUnit(view.map, 1, 8, GRANULAR_ORIENTATION.SOUTH_WEST));
+view.map.addUnit(new InfantryUnit(view.map, 1, 10, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new InfantryUnit(view.map, 1, 12, GRANULAR_ORIENTATION.NORTH_WEST));
+view.map.addUnit(new InfantryUnit(view.map, 3, 12, GRANULAR_ORIENTATION.NORTH));
 
-view.map.addUnit(new InfantryUnit(1, 22, GRANULAR_ORIENTATION.WEST));
-view.map.addUnit(new InfantryUnit(5, 18, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new InfantryUnit(view.map, 1, 22, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new InfantryUnit(view.map, 5, 18, GRANULAR_ORIENTATION.WEST));
 
-view.map.addUnit(new CargoShipUnit(17, 34, GRANULAR_ORIENTATION.NORTH_EAST));
-view.map.addUnit(new CargoShipUnit(17, 28, GRANULAR_ORIENTATION.EAST));
-view.map.addUnit(new CargoShipUnit(17, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
-view.map.addUnit(new CargoShipUnit(11, 22, GRANULAR_ORIENTATION.SOUTH));
-view.map.addUnit(new CargoShipUnit(5, 22, GRANULAR_ORIENTATION.SOUTH_WEST));
-view.map.addUnit(new CargoShipUnit(5, 28, GRANULAR_ORIENTATION.WEST));
-view.map.addUnit(new CargoShipUnit(5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
-view.map.addUnit(new CargoShipUnit(11, 34, GRANULAR_ORIENTATION.NORTH));
+view.map.addUnit(new CargoShipUnit(view.map, 17, 34, GRANULAR_ORIENTATION.NORTH_EAST));
+view.map.addUnit(new CargoShipUnit(view.map, 17, 28, GRANULAR_ORIENTATION.EAST));
+view.map.addUnit(new CargoShipUnit(view.map, 17, 22, GRANULAR_ORIENTATION.SOUTH_EAST));
+view.map.addUnit(new CargoShipUnit(view.map, 11, 22, GRANULAR_ORIENTATION.SOUTH));
+view.map.addUnit(new CargoShipUnit(view.map, 5, 22, GRANULAR_ORIENTATION.SOUTH_WEST));
+view.map.addUnit(new CargoShipUnit(view.map, 5, 28, GRANULAR_ORIENTATION.WEST));
+view.map.addUnit(new CargoShipUnit(view.map, 5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
+view.map.addUnit(new CargoShipUnit(view.map, 11, 34, GRANULAR_ORIENTATION.NORTH));
 
-var infantryUnit = new InfantryUnit(0.5, 0.5, GRANULAR_ORIENTATION.NORTH_EAST);
+var infantryUnit = new InfantryUnit(view.map, 0.5, 0.5, GRANULAR_ORIENTATION.NORTH_EAST);
 view.map.addUnit(infantryUnit);
 infantryUnit.goingTowards = [10, 20];
 

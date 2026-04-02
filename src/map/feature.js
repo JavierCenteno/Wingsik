@@ -1,4 +1,5 @@
 import { FEATURE_TEST_CUBE_SPRITES, FEATURE_TEST_DICE_SPRITES, FEATURE_TEST_SPHERE_SPRITES, FEATURE_TREE_SPRITES } from "../sprites.js";
+import { MapElement } from "./map-element.js";
 import { ORIENTATION } from "./orientation.js";
 
 export class FeatureType {
@@ -38,7 +39,7 @@ FEATURE_TYPES.test_cube = new FeatureType('testCube', 1, 1, FEATURE_TEST_CUBE_SP
 FEATURE_TYPES.test_sphere = new FeatureType('testSphere', 1, 1, FEATURE_TEST_SPHERE_SPRITES);
 FEATURE_TYPES.test_dice = new FeatureType('testDice', 2, 2, FEATURE_TEST_DICE_SPRITES);
 
-export class Feature {
+export class Feature extends MapElement {
     /**
      * Type of this feature.
      */
@@ -110,12 +111,14 @@ export class Feature {
     }
 
     /**
-     * @param {FeatureType} type 
-     * @param {number} x 
-     * @param {number} y 
-     * @param {Orientation} orientation 
+     * @param {Map} map Map where this feature is located
+     * @param {BuildingType} type Type of this feature
+     * @param {number} x Location of this feature along the x (west-east) axis
+     * @param {number} y Location of this feature along the y (south-north) axis
+     * @param {GranularOrientation} orientation Orientation of this feature
      */
-    constructor(type, x, y, orientation) {
+    constructor(map, type, x, y, orientation) {
+        super(map);
         this.type = type;
         this.x = x;
         this.y = y;
@@ -127,25 +130,25 @@ export class Feature {
 }
 
 export class TreeFeature extends Feature {
-    constructor(x, y, orientation) {
-        super(FEATURE_TYPES.tree, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, FEATURE_TYPES.tree, x, y, orientation)
     }
 }
 
 export class TestCubeFeature extends Feature {
-    constructor(x, y, orientation) {
-        super(FEATURE_TYPES.test_cube, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, FEATURE_TYPES.test_cube, x, y, orientation)
     }
 }
 
 export class TestSphereFeature extends Feature {
-    constructor(x, y, orientation) {
-        super(FEATURE_TYPES.test_sphere, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, FEATURE_TYPES.test_sphere, x, y, orientation)
     }
 }
 
 export class TestDiceFeature extends Feature {
-    constructor(x, y, orientation) {
-        super(FEATURE_TYPES.test_dice, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, FEATURE_TYPES.test_dice, x, y, orientation)
     }
 }

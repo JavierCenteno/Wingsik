@@ -35,14 +35,22 @@ export class MapView extends GameView {
 
     zoomLevel = 1;
     /**
-     * In which order the objects in the view are rendered for each orientation.
+     * In which order the elements in the view are rendered for each orientation.
      * 
-     * @type { { [orientation: ORIENTATION]: Placeable[] } }
+     * @type { { [orientation: ORIENTATION]: MapElement[] } }
      */
     renderOrder;
-
+    /**
+     * Over which tile the cursor is currently hovering.
+     * 
+     * @type { [number, number] }
+     */
     hoveringOverTile = undefined;
-
+    /**
+     * Ghost of the building the player is currently trying to build.
+     * 
+     * @type { Building }
+     */
     newBuildingGhost = undefined;
     /**
      * Which building, feature or unit is currently selected.
@@ -208,39 +216,39 @@ export class MapView extends GameView {
         }
     }
 
-    addToView(placeable) {
+    addToView(element) {
         this.renderOrder[ORIENTATION.NORTH_EAST] = binaryInsert(
             this.renderOrder[ORIENTATION.NORTH_EAST],
-            placeable,
+            element,
             RENDER_ORDER_COMPARATOR_NE
         );
         this.renderOrder[ORIENTATION.NORTH_WEST] = binaryInsert(
             this.renderOrder[ORIENTATION.NORTH_WEST],
-            placeable,
+            element,
             RENDER_ORDER_COMPARATOR_NW
         );
         this.renderOrder[ORIENTATION.SOUTH_EAST] = binaryInsert(
             this.renderOrder[ORIENTATION.SOUTH_EAST],
-            placeable,
+            element,
             RENDER_ORDER_COMPARATOR_SE
         );
         this.renderOrder[ORIENTATION.SOUTH_WEST] = binaryInsert(
             this.renderOrder[ORIENTATION.SOUTH_WEST],
-            placeable,
+            element,
             RENDER_ORDER_COMPARATOR_SW
         );
     }
 
-    removeFromView(placeable) {
-        removeIfExists(this.renderOrder[ORIENTATION.NORTH_EAST], placeable);
-        removeIfExists(this.renderOrder[ORIENTATION.NORTH_WEST], placeable);
-        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_EAST], placeable);
-        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], placeable);
+    removeFromView(element) {
+        removeIfExists(this.renderOrder[ORIENTATION.NORTH_EAST], element);
+        removeIfExists(this.renderOrder[ORIENTATION.NORTH_WEST], element);
+        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_EAST], element);
+        removeIfExists(this.renderOrder[ORIENTATION.SOUTH_WEST], element);
     }
 
-    updateInView(placeable) {
-        this.removeFromView(placeable);
-        this.addToView(placeable);
+    updateInView(element) {
+        this.removeFromView(element);
+        this.addToView(element);
     }
 
     tileCoordinatesToCanvasCoordinates([x, y, k], zoomLevel, reverseX, reverseY) {
@@ -275,9 +283,12 @@ export class MapView extends GameView {
     }
 
     buildBuildingGhost() {
-        this.map.buildings.push(this.newBuildingGhost);
-        this.updateInView(this.newBuildingGhost);
-        this.newBuildingGhost = undefined;
+        console.log(this.newBuildingGhost.canBeBuilt());
+        if(this.newBuildingGhost.canBeBuilt()) {
+            this.map.buildings.push(this.newBuildingGhost);
+            this.updateInView(this.newBuildingGhost);
+            this.newBuildingGhost = undefined;
+        }
     }
 
     render() {
@@ -963,13 +974,13 @@ export class MapView extends GameView {
 }
 
 /**
- * Given two placeable objects A and B and assuming that the orientation is north east, returns:
+ * Given two elements A and B and assuming that the orientation is north east, returns:
  * - -1 if A should be rendered before B
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {Placeable} a
- * @param {Placeable} b
+ * @param {MapElement} a
+ * @param {MapElement} b
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_NE = (a, b) => {
@@ -977,13 +988,13 @@ const RENDER_ORDER_COMPARATOR_NE = (a, b) => {
 }
 
 /**
- * Given two placeable objects A and B and assuming that the orientation is north west, returns:
+ * Given two elements A and B and assuming that the orientation is north west, returns:
  * - -1 if A should be rendered before B
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {Placeable} a 
- * @param {Placeable} b 
+ * @param {MapElement} a 
+ * @param {MapElement} b 
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_NW = (a, b) => {
@@ -991,13 +1002,13 @@ const RENDER_ORDER_COMPARATOR_NW = (a, b) => {
 }
 
 /**
- * Given two placeable objects A and B and assuming that the orientation is south east, returns:
+ * Given two elements A and B and assuming that the orientation is south east, returns:
  * - -1 if A should be rendered before B
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {Placeable} a 
- * @param {Placeable} b 
+ * @param {MapElement} a 
+ * @param {MapElement} b 
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_SE = (a, b) => {
@@ -1005,13 +1016,13 @@ const RENDER_ORDER_COMPARATOR_SE = (a, b) => {
 }
 
 /**
- * Given two placeable objects A and B and assuming that the orientation is south west, returns:
+ * Given two elements A and B and assuming that the orientation is south west, returns:
  * - -1 if A should be rendered before B
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {Placeable} a 
- * @param {Placeable} b 
+ * @param {MapElement} a 
+ * @param {MapElement} b 
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_SW = (a, b) => {

@@ -1,4 +1,5 @@
 import { UNIT_CARGO_SHIP_SPRITES, UNIT_INFANTRY_SPRITES } from "../sprites.js";
+import { MapElement } from "./map-element.js";
 import { GRANULAR_ORIENTATION, ORIENTATION, relativeGranularOrientation } from "./orientation.js";
 
 export class UnitType {
@@ -42,7 +43,7 @@ export const UNIT_TYPES = {};
 UNIT_TYPES.infantry = new UnitType('infantry', 1, 1, UNIT_INFANTRY_SPRITES);
 UNIT_TYPES.cargoShip = new UnitType('cargoShip', 2, 6, UNIT_CARGO_SHIP_SPRITES);
 
-export class Unit {
+export class Unit extends MapElement {
     /**
      * Type of this unit.
      * @type {UnitType}
@@ -143,12 +144,14 @@ export class Unit {
     }
 
     /**
-     * @param {FeatureType} type 
-     * @param {number} x 
-     * @param {number} y 
-     * @param {GranularOrientation} orientation 
+     * @param {Map} map Map where this unit is located
+     * @param {BuildingType} type Type of this unit
+     * @param {number} x Location of this unit along the x (west-east) axis
+     * @param {number} y Location of this unit along the y (south-north) axis
+     * @param {GranularOrientation} orientation Orientation of this unit
      */
-    constructor(type, x, y, orientation) {
+    constructor(map, type, x, y, orientation) {
+        super(map);
         this.type = type;
         this.x = x;
         this.y = y;
@@ -204,13 +207,13 @@ export class Unit {
 }
 
 export class InfantryUnit extends Unit {
-    constructor(x, y, orientation) {
-        super(UNIT_TYPES.infantry, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, UNIT_TYPES.infantry, x, y, orientation)
     }
 }
 
 export class CargoShipUnit extends Unit {
-    constructor(x, y, orientation) {
-        super(UNIT_TYPES.cargoShip, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, UNIT_TYPES.cargoShip, x, y, orientation)
     }
 }

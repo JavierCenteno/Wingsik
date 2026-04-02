@@ -1,4 +1,5 @@
 import { BUILDING_FARM_SPRITES, BUILDING_MINE_SPRITES, BUILDING_TENEMENT_SPRITES } from "../sprites.js";
+import { MapElement } from "./map-element.js";
 import { ORIENTATION } from "./orientation.js";
 
 export class BuildingType {
@@ -37,7 +38,7 @@ BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES);
 BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES);
 BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES);
 
-export class Building {
+export class Building extends MapElement {
     /**
      * Type of this building.
      */
@@ -119,12 +120,14 @@ export class Building {
     }
 
     /**
-     * @param {BuildingType} type 
-     * @param {number} x 
-     * @param {number} y 
-     * @param {Orientation} orientation 
+     * @param {Map} map Map where this building is located
+     * @param {BuildingType} type Type of this building
+     * @param {number} x Location of this building along the x (west-east) axis
+     * @param {number} y Location of this building along the y (south-north) axis
+     * @param {GranularOrientation} orientation Orientation of this building
      */
-    constructor(type, x, y, orientation) {
+    constructor(map, type, x, y, orientation) {
+        super(map);
         this.type = type;
         this.x = x;
         this.y = y;
@@ -133,22 +136,53 @@ export class Building {
     
     tick() {
     }
+
+    /**
+     * Checks whether a building of this type can be built at its location.
+     * Used for when a building is a ghost for a player planning its construction.
+     */
+    canBeBuilt() {
+        // default implementation: simply check whether all the tiles are flat and not occupied
+        if (this.map.areTilesOccupied(this.minX, this.maxX, this.minY, this.maxY)) {
+            return false;
+        }
+        for (let j = this.minY; j <= this.maxY; ++j) {
+            for (let i = this.minX; i <= this.maxX; ++i) {
+                if (!this.map.isTileFlat(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
 
 export class FarmBuilding extends Building {
-    constructor(x, y, orientation) {
-        super(BUILDING_TYPES.farm, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, BUILDING_TYPES.farm, x, y, orientation)
+    }
+    
+    tick() {
+        // TODO
     }
 }
 
 export class MineBuilding extends Building {
-    constructor(x, y, orientation) {
-        super(BUILDING_TYPES.mine, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, BUILDING_TYPES.mine, x, y, orientation)
+    }
+    
+    tick() {
+        // TODO
     }
 }
 
 export class TenementBuilding extends Building {
-    constructor(x, y, orientation) {
-        super(BUILDING_TYPES.tenement, x, y, orientation)
+    constructor(map, x, y, orientation) {
+        super(map, BUILDING_TYPES.tenement, x, y, orientation)
+    }
+    
+    tick() {
+        // TODO
     }
 }
