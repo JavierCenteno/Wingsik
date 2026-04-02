@@ -20,11 +20,7 @@ export class BuildWindow extends GameWindow {
             [0, 0],
             [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
             [this.x, this.y],
-            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height],
-            undefined,
-            undefined,
-            undefined,
-            undefined
+            [MENU_BUILD_SPRITES.image.width, MENU_BUILD_SPRITES.image.height]
         );
         drawSprite(
             BUILDING_FARM_ICON_SPRITES,
@@ -32,13 +28,12 @@ export class BuildWindow extends GameWindow {
             [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
             [this.x + 10, this.y + 10],
             [BUILDING_FARM_ICON_SPRITES.image.width, BUILDING_FARM_ICON_SPRITES.image.height],
-            () => {
-                this.view.newBuildingGhost = new FarmBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
-                this.view.addToView(this.view.newBuildingGhost);
-            },
-            undefined,
-            undefined,
-            undefined
+            {
+                clickEventCallback: () => {
+                    this.view.newBuildingGhost = new FarmBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
+                    this.view.addToView(this.view.newBuildingGhost);
+                }
+            }
         );
         drawSprite(
             BUILDING_MINE_ICON_SPRITES,
@@ -46,13 +41,12 @@ export class BuildWindow extends GameWindow {
             [BUILDING_MINE_ICON_SPRITES.image.width, BUILDING_MINE_ICON_SPRITES.image.height],
             [this.x + 10, this.y + 100],
             [BUILDING_MINE_ICON_SPRITES.image.width, BUILDING_MINE_ICON_SPRITES.image.height],
-            () => {
-                this.view.newBuildingGhost = new MineBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
-                this.view.addToView(this.view.newBuildingGhost);
-            },
-            undefined,
-            undefined,
-            undefined
+            {
+                clickEventCallback: () => {
+                    this.view.newBuildingGhost = new MineBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
+                    this.view.addToView(this.view.newBuildingGhost);
+                }
+            }
         );
         drawSprite(
             BUILDING_TENEMENT_ICON_SPRITES,
@@ -60,13 +54,12 @@ export class BuildWindow extends GameWindow {
             [BUILDING_TENEMENT_ICON_SPRITES.image.width, BUILDING_TENEMENT_ICON_SPRITES.image.height],
             [this.x + 10, this.y + 190],
             [BUILDING_TENEMENT_ICON_SPRITES.image.width, BUILDING_TENEMENT_ICON_SPRITES.image.height],
-            () => {
-                this.view.newBuildingGhost = new TenementBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
-                this.view.addToView(this.view.newBuildingGhost);
-            },
-            undefined,
-            undefined,
-            undefined
+            {
+                clickEventCallback: () => {
+                    this.view.newBuildingGhost = new TenementBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
+                    this.view.addToView(this.view.newBuildingGhost);
+                }
+            }
         );
     }
 

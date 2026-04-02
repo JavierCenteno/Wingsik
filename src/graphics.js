@@ -37,11 +37,13 @@ let HOVER_CALLBACK = undefined;
  * @param {[number, number]} fromSize
  * @param {[number, number]} toCoords
  * @param {[number, number]} toSize
- * @param {() => {}} clickEventCallback A function to be called at the end of the frame if this sprite was clicked on above others
- * @param {() => {}} clickInstantCallback A function to be called instantly if this sprite was clicked on even if others above may have also been clicked on
- * @param {() => {}} hoverEventCallback A function to be called at the end of the frame if this sprite was hovered on above others
- * @param {() => {}} hoverInstantCallback A function to be called instantly if this sprite was hovered on even if others above may have also been hovered on
- */
+ * @param {{} | undefined} options
+ * @param {string | undefined} options.filter A filter to apply to the image
+ * @param {() => {}} options.clickEventCallback A function to be called at the end of the frame if this sprite was clicked on above others
+ * @param {() => {}} options.clickInstantCallback A function to be called instantly if this sprite was clicked on even if others above may have also been clicked on
+ * @param {() => {}} options.hoverEventCallback A function to be called at the end of the frame if this sprite was hovered on above others
+ * @param {() => {}} options.hoverInstantCallback A function to be called instantly if this sprite was hovered on even if others above may have also been hovered on
+ *  */
 export const drawSprite =
     (
         sprite,
@@ -49,10 +51,7 @@ export const drawSprite =
         [fromWidth, fromHeight],
         [toX, toY],
         [toWidth, toHeight],
-        clickEventCallback,
-        clickInstantCallback,
-        hoverEventCallback,
-        hoverInstantCallback
+        options = undefined
     ) => {
     // check whether the sprite has been clicked on if there is a click callback
     if (
@@ -73,8 +72,8 @@ export const drawSprite =
                 ).data;
         // alpha channel
         if (spriteImageDataAtClickLocation[3] > 0) {
-            clickInstantCallback?.();
-            CLICK_CALLBACK = clickEventCallback;
+            options?.clickInstantCallback?.();
+            CLICK_CALLBACK = options?.clickEventCallback;
         }
     }
     // check whether the sprite is being hovered over if there is a hover callback
@@ -95,8 +94,21 @@ export const drawSprite =
                 ).data;
         // alpha channel
         if (spriteImageDataAtClickLocation[3] > 0) {
-            hoverInstantCallback?.();
-            HOVER_CALLBACK = hoverEventCallback;
+            options?.hoverInstantCallback?.();
+            HOVER_CALLBACK = options?.hoverEventCallback;
+        }
+    }
+    if (options?.filter) {
+        switch (options.filter) {
+            case FILTERS.NONE:
+                CONTEXT.filter = 'none';
+                break;
+            case FILTERS.RED:
+                CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(300deg)';
+                break;
+            case FILTERS.GREEN:
+                CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(60deg)';
+                break;
         }
     }
     CONTEXT.drawImage(
@@ -111,6 +123,7 @@ export const drawSprite =
         toWidth,
         toHeight
     );
+    CONTEXT.filter = 'none';
 }
 
 export const runCallbacks = () => {
@@ -124,6 +137,12 @@ export const runCallbacks = () => {
         HOVER_CALLBACK = undefined;
         hoverEvent.cancel();
     }
+}
+
+export const FILTERS = {
+    NONE: 'none',
+    RED: 'red',
+    GREEN: 'green'
 }
 
 export const writeText = (text, [atX, atY], font, fontSize = 1, color = '#000000') => {

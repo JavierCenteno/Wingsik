@@ -164,7 +164,7 @@ export class Unit extends MapElement {
         if (this.goingTowards) {
             this.orientation = relativeGranularOrientation(this.x, this.y, this.goingTowards[0], this.goingTowards[1], unitSpeed);
             // TODO: minimal pathfinding
-            switch(this.orientation) {
+            switch (this.orientation) {
                 case GRANULAR_ORIENTATION.SOUTH_WEST:
                     this.x -= squareRootOfHalf * unitSpeed;
                     this.y -= squareRootOfHalf * unitSpeed;

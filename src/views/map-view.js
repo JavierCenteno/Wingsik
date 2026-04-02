@@ -237,6 +237,7 @@ export class MapView extends GameView {
             element,
             RENDER_ORDER_COMPARATOR_SW
         );
+        console.log(this.renderOrder);
     }
 
     removeFromView(element) {
@@ -352,24 +353,24 @@ export class MapView extends GameView {
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
-                    () => {
-                        if (!clickEvent.secondary) {
-                            if (this.newBuildingGhost) {
-                                this.buildBuildingGhost();
-                            }
-                        } else {
-                            if (this.newBuildingGhost) {
-                                this.removeFromView(this.newBuildingGhost);
-                                this.newBuildingGhost = undefined;
+                    {
+                        clickEventCallback: () => {
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
+                        },
+                        hoverInstantCallback: () => {
+                            this.hoveringOverTile = [j, i];
                         }
-                    },
-                    undefined,
-                    undefined,
-                    () => {
-                        this.hoveringOverTile = [j, i];
                     }
                 );
                 if (this.map.terrain[j][i] !== undefined) {
@@ -442,7 +443,8 @@ export class MapView extends GameView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        () => {
+                        {
+                        clickEventCallback: () => {
                             if (!clickEvent.secondary) {
                                 if (this.newBuildingGhost) {
                                     this.buildBuildingGhost();
@@ -456,11 +458,10 @@ export class MapView extends GameView {
                                 }
                             }
                         },
-                        undefined,
-                        undefined,
-                        () => {
+                        hoverInstantCallback: () => {
                             this.hoveringOverTile = [j, i];
                         }
+                    }
                     );
                     if (adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
                         spriteIndex = 5;
@@ -479,24 +480,24 @@ export class MapView extends GameView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        () => {
-                            if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
-                                    this.buildBuildingGhost();
-                                }
-                            } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
-                                    this.newBuildingGhost = undefined;
+                        {
+                            clickEventCallback: () => {
+                                if (!clickEvent.secondary) {
+                                    if (this.newBuildingGhost) {
+                                        this.buildBuildingGhost();
+                                    }
                                 } else {
-                                    this.openBuildMenu();
+                                    if (this.newBuildingGhost) {
+                                        this.removeFromView(this.newBuildingGhost);
+                                        this.newBuildingGhost = undefined;
+                                    } else {
+                                        this.openBuildMenu();
+                                    }
                                 }
+                            },
+                            hoverInstantCallback: () => {
+                                this.hoveringOverTile = [j, i];
                             }
-                        },
-                        undefined,
-                        undefined,
-                        () => {
-                            this.hoveringOverTile = [j, i];
                         }
                     );
                     if (adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
@@ -516,24 +517,24 @@ export class MapView extends GameView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        () => {
-                            if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
-                                    this.buildBuildingGhost();
-                                }
-                            } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
-                                    this.newBuildingGhost = undefined;
+                        {
+                            clickEventCallback: () => {
+                                if (!clickEvent.secondary) {
+                                    if (this.newBuildingGhost) {
+                                        this.buildBuildingGhost();
+                                    }
                                 } else {
-                                    this.openBuildMenu();
+                                    if (this.newBuildingGhost) {
+                                        this.removeFromView(this.newBuildingGhost);
+                                        this.newBuildingGhost = undefined;
+                                    } else {
+                                        this.openBuildMenu();
+                                    }
                                 }
+                            },
+                            hoverInstantCallback: () => {
+                                this.hoveringOverTile = [j, i];
                             }
-                        },
-                        undefined,
-                        undefined,
-                        () => {
-                            this.hoveringOverTile = [j, i];
                         }
                     );
                     if (adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
@@ -553,24 +554,24 @@ export class MapView extends GameView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        () => {
-                            if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
-                                    this.buildBuildingGhost();
-                                }
-                            } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
-                                    this.newBuildingGhost = undefined;
+                        {
+                            clickEventCallback: () => {
+                                if (!clickEvent.secondary) {
+                                    if (this.newBuildingGhost) {
+                                        this.buildBuildingGhost();
+                                    }
                                 } else {
-                                    this.openBuildMenu();
+                                    if (this.newBuildingGhost) {
+                                        this.removeFromView(this.newBuildingGhost);
+                                        this.newBuildingGhost = undefined;
+                                    } else {
+                                        this.openBuildMenu();
+                                    }
                                 }
+                            },
+                            hoverInstantCallback: () => {
+                                this.hoveringOverTile = [j, i];
                             }
-                        },
-                        undefined,
-                        undefined,
-                        () => {
-                            this.hoveringOverTile = [j, i];
                         }
                     );
                 }
@@ -582,24 +583,24 @@ export class MapView extends GameView {
                         [TILE_WIDTH, resourceSprite.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * resourceSprite.image.height],
                         [TILE_WIDTH * this.zoomLevel, resourceSprite.image.height * this.zoomLevel],
-                        () => {
-                            if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
-                                    this.buildBuildingGhost();
-                                }
-                            } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
-                                    this.newBuildingGhost = undefined;
+                        {
+                            clickEventCallback: () => {
+                                if (!clickEvent.secondary) {
+                                    if (this.newBuildingGhost) {
+                                        this.buildBuildingGhost();
+                                    }
                                 } else {
-                                    this.openBuildMenu();
+                                    if (this.newBuildingGhost) {
+                                        this.removeFromView(this.newBuildingGhost);
+                                        this.newBuildingGhost = undefined;
+                                    } else {
+                                        this.openBuildMenu();
+                                    }
                                 }
+                            },
+                            hoverInstantCallback: () => {
+                                this.hoveringOverTile = [j, i];
                             }
-                        },
-                        undefined,
-                        undefined,
-                        () => {
-                            this.hoveringOverTile = [j, i];
                         }
                     );
                 }
@@ -730,26 +731,25 @@ export class MapView extends GameView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                    () => {
-                        if (!clickEvent.secondary) {
-                            if (this.newBuildingGhost) {
-                                this.buildBuildingGhost();
+                    {
+                        clickEventCallback: () => {
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                } else {
+                                    this.selectedObject = o;
+                                    this.openSelectionMenu(o);
+                                }
                             } else {
-                                this.selectedObject = o;
-                                this.openSelectionMenu(o);
-                            }
-                        } else {
-                            if (this.newBuildingGhost) {
-                                this.removeFromView(this.newBuildingGhost);
-                                this.newBuildingGhost = undefined;
-                            } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         }
-                    },
-                    undefined,
-                    undefined,
-                    undefined,
+                    }
                 );
             } else if (o instanceof Unit) {
                 const unitXDecimal = o.x % 1;
@@ -898,26 +898,25 @@ export class MapView extends GameView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                    () => {
-                        if (!clickEvent.secondary) {
-                            if (this.newBuildingGhost) {
-                                this.buildBuildingGhost();
+                    {
+                        clickEventCallback: () => {
+                            if (!clickEvent.secondary) {
+                                if (this.newBuildingGhost) {
+                                    this.buildBuildingGhost();
+                                } else {
+                                    this.selectedObject = o;
+                                    this.openSelectionMenu(o);
+                                }
                             } else {
-                                this.selectedObject = o;
-                                this.openSelectionMenu(o);
-                            }
-                        } else {
-                            if (this.newBuildingGhost) {
-                                this.removeFromView(this.newBuildingGhost);
-                                this.newBuildingGhost = undefined;
-                            } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         }
-                    },
-                    undefined,
-                    undefined,
-                    undefined,
+                    }
                 );
             }
         }
@@ -1023,8 +1022,8 @@ export class MapView extends GameView {
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {MapElement} a
- * @param {MapElement} b
+ * @param {MapElement} a An element
+ * @param {MapElement} b An element
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_NE = (a, b) => {
@@ -1037,8 +1036,8 @@ const RENDER_ORDER_COMPARATOR_NE = (a, b) => {
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {MapElement} a 
- * @param {MapElement} b 
+ * @param {MapElement} a An element
+ * @param {MapElement} b An element
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_NW = (a, b) => {
@@ -1051,8 +1050,8 @@ const RENDER_ORDER_COMPARATOR_NW = (a, b) => {
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {MapElement} a 
- * @param {MapElement} b 
+ * @param {MapElement} a An element
+ * @param {MapElement} b An element
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_SE = (a, b) => {
@@ -1065,8 +1064,8 @@ const RENDER_ORDER_COMPARATOR_SE = (a, b) => {
  * - +1 if B should be rendered before A
  * - 0 if it doesn't matter.
  * 
- * @param {MapElement} a 
- * @param {MapElement} b 
+ * @param {MapElement} a An element
+ * @param {MapElement} b An element
  * @returns -1 if A should be rendered before B, +1 if B should be rendered before A, or 0 if it doesn't matter.
  */
 const RENDER_ORDER_COMPARATOR_SW = (a, b) => {

@@ -86,4 +86,4 @@ const loadFont = async (name, source) => {
     });
 }
 
-await loadFont("typewriterhorse", "assets/fonts/typewriterhorse.ttf");
+// await loadFont("typewriterhorse", "assets/fonts/typewriterhorse.ttf");
