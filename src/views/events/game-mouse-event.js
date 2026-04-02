@@ -80,6 +80,10 @@ document.addEventListener('wheel', (event) => {
     WHEEL += event.deltaY;
 })
 
+/**
+ * Click event active in the current frame.
+ * @type { GameClickEvent }
+ */
 export let clickEvent = undefined;
 
 export class GameClickEvent extends GameEvent {
@@ -105,6 +109,10 @@ export class GameClickEvent extends GameEvent {
     }
 }
 
+/**
+ * Hover event active in the current frame.
+ * @type { GameHoverEvent }
+ */
 export let hoverEvent = undefined;
 
 export class GameHoverEvent extends GameEvent {
@@ -125,6 +133,10 @@ export class GameHoverEvent extends GameEvent {
     }
 }
 
+/**
+ * Drag event active in the current frame.
+ * @type { GameDragEvent }
+ */
 export let dragEvent = undefined;
 
 export class GameDragEvent extends GameEvent {
@@ -156,6 +168,10 @@ export class GameDragEvent extends GameEvent {
     }
 }
 
+/**
+ * Wheel event active in the current frame.
+ * @type { GameWheelEvent }
+ */
 export let wheelEvent = undefined;
 
 export class GameWheelEvent extends GameEvent {

@@ -46,6 +46,10 @@ document.addEventListener('keyup', (event) => {
     KEYS_HELD_DOWN[event.key] = 0;
 })
 
+/**
+ * Key pressed events active in the current frame.
+ * @type { GameKeyPressedEvent[] }
+ */
 export const keyPressedEvents = [];
 
 export class GameKeyPressedEvent extends GameEvent {
@@ -65,6 +69,10 @@ export class GameKeyPressedEvent extends GameEvent {
     }
 }
 
+/**
+ * Key held down events active in the current frame.
+ * @type { GameKeyHeldDownEvent[] }
+ */
 export const keyHeldDownEvents = [];
 
 export class GameKeyHeldDownEvent extends GameEvent {

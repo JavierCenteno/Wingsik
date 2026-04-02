@@ -338,11 +338,9 @@ export class MapView {
                     [TILE_WIDTH, TERRAIN_SPRITES.image.height],
                     [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * TERRAIN_SPRITES.image.height],
                     [TILE_WIDTH * this.zoomLevel, TERRAIN_SPRITES.image.height * this.zoomLevel],
-                    clickEvent?.coordinates,
                     () => {
                         this.clickingOnTile = [j, i];
                     },
-                    hoverEvent?.coordinates,
                     () => {
                         this.hoveringOverTile = [j, i];
                     }
@@ -417,11 +415,9 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
                         },
-                        hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -443,11 +439,9 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
                         },
-                        hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -469,11 +463,9 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
                         },
-                        hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -495,11 +487,9 @@ export class MapView {
                         [TILE_WIDTH, terrainSprites.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * terrainSprites.image.height],
                         [TILE_WIDTH * this.zoomLevel, terrainSprites.image.height * this.zoomLevel],
-                        clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
                         },
-                        hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -513,11 +503,9 @@ export class MapView {
                         [TILE_WIDTH, resourceSprite.image.height],
                         [tileCanvasLocation[0], tileCanvasLocation[1] - this.zoomLevel * resourceSprite.image.height],
                         [TILE_WIDTH * this.zoomLevel, resourceSprite.image.height * this.zoomLevel],
-                        clickEvent?.coordinates,
                         () => {
                             this.clickingOnTile = [j, i];
                         },
-                        hoverEvent?.coordinates,
                         () => {
                             this.hoveringOverTile = [j, i];
                         }
@@ -654,19 +642,12 @@ export class MapView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                    clickEvent?.coordinates,
                     () => {
-                        clickCallback = () => {
-                            this.selectedObject = o;
-                            this.openSelectionMenu(o);
-                        };
+                        this.selectedObject = o;
+                        this.openSelectionMenu(o);
                     },
-                    hoverEvent?.coordinates,
                     () => {
-                        /* TODO
-                        set hoverCallback to the function that needs to be called when hovering over this sprite, if any
-                        */
-                        hoverCallback = undefined;
+                        // TODO
                     },
                 );
             } else if (o instanceof Unit) {
@@ -816,19 +797,12 @@ export class MapView {
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
-                    clickEvent?.coordinates,
                     () => {
-                        clickCallback = () => {
-                            this.selectedObject = o;
-                            this.openSelectionMenu(o);
-                        };
+                        this.selectedObject = o;
+                        this.openSelectionMenu(o);
                     },
-                    hoverEvent?.coordinates,
                     () => {
-                        /* TODO
-                        set hoverCallback to the function that needs to be called when hovering over this sprite, if any
-                        */
-                        hoverCallback = undefined;
+                        // TODO
                     },
                 );
             }
@@ -836,16 +810,6 @@ export class MapView {
         // render the windows
         for (let window of this.windows) {
             window.render();
-        }
-        if (clickCallback !== undefined) {
-            clickCallback();
-            clickCallback = undefined;
-            clickEvent?.cancel();
-        }
-        if (hoverCallback !== undefined) {
-            hoverCallback();
-            hoverCallback = undefined;
-            hoverEvent?.cancel();
         }
         this.clickingOnCoordinates = undefined;
         this.hoveringOverCoordinates = undefined;

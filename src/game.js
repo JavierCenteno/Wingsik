@@ -1,4 +1,4 @@
-import { clear, resetCanvasSize } from './graphics.js';
+import { clear, resetCanvasSize, runCallbacks } from './graphics.js';
 import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
 import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
@@ -136,6 +136,7 @@ const frame = () => {
         clear();
         view.render();
     }
+    runCallbacks();
     updateKeyboardEvents();
     updateMouseEvents();
 }
