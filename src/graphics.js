@@ -91,11 +91,11 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
 }
 
 export const runCallbacks = () => {
-    if(CLICK_CALLBACK) {
+    if (CLICK_CALLBACK) {
         CLICK_CALLBACK();
         CLICK_CALLBACK = undefined;
     }
-    if(HOVER_CALLBACK) {
+    if (HOVER_CALLBACK) {
         HOVER_CALLBACK();
         HOVER_CALLBACK = undefined;
     }

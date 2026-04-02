@@ -197,7 +197,7 @@ const getPixelCoordinates = (event) => {
 
 export const updateMouseEvents = () => {
     clickEvent = undefined;
-    if(!MOUSE_ON_DOCUMENT) {
+    if (!MOUSE_ON_DOCUMENT) {
         hoverEvent = undefined;
     }
     if (DRAGGING) {
