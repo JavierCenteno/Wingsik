@@ -100,14 +100,14 @@ export class Map {
 
     areTilesOccupied(x1, x2, y1, y2) {
         return this.buildings.some((b) =>
-                !((b.minX <= x1 && b.maxX <= x2) || (b.minX >= x1 && b.maxX >= x2)) ||
-                !((b.minY <= y1 && b.maxY <= y2) || (b.minY >= y1 && b.maxY >= y2))) ||
+                !(((b.minX < x1 && b.maxX < x1) || (b.minX > x2 && b.maxX > x2)) ||
+                ((b.minY < y1 && b.maxY < y1) || (b.minY > y2 && b.maxY > y2)))) ||
             this.features.some((f) =>
-                !((f.minX <= x1 && f.maxX <= x2) || (f.minX >= x1 && f.maxX >= x2)) ||
-                !((f.minY <= y1 && f.maxY <= y2) || (f.minY >= y1 && f.maxY >= y2))) ||
+                !(((f.minX < x1 && f.maxX < x1) || (f.minX > x2 && f.maxX > x2)) ||
+                ((f.minY < y1 && f.maxY < y1) || (f.minY > y2 && f.maxY > y2)))) ||
             this.units.some((u) =>
-                !((u.minX <= x1 && u.maxX <= x2) || (u.minX >= x1 && u.maxX >= x2)) ||
-                !((u.minY <= y1 && u.maxY <= y2) || (u.minY >= y1 && u.maxY >= y2)));
+                !(((u.minX < x1 && u.maxX < x1) || (u.minX > x2 && u.maxX > x2)) ||
+                ((u.minY < y1 && u.maxY < y1) || (u.minY > y2 && u.maxY > y2))));
     }
 
     isTileFlat(x, y) {

@@ -283,7 +283,6 @@ export class MapView extends GameView {
     }
 
     buildBuildingGhost() {
-        console.log(this.newBuildingGhost.canBeBuilt());
         if(this.newBuildingGhost.canBeBuilt()) {
             this.map.buildings.push(this.newBuildingGhost);
             this.updateInView(this.newBuildingGhost);
@@ -359,7 +358,12 @@ export class MapView extends GameView {
                                 this.buildBuildingGhost();
                             }
                         } else {
-                            this.openBuildMenu();
+                            if (this.newBuildingGhost) {
+                                this.removeFromView(this.newBuildingGhost);
+                                this.newBuildingGhost = undefined;
+                            } else {
+                                this.openBuildMenu();
+                            }
                         }
                     },
                     undefined,
@@ -444,7 +448,12 @@ export class MapView extends GameView {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         },
                         undefined,
@@ -476,7 +485,12 @@ export class MapView extends GameView {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         },
                         undefined,
@@ -508,7 +522,12 @@ export class MapView extends GameView {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         },
                         undefined,
@@ -540,7 +559,12 @@ export class MapView extends GameView {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         },
                         undefined,
@@ -564,7 +588,12 @@ export class MapView extends GameView {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                this.openBuildMenu();
+                                if (this.newBuildingGhost) {
+                                    this.removeFromView(this.newBuildingGhost);
+                                    this.newBuildingGhost = undefined;
+                                } else {
+                                    this.openBuildMenu();
+                                }
                             }
                         },
                         undefined,
@@ -710,7 +739,12 @@ export class MapView extends GameView {
                                 this.openSelectionMenu(o);
                             }
                         } else {
-                            this.openBuildMenu();
+                            if (this.newBuildingGhost) {
+                                this.removeFromView(this.newBuildingGhost);
+                                this.newBuildingGhost = undefined;
+                            } else {
+                                this.openBuildMenu();
+                            }
                         }
                     },
                     undefined,
@@ -873,7 +907,12 @@ export class MapView extends GameView {
                                 this.openSelectionMenu(o);
                             }
                         } else {
-                            this.openBuildMenu();
+                            if (this.newBuildingGhost) {
+                                this.removeFromView(this.newBuildingGhost);
+                                this.newBuildingGhost = undefined;
+                            } else {
+                                this.openBuildMenu();
+                            }
                         }
                     },
                     undefined,
@@ -953,7 +992,12 @@ export class MapView extends GameView {
                 this.selectedObject = undefined;
                 this.closeBuildMenu();
             } else {
-                this.openBuildMenu();
+                if (this.newBuildingGhost) {
+                    this.removeFromView(this.newBuildingGhost);
+                    this.newBuildingGhost = undefined;
+                } else {
+                    this.openBuildMenu();
+                }
             }
         }
         if (dragEvent) {
