@@ -283,7 +283,7 @@ export class MapView extends GameView {
     }
 
     buildBuildingGhost() {
-        if(this.newBuildingGhost.canBeBuilt()) {
+        if (this.newBuildingGhost.canBeBuilt()) {
             this.map.buildings.push(this.newBuildingGhost);
             this.updateInView(this.newBuildingGhost);
             this.newBuildingGhost = undefined;
