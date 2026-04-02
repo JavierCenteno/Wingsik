@@ -93,12 +93,12 @@ export const drawSprite = (sprite, [fromX, fromY], [fromWidth, fromHeight], [toX
 export const runCallbacks = () => {
     if(CLICK_CALLBACK) {
         CLICK_CALLBACK();
+        CLICK_CALLBACK = undefined;
     }
-    CLICK_CALLBACK = undefined;
     if(HOVER_CALLBACK) {
         HOVER_CALLBACK();
+        HOVER_CALLBACK = undefined;
     }
-    HOVER_CALLBACK = undefined;
 }
 
 export const writeText = (text, [atX, atY], font, fontSize = 1, color = '#000000') => {
