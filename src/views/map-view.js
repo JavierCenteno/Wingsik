@@ -5,7 +5,7 @@ import { Map } from '../map/map.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "../map/orientation.js";
 import { Unit } from "../map/unit.js";
 import { TERRAIN_SPRITES } from "../sprites.js";
-import { binaryInsert, removeIfExists } from "../util/list-util.js";
+import { bubbleInsert, removeIfExists } from "../util/list-util.js";
 import { KEY_BINDINGS, keyHeldDownEvents, keyPressedEvents } from "./events/game-keyboard-event.js";
 import { clickEvent, dragEvent, wheelEvent } from "./events/game-mouse-event.js";
 import { GameView } from "./game-view.js";
@@ -217,26 +217,37 @@ export class MapView extends GameView {
     }
 
     addToView(element) {
-        this.renderOrder[ORIENTATION.NORTH_EAST] = binaryInsert(
+        /*
+        We use bubbleInsert instead of binaryInsert because it may be possible that
+        the comparison for a render order does not matter for a pivot, but it does
+        matter for a different element (such as, should be placed before an earlier
+        element or after a latter element), causing the binary insert to fail in
+        specific edge cases.
+        */
+        this.renderOrder[ORIENTATION.NORTH_EAST] = bubbleInsert(
             this.renderOrder[ORIENTATION.NORTH_EAST],
             element,
             RENDER_ORDER_COMPARATOR_NE
         );
-        this.renderOrder[ORIENTATION.NORTH_WEST] = binaryInsert(
+        this.renderOrder[ORIENTATION.NORTH_WEST] = bubbleInsert(
             this.renderOrder[ORIENTATION.NORTH_WEST],
             element,
             RENDER_ORDER_COMPARATOR_NW
         );
-        this.renderOrder[ORIENTATION.SOUTH_EAST] = binaryInsert(
+        this.renderOrder[ORIENTATION.SOUTH_EAST] = bubbleInsert(
             this.renderOrder[ORIENTATION.SOUTH_EAST],
             element,
             RENDER_ORDER_COMPARATOR_SE
         );
-        this.renderOrder[ORIENTATION.SOUTH_WEST] = binaryInsert(
+        this.renderOrder[ORIENTATION.SOUTH_WEST] = bubbleInsert(
             this.renderOrder[ORIENTATION.SOUTH_WEST],
             element,
             RENDER_ORDER_COMPARATOR_SW
         );
+        console.log('asdf');
+        for(let e of this.renderOrder[ORIENTATION.NORTH_EAST]) {
+            console.log(e.minX, e.maxX, e.minY, e.maxY, e)
+        }
     }
 
     removeFromView(element) {

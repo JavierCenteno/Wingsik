@@ -13,22 +13,46 @@ export const removeIfExists = (array, element) => {
 };
 
 /**
+ * Inserts a value in a sorted array such that the order of the array is preserved by iterating over the array until the first suitable position is found.
+ * 
+ * @param {any[]} array An array
+ * @param {any} element An element to be inserted into the array
+ * @param {(a: any, b: any) => number} comparator Comparator function to use
+ * @returns The array with the inserted element
+ */
+export const bubbleInsert = (array, element, comparator) => {
+    if (array.length === 0) {
+        array.push(element);
+        return array;
+    }
+    for (let i = 0; i < array.length; ++i) {
+        if (comparator(array[i], element) > 0) {
+            array.splice(i, 0, element);
+            return array;
+        }
+    }
+    array.splice(array.length, 0, element);
+    return array;
+}
+
+/**
  * Inserts a value in a sorted array such that the order of the array is preserved using the binary insertion algorithm.
  * 
- * @param {any[]} array 
- * @param {any} element 
- * @param {(a: any, b: any) => number} comparator 
+ * @param {any[]} array An array
+ * @param {any} element An element to be inserted into the array
+ * @param {(a: any, b: any) => number} comparator Comparator function to use
+ * @returns The array with the inserted element
  */
 export const binaryInsert = (array, element, comparator) => {
     if (array.length === 0) {
         array.push(element);
         return array;
     }
-    if (comparator(array[0], element) >= 0) {
+    if (comparator(array[0], element) > 0) {
         array.splice(0, 0, element);
         return array;
     }
-    if (comparator(array[array.length - 1], element) <= 0) {
+    if (comparator(array[array.length - 1], element) < 0) {
         array.splice(array.length, 0, element);
         return array;
     }
