@@ -244,10 +244,6 @@ export class MapView extends GameView {
             element,
             RENDER_ORDER_COMPARATOR_SW
         );
-        console.log('asdf');
-        for(let e of this.renderOrder[ORIENTATION.NORTH_EAST]) {
-            console.log(e.minX, e.maxX, e.minY, e.maxY, e)
-        }
     }
 
     removeFromView(element) {
