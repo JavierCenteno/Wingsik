@@ -37,6 +37,7 @@ export const BUILDING_TYPES = {};
 BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES);
 BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES);
 BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES);
+BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, BUILDING_TENEMENT_SPRITES);
 
 export class Building extends MapElement {
     /**
@@ -184,5 +185,23 @@ export class TenementBuilding extends Building {
     
     tick() {
         // TODO
+    }
+}
+
+export class HospitalBuilding extends Building {
+    baseQuality = 20;
+    capacity = 10;
+
+    constructor(map, x, y, orientation) {
+        super(map, BUILDING_TYPES.hospital, x, y, orientation)
+    }
+    
+    tick() {
+        // how many customers are currently using this building
+        const customerCount = 10;
+        // effective building quality accounting for overcrowding
+        const buildingQuality = this.baseQuality *
+            (1 - (( customerCount - this.capacity ) / this.capacity) ** (1 / 3))
+        
     }
 }

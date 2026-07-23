@@ -9,10 +9,16 @@ export class Polity {
      * @type { { [race: string]: number } }
      */
     migrants;
+    /**
+     * Technologies that this polity has access to.
+     * @type { { [id: string]: boolean } }
+     */
+    technologies;
 
     constructor(key, migrants) {
         this.key = key;
         this.migrants = migrants;
+        this.technologies = {};
     }
 }
 

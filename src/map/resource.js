@@ -1,5 +1,13 @@
 export class Resource {
+    /**
+     * Key of this resource for dictionary lookups.
+     * @type {string}
+     */
     key;
+
+    constructor(key) {
+        this.key = key;
+    }
 }
 
 export const RESOURCES = {};
