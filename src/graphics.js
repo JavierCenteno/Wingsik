@@ -71,7 +71,7 @@ export const drawColor =
         options?.hoverInstantCallback?.();
         HOVER_CALLBACK = options?.hoverEventCallback;
     }
-    CONTEXT.fillStyle = "#000000";
+    CONTEXT.fillStyle = color;
     CONTEXT.fillRect(toX, toY, toWidth, toHeight);
 }
 
