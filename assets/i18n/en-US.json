@@ -13,6 +13,64 @@
         "description": ""
       }
     },
+    "good": {
+      "aluminum": {
+        "name": "aluminum",
+        "description": ""
+      },
+      "coal": {
+        "name": "coal",
+        "description": ""
+      },
+      "copper": {
+        "name": "copper",
+        "description": ""
+      },
+      "gold": {
+        "name": "gold",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "goldenpitch",
+        "description": ""
+      },
+      "iron": {
+        "name": "iron",
+        "description": ""
+      },
+      "lead": {
+        "name": "lead",
+        "description": ""
+      },
+      "mercury": {
+        "name": "mercury",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "stone oil",
+        "description": ""
+      },
+      "salt": {
+        "name": "salt",
+        "description": ""
+      },
+      "silver": {
+        "name": "silver",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "sulfur",
+        "description": ""
+      },
+      "tin": {
+        "name": "tin",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "tungsten",
+        "description": ""
+      }
+    },
     "occupation": {
       "actor": {
         "name": "actor",
@@ -274,65 +332,12 @@
         "description": "With knowledge of botany and alchemy, there is no disease that can't be cured by the zebras."
       }
     },
-    "resource": {
-      "aluminum": {
-        "name": "aluminum",
-        "description": ""
-      },
-      "coal": {
-        "name": "coal",
-        "description": ""
-      },
-      "copper": {
-        "name": "copper",
-        "description": ""
-      },
-      "gold": {
-        "name": "gold",
-        "description": ""
-      },
-      "goldenpitch": {
-        "name": "goldenpitch",
-        "description": ""
-      },
-      "iron": {
-        "name": "iron",
-        "description": ""
-      },
-      "lead": {
-        "name": "lead",
-        "description": ""
-      },
-      "mercury": {
-        "name": "mercury",
-        "description": ""
-      },
-      "petroleum": {
-        "name": "stone oil",
-        "description": ""
-      },
-      "salt": {
-        "name": "salt",
-        "description": ""
-      },
-      "silver": {
-        "name": "silver",
-        "description": ""
-      },
-      "sulfur": {
-        "name": "sulfur",
-        "description": ""
-      },
-      "tin": {
-        "name": "tin",
-        "description": ""
-      },
-      "tungsten": {
-        "name": "tungsten",
-        "description": ""
+    "technology": {
+      "electricity": {
+        "name": "electricity"
       }
     },
-    "terrainType": {
+    "terrain": {
       "clay": {
         "name": "clay",
         "description": ""

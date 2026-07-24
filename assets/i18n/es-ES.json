@@ -13,6 +13,64 @@
         "description": ""
       }
     },
+    "good": {
+      "aluminum": {
+        "name": "aluminio",
+        "description": ""
+      },
+      "coal": {
+        "name": "carbón",
+        "description": ""
+      },
+      "copper": {
+        "name": "cobre",
+        "description": ""
+      },
+      "gold": {
+        "name": "oro",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "hierro",
+        "description": ""
+      },
+      "lead": {
+        "name": "plomo",
+        "description": ""
+      },
+      "mercury": {
+        "name": "mercurio",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "petróleo",
+        "description": ""
+      },
+      "salt": {
+        "name": "sal",
+        "description": ""
+      },
+      "silver": {
+        "name": "plata",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "azufre",
+        "description": ""
+      },
+      "tin": {
+        "name": "estaño",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "wolframio",
+        "description": ""
+      }
+    },
     "occupation": {
       "actor": {
         "name": "actor",
@@ -274,65 +332,12 @@
         "description": ""
       }
     },
-    "resource": {
-      "aluminum": {
-        "name": "aluminio",
-        "description": ""
-      },
-      "coal": {
-        "name": "carbón",
-        "description": ""
-      },
-      "copper": {
-        "name": "cobre",
-        "description": ""
-      },
-      "gold": {
-        "name": "oro",
-        "description": ""
-      },
-      "goldenpitch": {
-        "name": "",
-        "description": ""
-      },
-      "iron": {
-        "name": "hierro",
-        "description": ""
-      },
-      "lead": {
-        "name": "plomo",
-        "description": ""
-      },
-      "mercury": {
-        "name": "mercurio",
-        "description": ""
-      },
-      "petroleum": {
-        "name": "petróleo",
-        "description": ""
-      },
-      "salt": {
-        "name": "sal",
-        "description": ""
-      },
-      "silver": {
-        "name": "plata",
-        "description": ""
-      },
-      "sulfur": {
-        "name": "azufre",
-        "description": ""
-      },
-      "tin": {
-        "name": "estaño",
-        "description": ""
-      },
-      "tungsten": {
-        "name": "wolframio",
-        "description": ""
+    "technology": {
+      "electricity": {
+        "name": "electricidad"
       }
     },
-    "terrainType": {
+    "terrain": {
       "clay": {
         "name": "arcilla",
         "description": ""

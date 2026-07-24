@@ -8,6 +8,64 @@
       }
     },
     "feature": {},
+    "good": {
+      "aluminum": {
+        "name": "",
+        "description": ""
+      },
+      "coal": {
+        "name": "",
+        "description": ""
+      },
+      "copper": {
+        "name": "",
+        "description": ""
+      },
+      "gold": {
+        "name": "",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "",
+        "description": ""
+      },
+      "lead": {
+        "name": "",
+        "description": ""
+      },
+      "mercury": {
+        "name": "",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "",
+        "description": ""
+      },
+      "salt": {
+        "name": "",
+        "description": ""
+      },
+      "silver": {
+        "name": "",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "",
+        "description": ""
+      },
+      "tin": {
+        "name": "",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "",
+        "description": ""
+      }
+    },
     "occupation": {
       "actor": {
         "name": "",
@@ -269,65 +327,12 @@
         "description": ""
       }
     },
-    "resource": {
-      "aluminum": {
-        "name": "",
-        "description": ""
-      },
-      "coal": {
-        "name": "",
-        "description": ""
-      },
-      "copper": {
-        "name": "",
-        "description": ""
-      },
-      "gold": {
-        "name": "",
-        "description": ""
-      },
-      "goldenpitch": {
-        "name": "",
-        "description": ""
-      },
-      "iron": {
-        "name": "",
-        "description": ""
-      },
-      "lead": {
-        "name": "",
-        "description": ""
-      },
-      "mercury": {
-        "name": "",
-        "description": ""
-      },
-      "petroleum": {
-        "name": "",
-        "description": ""
-      },
-      "salt": {
-        "name": "",
-        "description": ""
-      },
-      "silver": {
-        "name": "",
-        "description": ""
-      },
-      "sulfur": {
-        "name": "",
-        "description": ""
-      },
-      "tin": {
-        "name": "",
-        "description": ""
-      },
-      "tungsten": {
-        "name": "",
-        "description": ""
+    "technology": {
+      "electricity": {
+        "name": ""
       }
     },
-    "terrainType": {
+    "terrain": {
       "clay": {
         "name": "",
         "description": ""
