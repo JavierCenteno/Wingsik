@@ -2,12 +2,13 @@ import { clear, resetCanvasSize, runCallbacks } from './graphics.js';
 import { FarmBuilding } from './map/building.js';
 import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
-import { TERRAIN_RESOURCES } from './map/terrain-resource.js';
+import { GOODS } from './map/good.js';
 import { TERRAIN_TYPES } from './map/terrain-type.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { updateKeyboardEvents } from './views/events/game-keyboard-event.js';
 import { updateMouseEvents } from './views/events/game-mouse-event.js';
 import { MapView } from './views/map-view.js';
+import { RESOURCES } from './map/resource.js';
 
 /**
  * The maximum amount of frames per second. Affects game speed.
@@ -59,13 +60,13 @@ for (let j = 1; j < 6; ++j) {
         view.map.terrain[j][i] = TERRAIN_TYPES.sand;
     }
 }
-view.map.resources[2][13] = TERRAIN_RESOURCES.coal;
-view.map.resources[3][13] = TERRAIN_RESOURCES.coal;
-view.map.resources[3][14] = TERRAIN_RESOURCES.iron;
-view.map.resources[4][14] = TERRAIN_RESOURCES.iron;
+view.map.resources[2][13] = RESOURCES.coal;
+view.map.resources[3][13] = RESOURCES.coal;
+view.map.resources[3][14] = RESOURCES.iron;
+view.map.resources[4][14] = RESOURCES.iron;
 for (let j = 1; j < 6; ++j) {
     for (let i = 16; i < 18; ++i) {
-        view.map.resources[j][i] = TERRAIN_RESOURCES.coal;
+        view.map.resources[j][i] = RESOURCES.coal;
     }
 }
 

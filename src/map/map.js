@@ -26,7 +26,7 @@ export class Map {
     terrain;
     /**
      * Types of resources of each tile as a two dimensional number array with lenghts y and x.
-     * @type {TerrainResource[][]}
+     * @type {Resource[][]}
      */
     resources;
     /**
