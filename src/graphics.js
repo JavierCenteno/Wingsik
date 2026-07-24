@@ -30,6 +30,52 @@ let CLICK_CALLBACK = undefined;
 let HOVER_CALLBACK = undefined;
 
 /**
+ * Fills an area of the canvas with a color.
+ * 
+ * @param {string} color
+ * @param {[number, number]} toCoords
+ * @param {[number, number]} toSize
+ * @param {{} | undefined} options
+ * @param {() => {}} options.clickEventCallback A function to be called at the end of the frame if this sprite was clicked on above others
+ * @param {() => {}} options.clickInstantCallback A function to be called instantly if this sprite was clicked on even if others above may have also been clicked on
+ * @param {() => {}} options.hoverEventCallback A function to be called at the end of the frame if this sprite was hovered on above others
+ * @param {() => {}} options.hoverInstantCallback A function to be called instantly if this sprite was hovered on even if others above may have also been hovered on
+ */
+export const drawColor =
+    (
+        color,
+        [toX, toY],
+        [toWidth, toHeight],
+        options = undefined,
+    ) => {
+    // check whether the colored area has been clicked on if there is a click callback
+    if (
+        clickEvent &&
+        // the click is within the bounds of the sprite
+        toX <= clickEvent.coordinates[0] &&
+        clickEvent.coordinates[0] < toX + toWidth &&
+        toY <= clickEvent.coordinates[1] &&
+        clickEvent.coordinates[1] < toY + toHeight
+    ) {
+        options?.clickInstantCallback?.();
+        CLICK_CALLBACK = options?.clickEventCallback;
+    }
+    // check whether the colored area is being hovered over if there is a hover callback
+    if (
+        hoverEvent &&
+        toX <= hoverEvent.coordinates[0] &&
+        hoverEvent.coordinates[0] < toX + toWidth &&
+        toY <= hoverEvent.coordinates[1] &&
+        hoverEvent.coordinates[1] < toY + toHeight
+    ) {
+        options?.hoverInstantCallback?.();
+        HOVER_CALLBACK = options?.hoverEventCallback;
+    }
+    CONTEXT.fillStyle = "#000000";
+    CONTEXT.fillRect(toX, toY, toWidth, toHeight);
+}
+
+/**
  * Draws a sprite to the canvas.
  *
  * @param {Sprite} sprite
@@ -43,7 +89,7 @@ let HOVER_CALLBACK = undefined;
  * @param {() => {}} options.clickInstantCallback A function to be called instantly if this sprite was clicked on even if others above may have also been clicked on
  * @param {() => {}} options.hoverEventCallback A function to be called at the end of the frame if this sprite was hovered on above others
  * @param {() => {}} options.hoverInstantCallback A function to be called instantly if this sprite was hovered on even if others above may have also been hovered on
- *  */
+ */
 export const drawSprite =
     (
         sprite,
@@ -58,9 +104,9 @@ export const drawSprite =
         clickEvent &&
         // the click is within the bounds of the sprite
         toX <= clickEvent.coordinates[0] &&
-        clickEvent.coordinates[0] <= toX + toWidth &&
+        clickEvent.coordinates[0] < toX + toWidth &&
         toY <= clickEvent.coordinates[1] &&
-        clickEvent.coordinates[1] <= toY + toHeight
+        clickEvent.coordinates[1] < toY + toHeight
     ) {
         // RGBA values for the pixel of the sprite that the user clicked on
         const spriteImageDataAtClickLocation =
@@ -80,9 +126,9 @@ export const drawSprite =
     if (
         hoverEvent &&
         toX <= hoverEvent.coordinates[0] &&
-        hoverEvent.coordinates[0] <= toX + toWidth &&
+        hoverEvent.coordinates[0] < toX + toWidth &&
         toY <= hoverEvent.coordinates[1] &&
-        hoverEvent.coordinates[1] <= toY + toHeight
+        hoverEvent.coordinates[1] < toY + toHeight
     ) {
         // RGBA values for the pixel of the sprite that the user clicked on
         const spriteImageDataAtClickLocation =

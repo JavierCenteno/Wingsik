@@ -32,6 +32,7 @@ export class BuildWindow extends GameWindow {
                 clickEventCallback: () => {
                     this.view.newBuildingGhost = new FarmBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                     this.view.addToView(this.view.newBuildingGhost);
+                    this.view.closeBuildMenu();
                 }
             }
         );
@@ -45,6 +46,7 @@ export class BuildWindow extends GameWindow {
                 clickEventCallback: () => {
                     this.view.newBuildingGhost = new MineBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                     this.view.addToView(this.view.newBuildingGhost);
+                    this.view.closeBuildMenu();
                 }
             }
         );
@@ -58,6 +60,7 @@ export class BuildWindow extends GameWindow {
                 clickEventCallback: () => {
                     this.view.newBuildingGhost = new TenementBuilding(this.view.map, 0, 0, ORIENTATION.NORTH_EAST);
                     this.view.addToView(this.view.newBuildingGhost);
+                    this.view.closeBuildMenu();
                 }
             }
         );

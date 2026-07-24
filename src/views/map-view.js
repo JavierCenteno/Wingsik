@@ -1,4 +1,4 @@
-import { CANVAS, drawSprite } from "../graphics.js";
+import { CANVAS, drawSprite, drawColor } from "../graphics.js";
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
@@ -268,6 +268,7 @@ export class MapView extends GameView {
     }
 
     openBuildMenu() {
+        this.closeBuildMenu();
         this.windows.push(new BuildWindow(this));
     }
 
@@ -298,6 +299,28 @@ export class MapView extends GameView {
     }
 
     render() {
+        drawColor(
+            '#000000',
+            [0, 0],
+            [CANVAS.width, CANVAS.height],
+            {
+                clickEventCallback: () => {
+                    if (!clickEvent.secondary) {
+                        this.selectedObject = undefined;
+                        this.closeBuildMenu();
+                        this.removeFromView(this.newBuildingGhost);
+                        this.newBuildingGhost = undefined;
+                    } else {
+                        if (this.newBuildingGhost) {
+                            this.removeFromView(this.newBuildingGhost);
+                            this.newBuildingGhost = undefined;
+                        } else {
+                            this.openBuildMenu();
+                        }
+                    }
+                }
+            }
+        )
         let reverseX = this.orientation === ORIENTATION.SOUTH_EAST || this.orientation === ORIENTATION.NORTH_EAST;
         let reverseY = this.orientation === ORIENTATION.NORTH_WEST || this.orientation === ORIENTATION.NORTH_EAST;
         const centerTileRelativeCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates(this.centerTile, this.zoomLevel, reverseX, reverseY);
@@ -990,19 +1013,6 @@ export class MapView extends GameView {
                     this.moveRight();
                     keyHeldDownEvent.cancel();
                     break;
-            }
-        }
-        if (clickEvent) {
-            if (!clickEvent.secondary) {
-                this.selectedObject = undefined;
-                this.closeBuildMenu();
-            } else {
-                if (this.newBuildingGhost) {
-                    this.removeFromView(this.newBuildingGhost);
-                    this.newBuildingGhost = undefined;
-                } else {
-                    this.openBuildMenu();
-                }
             }
         }
         if (dragEvent) {

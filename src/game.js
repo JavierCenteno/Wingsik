@@ -1,4 +1,4 @@
-import { clear, resetCanvasSize, runCallbacks } from './graphics.js';
+import { resetCanvasSize, runCallbacks } from './graphics.js';
 import { FarmBuilding } from './map/building.js';
 import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
@@ -135,7 +135,6 @@ const frame = () => {
     view.tick();
     // No need to render the frame if the user isn't looking at the tab
     if (!document.hidden) {
-        clear();
         view.render();
     }
     runCallbacks();
