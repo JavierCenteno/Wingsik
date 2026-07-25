@@ -99,7 +99,7 @@ export const drawSprite =
         [toWidth, toHeight],
         options = undefined
     ) => {
-    if(((toX + toWidth) < 0) || ((toY + toHeight) < 0) || (toX > CANVAS.width) || (toY > CANVAS.height)) {
+    if(((toX + toWidth) <= 0) || ((toY + toHeight) <= 0) || (toX > CANVAS.width) || (toY > CANVAS.height)) {
         // sprite falls outside of canvas
         return;
     }
