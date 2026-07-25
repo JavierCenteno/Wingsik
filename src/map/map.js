@@ -1,3 +1,5 @@
+import { MAXIMUM_FRAMES_PER_SECOND } from '../game.js'
+
 export class Map {
     /**
      * View of this map.
@@ -49,6 +51,21 @@ export class Map {
      * @type {Pop[]}
      */
     pops;
+    /**
+     * Number of ticks per in-game month.
+     * @type {number}
+     */
+    ticksPerMonth;
+    /**
+     * Number of ticks until the next in-game month starts.
+     * @type {number}
+     */
+    ticksUntilNextMonth;
+    /**
+     * List of pops pending to be updated this month.
+     * @type {Pop[]}
+     */
+    popsToBeUpdatedThisMonth;
 
     /**
      * 
@@ -94,6 +111,38 @@ export class Map {
         for (const unit of this.units) {
             unit.tick();
         }
+        if (!this.ticksUntilNextMonth || this.ticksUntilNextMonth <= 0) {
+            // 60 seconds real time per in-game month
+            this.ticksPerMonth = 60 * MAXIMUM_FRAMES_PER_SECOND;
+            this.ticksUntilNextMonth = this.ticksPerMonth;
+            this.popsToBeUpdatedThisMonth = [...this.pops]; // TODO: SORT BY WEALTH DESCENDING
+        }
+        if (
+            this.popsToBeUpdatedThisMonth.length > 0 &&
+                ((this.ticksUntilNextMonth / this.ticksPerMonth) <
+                (this.popsToBeUpdatedThisMonth.length / this.pops.length))
+        ) {
+            // behind schedule
+            const popsToBeUpdatedPerTick = Math.ceil(this.pops.length / this.ticksPerMonth);
+            const popsToBeUpdatedThisTick = this.popsToBeUpdatedThisMonth.slice(0, popsToBeUpdatedPerTick);
+            this.popsToBeUpdatedThisMonth = this.popsToBeUpdatedThisMonth.slice(popsToBeUpdatedPerTick);
+            for (const popToBeUpdated of popsToBeUpdatedThisTick) {
+                
+
+                /*
+                1. try to improve on the current occupation to move up the socioeconomic ladder
+                    1.a. BE MINDFUL OF RACIAL SYNERGIES
+                2. try to improve on the current residence
+                    2.a. if homeless and no housing available build a shack tropico style
+                    2.b. if living in a shack and found a better residence, demolish the shack
+                3. try to find food - more varied and more quality first
+                4. try to find healthcare - more varied and more quality first
+                5. try to find entertainment - more varied and more quality first
+                6. try to breed - if housing and jobs are available?
+                */
+            }
+        }
+        --this.ticksUntilNextMonth;
     }
 
     isTileOccupied(x, y) {

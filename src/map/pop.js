@@ -1,4 +1,4 @@
-import { removeIfExists } from "../util/list-util";
+import { removeIfExists } from "../util/list-util.js";
 
 export class Race {
     /**
@@ -38,6 +38,11 @@ RACES.changeling = new Race('changeling');
 
 export class Pop {
     /**
+     * Race of this pop.
+     * @type {Race}
+     */
+    race;
+    /**
      * In what building this pop works if it is employed.
      * @type {Building?}
      */
@@ -52,6 +57,10 @@ export class Pop {
      * @type {Building?}
      */
     residence;
+
+    constructor(race) {
+        this.race = race;
+    }
 
     setWorkplace(building) {
         if (this.workplace) {

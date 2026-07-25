@@ -412,6 +412,14 @@ export class MapView extends GameView {
                     let adjacencyDownLeft; // tile down and left of this tile in the view
                     let adjacencyDownRight; // tile down and right of this tile in the view
                     let adjacencyDown; // tile down of this tile in the view
+                    /*
+                         ^      // the direction of our orientation                                
+                        <x>     // adjacencyUp
+                      <x> <x>   // adjacencyUpLeft, adjacencyUpRight
+                    <x> <x> <x> // adjacencyLeft, current tile, adjacencyRight
+                      <x> <x>   // adjacencyDownLeft, adjacencyDownRight
+                        <x>     // adjacencyDown
+                    */
                     switch (this.orientation) {
                         case ORIENTATION.NORTH_EAST:
                             adjacencyUp = this.map.terrainAt(i + 1, j + 1) === this.map.terrain[j][i];

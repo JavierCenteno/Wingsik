@@ -1,34 +1,33 @@
 import { resetCanvasSize, runCallbacks } from './graphics.js';
-import { FarmBuilding } from './map/building.js';
 import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
-import { GOODS } from './map/good.js';
+import { Pop, RACES } from './map/pop.js';
+import { RESOURCES } from './map/resource.js';
 import { TERRAIN_TYPES } from './map/terrain-type.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { updateKeyboardEvents } from './views/events/game-keyboard-event.js';
 import { updateMouseEvents } from './views/events/game-mouse-event.js';
 import { MapView } from './views/map-view.js';
-import { RESOURCES } from './map/resource.js';
 
 /**
  * The maximum amount of frames per second. Affects game speed.
  */
-const MAXIMUM_FRAMES_PER_SECOND = 50;
+export const MAXIMUM_FRAMES_PER_SECOND = 50;
 
 /**
  * How many seconds a single frame lasts.
  */
-const FRAME_DURATION_SECONDS = 1 / MAXIMUM_FRAMES_PER_SECOND;
+export const FRAME_DURATION_SECONDS = 1 / MAXIMUM_FRAMES_PER_SECOND;
 
 /**
  * How many milliseconds a single frame lasts.
  */
-const FRAME_DURATION_MILLISECONDS = 1000 * FRAME_DURATION_SECONDS;
+export const FRAME_DURATION_MILLISECONDS = 1000 * FRAME_DURATION_SECONDS;
 
 /**
  * Current map view.
  */
-let view = new MapView(40,64);
+let view = new MapView(64,64);
 for (let j = 8; j < 17; ++j) {
     for (let i = 8; i < 17; ++i) {
         view.map.heights[j][i] = 1;
@@ -95,6 +94,10 @@ view.map.addUnit(new CargoShipUnit(view.map, 5, 22, GRANULAR_ORIENTATION.SOUTH_W
 view.map.addUnit(new CargoShipUnit(view.map, 5, 28, GRANULAR_ORIENTATION.WEST));
 view.map.addUnit(new CargoShipUnit(view.map, 5, 34, GRANULAR_ORIENTATION.NORTH_WEST));
 view.map.addUnit(new CargoShipUnit(view.map, 11, 34, GRANULAR_ORIENTATION.NORTH));
+
+for (let i = 0; i < 10; ++i) {
+    view.map.pops.push(new Pop(RACES.earthPony));
+}
 
 var infantryUnit = new InfantryUnit(view.map, 0.5, 0.5, GRANULAR_ORIENTATION.NORTH_EAST);
 view.map.addUnit(infantryUnit);
