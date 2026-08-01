@@ -76,7 +76,7 @@ TECHNOLOGIES.waterTreatment = new Technology(
     );
 TECHNOLOGIES.economics = new Technology(
         'economics',
-        [ TECHNOLOGIES.psychiatry ]
+        [ TECHNOLOGIES.refrigeration, TECHNOLOGIES.psychiatry ]
     );
 
 // level 4

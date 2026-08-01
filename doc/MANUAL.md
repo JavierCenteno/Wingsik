@@ -96,6 +96,8 @@ Upgrades:
 - Futures market: Reduces the effect of random events in the international prices of goods.
 - Circuit breaker: Stock investments are less likely to have a negative return.
 
+## Asylum
+
 # Units
 
 ## Infantry
@@ -113,6 +115,190 @@ Heavy and slow armored unit. Deals extra damage to infantry.
 ## Royal Guard
 
 Largely ceremonial but still damaging.
+
+# Technologies
+
+## Level 1
+
+### Electricity
+
+Requires: none
+
+## Level 2
+
+### Phonography
+
+// what it do
+
+Requires: [electricity](#electricity)
+
+### Telegraphy
+
+// unlocks telegraph stations?
+
+Requires: [electricity](#electricity)
+
+### Lightbulb
+
+Requires: [electricity](#electricity)
+
+### Chemistry
+
+// unlocks the weather station and balloons, and chemistry plants
+
+Requires: [electricity](#electricity)
+
+### Refrigeration
+
+Requires: [electricity](#electricity)
+
+### Psychiatry
+
+Unlocks the [asylum](#asylum).
+
+Requires: [electricity](#electricity)
+
+## Level 3
+
+### Telephony
+
+Requires: [phonography](#phonography), [telegraphy](#telegraphy)
+
+### Electronics
+
+Requires: [telegraphy](#telegraphy), [lightbulb](#lightbulb)
+
+### Photography
+
+Increases the efficiency of newspapers.
+
+Requires: [lightbulb](#lightbulb), [chemistry](#chemistry)
+
+### Refining
+
+// unlocks the oil refinery
+
+Requires: [chemistry](#chemistry)
+
+### Water treatment
+
+// unlocks the water treatment plant
+
+Requires: [chemistry](#chemistry), [refrigeration](#refrigeration)
+
+### Economics
+
+// unlocks banks and stock exchange/bourse
+
+Requires: [refrigeration](#refrigeration), [psychiatry](#psychiatry)
+
+## Level 4
+
+### Calculators
+
+Requires: [electronics](#electronics)
+
+### Radiophony
+
+// unlocks the radio station
+
+Requires: [telephony](#telephony), [electronics](#electronics)
+
+### Cinematography
+
+// unlocks the movie theater
+
+Requires: [electronics](#electronics), [photography](#photography)
+
+### Combustion
+
+// unlocks cars? but what about assembly line tech then?
+
+Requires: [refining](#refining)
+
+### Ecology
+
+// unlocks the solar plant and recycling options to cut down on raw material consumption of paper, glass, metal...
+
+Requires: [refining](#refining), [water treatment](#water-treatment), [economics](#economics)
+
+### Urbanism
+
+// unlocks denser residential buildings and more public transit options
+
+Requires: [water treatment](#water-treatment), [economics](#economics)
+
+## Level 5
+
+### Cryptology
+
+// improves the efficiency of your secret agents
+
+Requires: [calculators](#calculators), [radiophony](#radiophony)
+
+### Television
+
+// unlocks the tv station
+
+Requires: [radiophony](#radiophony), [cinematography](#cinematography)
+
+### Assembly line
+
+// enables tractor upgrade in farms, unlocks cars and zeppelins and such
+
+Requires: [radiophony](#radiophony), [combustion](#combustion)
+
+### Plastics
+
+Requires: [cinematography](#cinematography), [combustion](#combustion), [ecology](#ecology)
+
+### Bacteriology
+
+// makes hospitals more efficient at handling epidemics
+
+Requires: [ecology](#ecology)
+
+### Archeology
+
+// unlocks the zoo and museum
+
+Requires: [ecology](#ecology), [urbanism](#urbanism)
+
+## Level 6
+
+### Computers
+
+Requires: [cryptology](#cryptology), [television](#television)
+
+### Automation
+
+// unlocks upgrades for factories, like control rooms
+
+Requires: [cryptology](#cryptology), [assembly line](#assembly-line)
+
+### Aviation
+
+// unlocks the runway for the airport
+
+Requires: [assembly line](#assembly-line)
+
+### Rocketry
+
+// unlocks the rocket cruiser
+
+Requires: [assembly line](#assembly-line), [plastics](#plastics)
+
+### Pharmacology
+
+// makes hospitals, clinics, asylums and constabularies more efficient
+
+Requires: [plastics](#plastics), [bacteriology](#bacteriology), [archeology](#archeology)
+
+### Agroengineering
+
+// makes farms more efficient
+
+Requires: [bacteriology](#bacteriology), [archeology](#archeology)
 
 # Edicts
 
