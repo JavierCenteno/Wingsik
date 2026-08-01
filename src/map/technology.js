@@ -47,6 +47,10 @@ TECHNOLOGIES.refrigeration = new Technology(
         'refrigeration',
         [ TECHNOLOGIES.electricity ]
     );
+TECHNOLOGIES.psychiatry = new Technology(
+        'psychiatry',
+        [ TECHNOLOGIES.electricity ]
+    );
 
 // level 3
 
@@ -70,6 +74,10 @@ TECHNOLOGIES.waterTreatment = new Technology(
         'waterTreatment',
         [ TECHNOLOGIES.chemistry, TECHNOLOGIES.refrigeration ]
     );
+TECHNOLOGIES.economics = new Technology(
+        'economics',
+        [ TECHNOLOGIES.psychiatry ]
+    );
 
 // level 4
 
@@ -85,13 +93,17 @@ TECHNOLOGIES.cinematography = new Technology(
         'cinematography',
         [ TECHNOLOGIES.electronics, TECHNOLOGIES.photography ]
     );
-TECHNOLOGIES.internalCombustion = new Technology(
-        'internalCombustion',
+TECHNOLOGIES.combustion = new Technology(
+        'combustion',
         [ TECHNOLOGIES.refining ]
     );
 TECHNOLOGIES.ecology = new Technology(
         'ecology',
-        [ TECHNOLOGIES.refining, TECHNOLOGIES.waterTreatment ]
+        [ TECHNOLOGIES.refining, TECHNOLOGIES.waterTreatment, TECHNOLOGIES.economics ]
+    );
+TECHNOLOGIES.urbanism = new Technology(
+        'urbanism',
+        [ TECHNOLOGIES.waterTreatment, TECHNOLOGIES.economics ]
     );
 
 // level 5
@@ -106,15 +118,21 @@ TECHNOLOGIES.television = new Technology(
     );
 TECHNOLOGIES.assemblyLine = new Technology(
         'assemblyLine',
-        [ TECHNOLOGIES.radiophony, TECHNOLOGIES.internalCombustion ]
+        [ TECHNOLOGIES.radiophony, TECHNOLOGIES.combustion ]
     );
 TECHNOLOGIES.plastics = new Technology(
         'plastics',
-        [ TECHNOLOGIES.plastics ]
+        [ TECHNOLOGIES.cinematography, TECHNOLOGIES.combustion, TECHNOLOGIES.ecology ]
     );
+// makes hospitals more efficient at handling epidemics
 TECHNOLOGIES.bacteriology = new Technology(
         'bacteriology',
-        [ TECHNOLOGIES.bacteriology ]
+        [ TECHNOLOGIES.ecology ]
+    );
+// unlocks the zoo and museum
+TECHNOLOGIES.archeology = new Technology(
+        'archeology',
+        [ TECHNOLOGIES.ecology, TECHNOLOGIES.urbanism ]
     );
 
 // level 6
@@ -127,15 +145,21 @@ TECHNOLOGIES.automation = new Technology(
         'automation',
         [ TECHNOLOGIES.cryptology, TECHNOLOGIES.assemblyLine ]
     );
-TECHNOLOGIES.mechanicalFlight = new Technology(
-        'mechanicalFlight',
+TECHNOLOGIES.aviation = new Technology(
+        'aviation',
         [ TECHNOLOGIES.assemblyLine ]
     );
 TECHNOLOGIES.rocketry = new Technology(
         'rocketry',
         [ TECHNOLOGIES.assemblyLine, TECHNOLOGIES.plastics ]
     );
+// makes hospitals, clinics, asylums and constabularies more efficient
 TECHNOLOGIES.pharmacology = new Technology(
         'pharmacology',
-        [ TECHNOLOGIES.plastics, TECHNOLOGIES.bacteriology ]
+        [ TECHNOLOGIES.plastics, TECHNOLOGIES.bacteriology, TECHNOLOGIES.archeology ]
+    );
+// makes farms more efficient
+TECHNOLOGIES.agroengineering = new Technology(
+        'agroengineering',
+        [ TECHNOLOGIES.bacteriology, TECHNOLOGIES.archeology ]
     );

@@ -79,6 +79,7 @@ Workmodes:
 - News: Provides useful information about what goes on, increasing the service quality of public buildings.
 - Music: Improves productivity of nearby workplaces.
 - Numbers station: Secret agents become more efficient at their jobs.
+- Radio jamming: Foreign agents become less efficient at their jobs.
 
 ## TV station
 
@@ -87,6 +88,13 @@ Workmodes:
 - Movies: Provides entertainment to creatures living in the area.
 - Foreign TV: Boosts the signal of far away TV stations, increasing freedom.
 - News: Provides useful information about what goes on, increasing the service quality of public buildings.
+
+## Bourse
+
+Upgrades:
+
+- Futures market: Reduces the effect of random events in the international prices of goods.
+- Circuit breaker: Stock investments are less likely to have a negative return.
 
 # Units
 
