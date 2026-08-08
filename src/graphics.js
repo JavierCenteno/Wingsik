@@ -153,11 +153,17 @@ export const drawSprite =
             case FILTERS.NONE:
                 CONTEXT.filter = 'none';
                 break;
+            case FILTERS.GREEN:
+                CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(60deg)';
+                break;
+            case FILTERS.BLUE:
+                CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(180deg)';
+                break;
             case FILTERS.RED:
                 CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(300deg)';
                 break;
-            case FILTERS.GREEN:
-                CONTEXT.filter = 'sepia(1) saturate(10) hue-rotate(60deg)';
+            case FILTERS.GRAY:
+                CONTEXT.filter = 'saturate(0)';
                 break;
         }
     }
@@ -191,8 +197,10 @@ export const runCallbacks = () => {
 
 export const FILTERS = {
     NONE: 'none',
-    RED: 'red',
-    GREEN: 'green'
+    BLUE: 'blue',
+    GRAY: 'gray',
+    GREEN: 'green',
+    RED: 'red'
 }
 
 export const writeText = (text, [atX, atY], font, fontSize = 1, color = '#000000') => {
