@@ -1,6 +1,7 @@
 import { BUILDING_FARM_SPRITES, BUILDING_MINE_SPRITES, BUILDING_TENEMENT_SPRITES } from "../sprites.js";
 import { MapElement } from "./map-element.js";
 import { ORIENTATION } from "./orientation.js";
+import { TECHNOLOGIES, Technology } from "./technology.js";
 
 export class BuildingType {
     /**
@@ -23,8 +24,13 @@ export class BuildingType {
      * @type {Sprite}
      */
     sprite;
+    /**
+     * Which technology is required for buildings of this type.
+     * @type {Technology?}
+     */
+    requires;
 
-    constructor(key, sizeX, sizeY, sprite) {
+    constructor(key, sizeX, sizeY, sprite, requires) {
         this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
@@ -34,10 +40,68 @@ export class BuildingType {
 
 export const BUILDING_TYPES = {};
 
-BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES);
-BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES);
-BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES);
-BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, BUILDING_TENEMENT_SPRITES);
+// Infrastructure
+
+// BUILDING_TYPES.dock = new BuildingType('dock', 1, 1, BUILDING_DOCK_SPRITES, null);
+// BUILDING_TYPES.airport = new BuildingType('airport', 1, 1, BUILDING_AIRPORT_SPRITES, TECHNOLOGIES.combustion);
+// BUILDING_TYPES.electricSubstation = new BuildingType('dock', 1, 1, BUILDING_DOCK_SPRITES, TECHNOLOGIES.electricity);
+// BUILDING_TYPES.coalPlant = new BuildingType('dock', 1, 1, BUILDING_DOCK_SPRITES, TECHNOLOGIES.electricity);
+
+// Primary
+
+BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES, null);
+BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES, null);
+// BUILDING_TYPES.quarry = new BuildingType('quarry', 2, 2, BUILDING_MINE_SPRITES, null);
+// BUILDING_TYPES.saltern = new BuildingType('saltern', 2, 2, BUILDING_MINE_SPRITES, null);
+// BUILDING_TYPES.oilWell = new BuildingType('oilWell', 2, 2, BUILDING_MINE_SPRITES, TECHNOLOGIES.electricity);
+
+// Industry
+
+// BUILDING_TYPES.refinery = new BuildingType('refinery', 2, 2, BUILDING_MINE_SPRITES, TECHNOLOGIES.refining);
+
+// Economy
+
+// Media
+
+// BUILDING_TYPES.school
+// BUILDING_TYPES.university
+// BUILDING_TYPES.newspaper = new BuildingType('newspaper', 2, 3, BUILDING_FARM_SPRITES, null);
+// BUILDING_TYPES.telegraphExchange = new BuildingType('telegraphExchange', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.telegraphy);
+// BUILDING_TYPES.radioStation = new BuildingType('radioStation', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.radiophony);
+// BUILDING_TYPES.televisionStation = new BuildingType('televisionStation', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.television);
+
+// Welfare
+
+// BUILDING_TYPES.clinic = new BuildingType('clinic', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.asylum = new BuildingType('asylum', 2, 3, BUILDING_TENEMENT_SPRITES, TECHNOLOGIES.psychiatry);
+// BUILDING_TYPES.dump = new BuildingType('dump', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+
+// Housing
+
+BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.apartment = new BuildingType('apartment', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.townhouse = new BuildingType('townhouse', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.condominium = new BuildingType('condominium', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.mansion = new BuildingType('mansion', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.motel = new BuildingType('motel', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.hotel = new BuildingType('hotel', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.luxuryHotel = new BuildingType('luxuryHotel', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+
+// Entertainment
+
+// BUILDING_TYPES.bar = new BuildingType('bar', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.theater = new BuildingType('theater', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.cinema = new BuildingType('cinema', 2, 3, BUILDING_TENEMENT_SPRITES, TECHNOLOGIES.cinematography);
+
+// Government
+
+// BUILDING_TYPES.firehouse = new BuildingType('firehouse', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.constabulary = new BuildingType('constabulary', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.prison = new BuildingType('prison', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// BUILDING_TYPES.postOffice = new BuildingType('postOffice', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+
+// Military
 
 export class Building extends MapElement {
     /**
@@ -134,7 +198,7 @@ export class Building extends MapElement {
         this.y = y;
         this.orientation = orientation;
     }
-    
+
     tick() {
     }
 

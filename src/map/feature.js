@@ -127,6 +127,24 @@ export class Feature extends MapElement {
     
     tick() {
     }
+    
+    /**
+     * Checks whether a feature of this type can be built at its location.
+     */
+    canBeBuilt() {
+        // default implementation: simply check whether all the tiles are flat and not occupied
+        if (this.map.areTilesOccupied(this.minX, this.maxX, this.minY, this.maxY)) {
+            return false;
+        }
+        for (let j = this.minY; j <= this.maxY; ++j) {
+            for (let i = this.minX; i <= this.maxX; ++i) {
+                if (!this.map.isTileFlat(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
 
 export class TreeFeature extends Feature {

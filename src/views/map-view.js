@@ -1,4 +1,4 @@
-import { CANVAS, drawSprite, drawColor } from "../graphics.js";
+import { CANVAS, drawSprite, drawColor, FILTERS } from "../graphics.js";
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
@@ -22,6 +22,8 @@ export const BLOCK_HEIGHT = 8;
 export class MapView extends GameView {
     /**
      * Current map on display.
+     * 
+     * @type { Map }
      */
     map;
     /**
@@ -49,7 +51,7 @@ export class MapView extends GameView {
     /**
      * Ghost of the building the player is currently trying to build.
      * 
-     * @type { Building }
+     * @type { (Building | Feature)[]? }
      */
     newBuildingGhost = undefined;
     /**
@@ -291,9 +293,15 @@ export class MapView extends GameView {
     }
 
     buildBuildingGhost() {
-        if (this.newBuildingGhost.canBeBuilt()) {
-            this.map.buildings.push(this.newBuildingGhost);
-            this.updateInView(this.newBuildingGhost);
+        if (this.newBuildingGhost !== undefined && this.newBuildingGhost.length > 0 && !this.newBuildingGhost.some(b => !b.canBeBuilt())) {
+            for(const b of this.newBuildingGhost) {
+                if (b instanceof Building) {
+                    this.map.buildings.push(b);
+                } else if (b instanceof Feature) {
+                    this.map.features.push(b);
+                }
+                this.updateInView(b);
+            }
             this.newBuildingGhost = undefined;
         }
     }
@@ -308,11 +316,11 @@ export class MapView extends GameView {
                     if (!clickEvent.secondary) {
                         this.selectedObject = undefined;
                         this.closeBuildMenu();
-                        this.removeFromView(this.newBuildingGhost);
+                        this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                         this.newBuildingGhost = undefined;
                     } else {
-                        if (this.newBuildingGhost) {
-                            this.removeFromView(this.newBuildingGhost);
+                        if (this.newBuildingGhost !== undefined) {
+                            this.newBuildingGhost.forEach(b => this.removeFromView(b));
                             this.newBuildingGhost = undefined;
                         } else {
                             this.openBuildMenu();
@@ -385,12 +393,12 @@ export class MapView extends GameView {
                     {
                         clickEventCallback: () => {
                             if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
+                                if (this.newBuildingGhost !== undefined) {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
+                                if (this.newBuildingGhost !== undefined) {
+                                    this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                     this.newBuildingGhost = undefined;
                                 } else {
                                     this.openBuildMenu();
@@ -483,12 +491,12 @@ export class MapView extends GameView {
                         {
                         clickEventCallback: () => {
                             if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
+                                if (this.newBuildingGhost !== undefined) {
                                     this.buildBuildingGhost();
                                 }
                             } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
+                                if (this.newBuildingGhost !== undefined) {
+                                    this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                     this.newBuildingGhost = undefined;
                                 } else {
                                     this.openBuildMenu();
@@ -520,12 +528,12 @@ export class MapView extends GameView {
                         {
                             clickEventCallback: () => {
                                 if (!clickEvent.secondary) {
-                                    if (this.newBuildingGhost) {
+                                    if (this.newBuildingGhost !== undefined) {
                                         this.buildBuildingGhost();
                                     }
                                 } else {
-                                    if (this.newBuildingGhost) {
-                                        this.removeFromView(this.newBuildingGhost);
+                                    if (this.newBuildingGhost !== undefined) {
+                                        this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                         this.newBuildingGhost = undefined;
                                     } else {
                                         this.openBuildMenu();
@@ -557,12 +565,12 @@ export class MapView extends GameView {
                         {
                             clickEventCallback: () => {
                                 if (!clickEvent.secondary) {
-                                    if (this.newBuildingGhost) {
+                                    if (this.newBuildingGhost !== undefined) {
                                         this.buildBuildingGhost();
                                     }
                                 } else {
-                                    if (this.newBuildingGhost) {
-                                        this.removeFromView(this.newBuildingGhost);
+                                    if (this.newBuildingGhost !== undefined) {
+                                        this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                         this.newBuildingGhost = undefined;
                                     } else {
                                         this.openBuildMenu();
@@ -594,12 +602,12 @@ export class MapView extends GameView {
                         {
                             clickEventCallback: () => {
                                 if (!clickEvent.secondary) {
-                                    if (this.newBuildingGhost) {
+                                    if (this.newBuildingGhost !== undefined) {
                                         this.buildBuildingGhost();
                                     }
                                 } else {
-                                    if (this.newBuildingGhost) {
-                                        this.removeFromView(this.newBuildingGhost);
+                                    if (this.newBuildingGhost !== undefined) {
+                                        this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                         this.newBuildingGhost = undefined;
                                     } else {
                                         this.openBuildMenu();
@@ -623,12 +631,12 @@ export class MapView extends GameView {
                         {
                             clickEventCallback: () => {
                                 if (!clickEvent.secondary) {
-                                    if (this.newBuildingGhost) {
+                                    if (this.newBuildingGhost !== undefined) {
                                         this.buildBuildingGhost();
                                     }
                                 } else {
-                                    if (this.newBuildingGhost) {
-                                        this.removeFromView(this.newBuildingGhost);
+                                    if (this.newBuildingGhost !== undefined) {
+                                        this.newBuildingGhost?.forEach(b => this.removeFromView(b));
                                         this.newBuildingGhost = undefined;
                                     } else {
                                         this.openBuildMenu();
@@ -643,40 +651,60 @@ export class MapView extends GameView {
                 }
             }
         }
-        if (this.newBuildingGhost) {
+        if (this.newBuildingGhost !== undefined && this.newBuildingGhost.length > 0) {
             if (this.hoveringOverTile !== undefined) {
-                this.newBuildingGhost.y = this.hoveringOverTile[0];
-                this.newBuildingGhost.x = this.hoveringOverTile[1];
-                this.updateInView(this.newBuildingGhost);
+                const newBuildingGhostMinX = Math.min(...this.newBuildingGhost.map(b => b.minX));
+                const newBuildingGhostMaxX = Math.min(...this.newBuildingGhost.map(b => b.maxX));
+                const newBuildingGhostMinY = Math.min(...this.newBuildingGhost.map(b => b.minY));
+                const newBuildingGhostMaxY = Math.min(...this.newBuildingGhost.map(b => b.maxY));
+                const centerTileX = Math.round((newBuildingGhostMinX + newBuildingGhostMaxX) / 2);
+                const centerTileY = Math.round((newBuildingGhostMinY + newBuildingGhostMaxY) / 2);
+                let diffX = this.hoveringOverTile[1] - centerTileX;
+                let diffY = this.hoveringOverTile[0] - centerTileY;
+                if (newBuildingGhostMinX + diffX < 0) {
+                    diffX = -newBuildingGhostMinX;
+                }
+                if (newBuildingGhostMinY + diffY < 0) {
+                    diffY = -newBuildingGhostMinY;
+                }
+                if (newBuildingGhostMinX + diffX > this.map.maxX - 1) {
+                    diffX = this.map.maxX - 1 - newBuildingGhostMinX;
+                }
+                if (newBuildingGhostMinY + diffY > this.map.maxY - 1) {
+                    diffY = this.map.maxY - 1 - newBuildingGhostMinY;
+                }
+                this.newBuildingGhost.forEach(b => b.x += diffX);
+                this.newBuildingGhost.forEach(b => b.y += diffY);
+                this.newBuildingGhost.forEach(b => this.updateInView(b));
             } else {
-                this.removeFromView(this.newBuildingGhost);
+                this.newBuildingGhost.forEach(b => this.removeFromView(b));
             }
         }
         // render the objects in the view
         for (let o of this.renderOrder[this.orientation]) {
             if (o instanceof Building || o instanceof Feature) {
                 const topTileCoordinates = [o.x, o.y];
-                let spriteIndex = 0;
+                let spriteColumn = 0;
                 switch (this.orientation) {
                     case ORIENTATION.NORTH_EAST:
                         switch (o.orientation) {
                             case ORIENTATION.NORTH_EAST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
                                 break;
                             case ORIENTATION.NORTH_WEST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 topTileCoordinates[0] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                                 topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 topTileCoordinates[0] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                                 topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
                                 break;
@@ -685,22 +713,22 @@ export class MapView extends GameView {
                     case ORIENTATION.NORTH_WEST:
                         switch (o.orientation) {
                             case ORIENTATION.NORTH_EAST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
                                 break;
                             case ORIENTATION.NORTH_WEST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                                 break;
                             case ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                                 break;
@@ -709,22 +737,22 @@ export class MapView extends GameView {
                     case ORIENTATION.SOUTH_EAST:
                         switch (o.orientation) {
                             case ORIENTATION.NORTH_EAST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                                 break;
                             case ORIENTATION.NORTH_WEST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 topTileCoordinates[0] -= (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                                 break;
                             case ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 topTileCoordinates[0] -= (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
                                 break;
@@ -733,22 +761,22 @@ export class MapView extends GameView {
                     case ORIENTATION.SOUTH_WEST:
                         switch (o.orientation) {
                             case ORIENTATION.NORTH_EAST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 topTileCoordinates[0] += (o.type.sizeY - 1) / 2 + (o.type.sizeX - 1);
                                 topTileCoordinates[1] += (o.type.sizeY - 1) / 2;
                                 break;
                             case ORIENTATION.NORTH_WEST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 topTileCoordinates[0] += (o.type.sizeX - 1) / 2;
                                 topTileCoordinates[1] += (o.type.sizeX - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 topTileCoordinates[0] += (o.type.sizeX - 1) / 2 + (o.type.sizeY - 1);
                                 topTileCoordinates[1] -= (o.type.sizeX - 1) / 2;
                                 break;
                             case ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 topTileCoordinates[0] += (o.type.sizeY - 1) / 2;
                                 topTileCoordinates[1] -= (o.type.sizeY - 1) / 2;
                                 break;
@@ -764,22 +792,23 @@ export class MapView extends GameView {
                 const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
                 drawSprite(
                     o.type.sprite,
-                    [spriteIndex * singleSpriteWidth, 0],
+                    [spriteColumn * singleSpriteWidth, 0],
                     [singleSpriteWidth, o.type.sprite.image.height],
                     tileCanvasLocation,
                     [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
                     {
+                        filter: this.newBuildingGhost?.includes(o) ? (o.canBeBuilt() ? FILTERS.GREEN : FILTERS.RED) : undefined,
                         clickEventCallback: () => {
                             if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
+                                if (this.newBuildingGhost !== undefined) {
                                     this.buildBuildingGhost();
                                 } else {
                                     this.selectedObject = o;
                                     this.openSelectionMenu(o);
                                 }
                             } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
+                                if (this.newBuildingGhost !== undefined) {
+                                    this.newBuildingGhost.forEach(b => this.removeFromView(b));
                                     this.newBuildingGhost = undefined;
                                 } else {
                                     this.openBuildMenu();
@@ -938,15 +967,15 @@ export class MapView extends GameView {
                     {
                         clickEventCallback: () => {
                             if (!clickEvent.secondary) {
-                                if (this.newBuildingGhost) {
+                                if (this.newBuildingGhost !== undefined) {
                                     this.buildBuildingGhost();
                                 } else {
                                     this.selectedObject = o;
                                     this.openSelectionMenu(o);
                                 }
                             } else {
-                                if (this.newBuildingGhost) {
-                                    this.removeFromView(this.newBuildingGhost);
+                                if (this.newBuildingGhost !== undefined) {
+                                    this.newBuildingGhost.forEach(b => this.removeFromView(b));
                                     this.newBuildingGhost = undefined;
                                 } else {
                                     this.openBuildMenu();
