@@ -19,25 +19,31 @@ export class FeatureType {
      */
     sizeY;
     /**
+     * How many units along the z (down-up) axis features of this type take.
+     * @type {number}
+     */
+    sizeZ;
+    /**
      * Sprites for features of this type.
      * @type {Sprite}
      */
     sprite;
 
-    constructor(key, sizeX, sizeY, sprite) {
+    constructor(key, sizeX, sizeY, sizeZ, sprite) {
         this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        this.sizeZ = sizeZ;
         this.sprite = sprite;
     }
 }
 
 export const FEATURE_TYPES = {};
 
-FEATURE_TYPES.tree = new FeatureType('tree', 1, 1, FEATURE_TREE_SPRITES);
-FEATURE_TYPES.test_cube = new FeatureType('testCube', 1, 1, FEATURE_TEST_CUBE_SPRITES);
-FEATURE_TYPES.test_sphere = new FeatureType('testSphere', 1, 1, FEATURE_TEST_SPHERE_SPRITES);
-FEATURE_TYPES.test_dice = new FeatureType('testDice', 2, 2, FEATURE_TEST_DICE_SPRITES);
+FEATURE_TYPES.tree = new FeatureType('tree', 1, 1, 32, FEATURE_TREE_SPRITES);
+FEATURE_TYPES.test_cube = new FeatureType('testCube', 1, 1, 18, FEATURE_TEST_CUBE_SPRITES);
+FEATURE_TYPES.test_sphere = new FeatureType('testSphere', 1, 1, 18, FEATURE_TEST_SPHERE_SPRITES);
+FEATURE_TYPES.test_dice = new FeatureType('testDice', 2, 2, 32, FEATURE_TEST_DICE_SPRITES);
 
 export class Feature extends MapElement {
     /**
@@ -124,10 +130,14 @@ export class Feature extends MapElement {
         this.y = y;
         this.orientation = orientation;
     }
-    
+
     tick() {
     }
-    
+
+    getSpriteVariant() {
+        return 0;
+    }
+
     /**
      * Checks whether a feature of this type can be built at its location.
      */
@@ -166,7 +176,14 @@ export class TestSphereFeature extends Feature {
 }
 
 export class TestDiceFeature extends Feature {
-    constructor(map, x, y, orientation) {
-        super(map, FEATURE_TYPES.test_dice, x, y, orientation)
+    variant;
+
+    constructor(map, x, y, orientation, variant) {
+        super(map, FEATURE_TYPES.test_dice, x, y, orientation);
+        this.variant = variant;
+    }
+
+    getSpriteVariant() {
+        return this.variant;
     }
 }

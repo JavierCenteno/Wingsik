@@ -24,24 +24,30 @@ export class UnitType {
      */
     sizeXY;
     /**
+     * How many units along the z (down-up) axis units of this type take.
+     * @type {number}
+     */
+    sizeZ;
+    /**
      * Sprites for units of this type.
      * @type {Sprite}
      */
     sprite;
 
-    constructor(key, sizeX, sizeY, sprite) {
+    constructor(key, sizeX, sizeY, sizeZ, sprite) {
         this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.sizeXY = (sizeX ** 2 / 2) ** 0.5 + (sizeY ** 2 / 2) ** 0.5;
+        this.sizeZ = sizeZ;
         this.sprite = sprite;
     }
 }
 
 export const UNIT_TYPES = {};
 
-UNIT_TYPES.infantry = new UnitType('infantry', 1, 1, UNIT_INFANTRY_SPRITES);
-UNIT_TYPES.cargoShip = new UnitType('cargoShip', 2, 6, UNIT_CARGO_SHIP_SPRITES);
+UNIT_TYPES.infantry = new UnitType('infantry', 1, 1, 0, UNIT_INFANTRY_SPRITES);
+UNIT_TYPES.cargoShip = new UnitType('cargoShip', 2, 6, 0, UNIT_CARGO_SHIP_SPRITES);
 
 export class Unit extends MapElement {
     /**
@@ -203,6 +209,10 @@ export class Unit extends MapElement {
                 this.goingTowards = undefined;
             }
         }
+    }
+
+    getSpriteVariant() {
+        return 0;
     }
 }
 

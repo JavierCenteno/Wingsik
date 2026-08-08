@@ -20,6 +20,11 @@ export class BuildingType {
      */
     sizeY;
     /**
+     * How many units along the z (down-up) axis buildings of this type take.
+     * @type {number}
+     */
+    sizeZ;
+    /**
      * Sprites for buildings of this type.
      * @type {Sprite}
      */
@@ -30,10 +35,11 @@ export class BuildingType {
      */
     requires;
 
-    constructor(key, sizeX, sizeY, sprite, requires) {
+    constructor(key, sizeX, sizeY, sizeZ, sprite, requires) {
         this.key = key;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        this.sizeZ = sizeZ;
         this.sprite = sprite;
     }
 }
@@ -49,8 +55,8 @@ export const BUILDING_TYPES = {};
 
 // Primary
 
-BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, BUILDING_FARM_SPRITES, null);
-BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES, null);
+BUILDING_TYPES.farm = new BuildingType('farm', 2, 3, 16, BUILDING_FARM_SPRITES, null);
+BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, 0, BUILDING_MINE_SPRITES, null);
 // BUILDING_TYPES.quarry = new BuildingType('quarry', 2, 2, BUILDING_MINE_SPRITES, null);
 // BUILDING_TYPES.saltern = new BuildingType('saltern', 2, 2, BUILDING_MINE_SPRITES, null);
 // BUILDING_TYPES.oilWell = new BuildingType('oilWell', 2, 2, BUILDING_MINE_SPRITES, TECHNOLOGIES.electricity);
@@ -73,13 +79,13 @@ BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, BUILDING_MINE_SPRITES, null
 // Welfare
 
 // BUILDING_TYPES.clinic = new BuildingType('clinic', 2, 3, BUILDING_TENEMENT_SPRITES, null);
-BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, 0, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.asylum = new BuildingType('asylum', 2, 3, BUILDING_TENEMENT_SPRITES, TECHNOLOGIES.psychiatry);
 // BUILDING_TYPES.dump = new BuildingType('dump', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 
 // Housing
 
-BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, 0, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.apartment = new BuildingType('apartment', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.townhouse = new BuildingType('townhouse', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.condominium = new BuildingType('condominium', 2, 3, BUILDING_TENEMENT_SPRITES, null);
@@ -200,6 +206,10 @@ export class Building extends MapElement {
     }
 
     tick() {
+    }
+
+    getSpriteVariant() {
+        return 0;
     }
 
     /**

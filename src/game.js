@@ -69,10 +69,10 @@ for (let j = 1; j < 6; ++j) {
     }
 }
 
-view.map.addFeature(new TestDiceFeature(view.map, 2, 2, ORIENTATION.NORTH_EAST));
-view.map.addFeature(new TestDiceFeature(view.map, 2, 6, ORIENTATION.SOUTH_EAST));
-view.map.addFeature(new TestDiceFeature(view.map, 6, 2, ORIENTATION.NORTH_WEST));
-view.map.addFeature(new TestDiceFeature(view.map, 6, 6, ORIENTATION.SOUTH_WEST));
+view.map.addFeature(new TestDiceFeature(view.map, 2, 2, ORIENTATION.NORTH_EAST, 0));
+view.map.addFeature(new TestDiceFeature(view.map, 2, 6, ORIENTATION.SOUTH_EAST, 1));
+view.map.addFeature(new TestDiceFeature(view.map, 6, 2, ORIENTATION.NORTH_WEST, 2));
+view.map.addFeature(new TestDiceFeature(view.map, 6, 6, ORIENTATION.SOUTH_WEST, 3));
 
 view.map.addUnit(new InfantryUnit(view.map, 5, 12, GRANULAR_ORIENTATION.NORTH_EAST));
 view.map.addUnit(new InfantryUnit(view.map, 5, 10, GRANULAR_ORIENTATION.EAST));

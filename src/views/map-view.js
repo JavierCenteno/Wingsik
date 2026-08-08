@@ -1,4 +1,4 @@
-import { CANVAS, drawSprite, drawColor, FILTERS } from "../graphics.js";
+import { CANVAS, drawColor, drawSprite, FILTERS } from "../graphics.js";
 import { Building } from "../map/building.js";
 import { Feature } from "../map/feature.js";
 import { Map } from '../map/map.js';
@@ -685,6 +685,7 @@ export class MapView extends GameView {
             if (o instanceof Building || o instanceof Feature) {
                 const topTileCoordinates = [o.x, o.y];
                 let spriteColumn = 0;
+                let spriteRow = o.getSpriteVariant();
                 switch (this.orientation) {
                     case ORIENTATION.NORTH_EAST:
                         switch (o.orientation) {
@@ -783,19 +784,20 @@ export class MapView extends GameView {
                         }
                         break;
                 }
+                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
+                const singleSpriteHeight = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_HEIGHT + o.type.sizeZ;
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.y][o.x]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
-                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
+                        tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * singleSpriteHeight
                     ];
-                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
                 drawSprite(
                     o.type.sprite,
-                    [spriteColumn * singleSpriteWidth, 0],
-                    [singleSpriteWidth, o.type.sprite.image.height],
+                    [spriteColumn * singleSpriteWidth, spriteRow * singleSpriteHeight],
+                    [singleSpriteWidth, singleSpriteHeight],
                     tileCanvasLocation,
-                    [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    [singleSpriteWidth * this.zoomLevel, singleSpriteHeight * this.zoomLevel],
                     {
                         filter: this.newBuildingGhost?.includes(o) ? (o.canBeBuilt() ? FILTERS.GREEN : FILTERS.RED) : undefined,
                         clickEventCallback: () => {
@@ -828,33 +830,34 @@ export class MapView extends GameView {
                     this.map.heights[Math.ceil(o.y)][Math.ceil(o.x)] * (unitXDecimal);
                 const unitZ = unitHeightA * (1 - unitYDecimal) + unitHeightB * (unitYDecimal);
                 const topTileCoordinates = [o.x, o.y, unitZ];
-                let spriteIndex = 0;
+                let spriteColumn = 0;
+                let spriteRow = o.getSpriteVariant();
                 switch (this.orientation) {
                     case ORIENTATION.NORTH_EAST:
                         switch (o.orientation) {
                             case GRANULAR_ORIENTATION.NORTH_EAST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 break;
                             case GRANULAR_ORIENTATION.EAST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 4;
+                                spriteColumn = 4;
                                 break;
                             case GRANULAR_ORIENTATION.WEST:
-                                spriteIndex = 5;
+                                spriteColumn = 5;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH_WEST:
-                                spriteIndex = 6;
+                                spriteColumn = 6;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH:
-                                spriteIndex = 7;
+                                spriteColumn = 7;
                                 break;
                         }
                         topTileCoordinates[0] -= (Math.max(o.type.sizeX, o.type.sizeY)) - 0.5;
@@ -863,28 +866,28 @@ export class MapView extends GameView {
                     case ORIENTATION.NORTH_WEST:
                         switch (o.orientation) {
                             case GRANULAR_ORIENTATION.NORTH_EAST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 break;
                             case GRANULAR_ORIENTATION.EAST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 4;
+                                spriteColumn = 4;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH:
-                                spriteIndex = 5;
+                                spriteColumn = 5;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 6;
+                                spriteColumn = 6;
                                 break;
                             case GRANULAR_ORIENTATION.WEST:
-                                spriteIndex = 7;
+                                spriteColumn = 7;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH_WEST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 break;
                         }
                         topTileCoordinates[0] -= 0.5;
@@ -893,28 +896,28 @@ export class MapView extends GameView {
                     case ORIENTATION.SOUTH_EAST:
                         switch (o.orientation) {
                             case GRANULAR_ORIENTATION.NORTH_EAST:
-                                spriteIndex = 6;
+                                spriteColumn = 6;
                                 break;
                             case GRANULAR_ORIENTATION.EAST:
-                                spriteIndex = 7;
+                                spriteColumn = 7;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 break;
                             case GRANULAR_ORIENTATION.WEST:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH_WEST:
-                                spriteIndex = 4;
+                                spriteColumn = 4;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH:
-                                spriteIndex = 5;
+                                spriteColumn = 5;
                                 break;
                         }
                         topTileCoordinates[0] -= 0.5;
@@ -923,47 +926,48 @@ export class MapView extends GameView {
                     case ORIENTATION.SOUTH_WEST:
                         switch (o.orientation) {
                             case GRANULAR_ORIENTATION.NORTH_EAST:
-                                spriteIndex = 4;
+                                spriteColumn = 4;
                                 break;
                             case GRANULAR_ORIENTATION.EAST:
-                                spriteIndex = 5;
+                                spriteColumn = 5;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_EAST:
-                                spriteIndex = 6;
+                                spriteColumn = 6;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH:
-                                spriteIndex = 7;
+                                spriteColumn = 7;
                                 break;
                             case GRANULAR_ORIENTATION.SOUTH_WEST:
-                                spriteIndex = 0;
+                                spriteColumn = 0;
                                 break;
                             case GRANULAR_ORIENTATION.WEST:
-                                spriteIndex = 1;
+                                spriteColumn = 1;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH_WEST:
-                                spriteIndex = 2;
+                                spriteColumn = 2;
                                 break;
                             case GRANULAR_ORIENTATION.NORTH:
-                                spriteIndex = 3;
+                                spriteColumn = 3;
                                 break;
                         }
                         topTileCoordinates[0] += (Math.max(o.type.sizeX, o.type.sizeY)) - 1.5;
                         topTileCoordinates[1] -= 0.5;
                         break;
                 }
+                const singleSpriteWidth = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_WIDTH;
+                const singleSpriteHeight = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_HEIGHT + o.type.sizeZ;
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], topTileCoordinates[2]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [
                         tileCanvasCoordinates[0] - centerTileRelativeCanvasCoordinates[0] + canvasCenter[0],
                         tileCanvasCoordinates[1] - centerTileRelativeCanvasCoordinates[1] + canvasCenter[1] - this.zoomLevel * o.type.sprite.image.height
                     ];
-                const singleSpriteWidth = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_WIDTH;
                 drawSprite(
                     o.type.sprite,
-                    [spriteIndex * singleSpriteWidth, 0],
-                    [singleSpriteWidth, o.type.sprite.image.height],
+                    [spriteColumn * singleSpriteWidth, spriteRow * singleSpriteHeight],
+                    [singleSpriteWidth, singleSpriteHeight],
                     tileCanvasLocation,
-                    [singleSpriteWidth * this.zoomLevel, o.type.sprite.image.height * this.zoomLevel],
+                    [singleSpriteWidth * this.zoomLevel, singleSpriteHeight * this.zoomLevel],
                     {
                         clickEventCallback: () => {
                             if (!clickEvent.secondary) {
