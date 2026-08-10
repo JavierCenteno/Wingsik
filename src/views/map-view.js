@@ -784,8 +784,9 @@ export class MapView extends GameView {
                         }
                         break;
                 }
-                const singleSpriteWidth = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_WIDTH;
-                const singleSpriteHeight = ((o.type.sizeX + o.type.sizeY) / 2) * TILE_HEIGHT + o.type.sizeZ;
+                const spriteTileCount = ((o.type.sizeX + o.type.sizeY) / 2);
+                const singleSpriteWidth = spriteTileCount * TILE_WIDTH;
+                const singleSpriteHeight = spriteTileCount * TILE_HEIGHT + o.type.sizeZ;
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], this.map.heights[o.y][o.x]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [
@@ -954,8 +955,9 @@ export class MapView extends GameView {
                         topTileCoordinates[1] -= 0.5;
                         break;
                 }
-                const singleSpriteWidth = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_WIDTH;
-                const singleSpriteHeight = (Math.max(o.type.sizeX, o.type.sizeY)) * TILE_HEIGHT + o.type.sizeZ;
+                const spriteTileCount = Math.max(o.type.sizeX, o.type.sizeY);
+                const singleSpriteWidth = spriteTileCount * TILE_WIDTH;
+                const singleSpriteHeight = spriteTileCount * TILE_HEIGHT + o.type.sizeZ;
                 const tileCanvasCoordinates = this.tileCoordinatesToCanvasCoordinates([topTileCoordinates[0], topTileCoordinates[1], topTileCoordinates[2]], this.zoomLevel, reverseX, reverseY);
                 const tileCanvasLocation =
                     [

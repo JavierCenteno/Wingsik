@@ -20,7 +20,7 @@ export class BuildingType {
      */
     sizeY;
     /**
-     * How many units along the z (down-up) axis buildings of this type take.
+     * How many pixels along the z (down-up) axis buildings of this type take at the default zoom level.
      * @type {number}
      */
     sizeZ;
