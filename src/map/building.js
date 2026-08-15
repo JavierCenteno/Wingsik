@@ -69,9 +69,15 @@ BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, 0, BUILDING_MINE_SPRITES, n
 
 // Industry
 
-// BUILDING_TYPES.refinery = new BuildingType('refinery', 2, 2, BUILDING_MINE_SPRITES, TECHNOLOGIES.refining);
+// BUILDING_TYPES.refinery = new BuildingType('refinery', 2, 2, BUILDING_REFINERY_SPRITES, TECHNOLOGIES.refining);
 
 // Economy
+
+// BUILDING_TYPES.market = new BuildingType('market', 2, 2, BUILDING_MARKET_SPRITES, null);
+// BUILDING_TYPES.supermarket = new BuildingType('supermarket', 2, 2, BUILDING_SUPERMARKET_SPRITES, TECHNOLOGIES.urbanism);
+// BUILDING_TYPES.departmentStore = new BuildingType('departmentStore', 2, 2, BUILDING_DEPARTMENT_STORE_SPRITES, TECHNOLOGIES.electronics);
+// BUILDING_TYPES.bank = new BuildingType('bank', 2, 2, BUILDING_BANK_SPRITES, TECHNOLOGIES.economics);
+// BUILDING_TYPES.bourse = new BuildingType('bourse', 2, 2, BUILDING_BOURSE_SPRITES, TECHNOLOGIES.economics);
 
 // Media
 
@@ -81,6 +87,7 @@ BUILDING_TYPES.mine = new BuildingType('mine', 2, 2, 0, BUILDING_MINE_SPRITES, n
 // BUILDING_TYPES.telegraphExchange = new BuildingType('telegraphExchange', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.telegraphy);
 // BUILDING_TYPES.radioStation = new BuildingType('radioStation', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.radiophony);
 // BUILDING_TYPES.televisionStation = new BuildingType('televisionStation', 2, 3, BUILDING_FARM_SPRITES, TECHNOLOGIES.television);
+// BUILDING_TYPES.weatherStation = new BuildingType('weatherStation', 1, 1, BUILDING_DOCK_SPRITES, TECHNOLOGIES.chemistry);
 
 // Welfare
 
@@ -92,10 +99,12 @@ BUILDING_TYPES.hospital = new BuildingType('hospital', 2, 3, 0, BUILDING_TENEMEN
 // Housing
 
 BUILDING_TYPES.tenement = new BuildingType('tenement', 2, 3, 0, BUILDING_TENEMENT_SPRITES, null, 20);
-// BUILDING_TYPES.apartment = new BuildingType('apartment', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.townhouse = new BuildingType('townhouse', 2, 3, BUILDING_TENEMENT_SPRITES, null);
-// BUILDING_TYPES.condominium = new BuildingType('condominium', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.mansion = new BuildingType('mansion', 2, 3, BUILDING_TENEMENT_SPRITES, null);
+// a taller, denser townhouse with more ammenities
+// BUILDING_TYPES.apartment = new BuildingType('apartment', 2, 3, BUILDING_TENEMENT_SPRITES, TECHNOLOGIES.urbanism);
+// a luxurius block for packing your higher classes
+// BUILDING_TYPES.condominium = new BuildingType('condominium', 2, 3, BUILDING_TENEMENT_SPRITES, TECHNOLOGIES.urbanism);
 // BUILDING_TYPES.motel = new BuildingType('motel', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.hotel = new BuildingType('hotel', 2, 3, BUILDING_TENEMENT_SPRITES, null);
 // BUILDING_TYPES.luxuryHotel = new BuildingType('luxuryHotel', 2, 3, BUILDING_TENEMENT_SPRITES, null);

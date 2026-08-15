@@ -39,6 +39,7 @@ TECHNOLOGIES.lightbulb = new Technology(
         'lightbulb',
         [ TECHNOLOGIES.electricity ]
     );
+// unlocks balloons and the weather station
 TECHNOLOGIES.chemistry = new Technology(
         'chemistry',
         [ TECHNOLOGIES.electricity ]
@@ -58,6 +59,7 @@ TECHNOLOGIES.telephony = new Technology(
         'telephony',
         [ TECHNOLOGIES.phonography, TECHNOLOGIES.telegraphy ]
     );
+// unlocks appliances and department stores
 TECHNOLOGIES.electronics = new Technology(
         'electronics',
         [ TECHNOLOGIES.telegraphy, TECHNOLOGIES.lightbulb ]
