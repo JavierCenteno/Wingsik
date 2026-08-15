@@ -1,0 +1,368 @@
+{
+  "name": "Wingsik",
+  "map": {
+    "building": {
+      "farm": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "feature": {
+      "tree": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "good": {
+      "aluminum": {
+        "name": "",
+        "description": ""
+      },
+      "coal": {
+        "name": "",
+        "description": ""
+      },
+      "copper": {
+        "name": "",
+        "description": ""
+      },
+      "gold": {
+        "name": "",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "",
+        "description": ""
+      },
+      "lead": {
+        "name": "",
+        "description": ""
+      },
+      "mercury": {
+        "name": "",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "",
+        "description": ""
+      },
+      "salt": {
+        "name": "",
+        "description": ""
+      },
+      "silver": {
+        "name": "",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "",
+        "description": ""
+      },
+      "tin": {
+        "name": "",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "occupation": {
+      "actor": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "artist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "athlete": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "attendant": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "banker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "builder": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "chemist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "engineer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "farmer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "journalist": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "lumberjack": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "miner": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "musician": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "physician": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "soldier": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "teacher": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "teamster": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      }
+    },
+    "polity": {
+      "crystalEmpire": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "deerConfederacy": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "dragonLands": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "equestria": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "farasi": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "griffonstone": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "qilinia": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      },
+      "yakyakistan": {
+        "name": "",
+        "demonym": "",
+        "description": ""
+      }
+    },
+    "race": {
+      "buffalo": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "caribou": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "cattle": {
+        "name": "Bydło",
+        "plural": "Bydło",
+        "description": ""
+      },
+      "changeling": {
+        "name": "Podmieniec",
+        "plural": "Podmieńce",
+        "description": ""
+      },
+      "deer": {
+        "name": "Jeleń",
+        "plural": "Jelenie",
+        "description": ""
+      },
+      "donkey": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "dragon": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "earthPony": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "griffon": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "kirin": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "lamia": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "llama": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "pegasus": {
+        "name": "",
+        "plural": "Pegazy",
+        "description": ""
+      },
+      "seapony": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "sphinx": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "unicorn": {
+        "name": "",
+        "plural": "Jednorożce",
+        "description": ""
+      },
+      "yak": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      },
+      "zebra": {
+        "name": "",
+        "plural": "",
+        "description": ""
+      }
+    },
+    "technology": {
+      "electricity": {
+        "name": ""
+      }
+    },
+    "terrain": {
+      "clay": {
+        "name": "",
+        "description": ""
+      },
+      "grass": {
+        "name": "",
+        "description": ""
+      },
+      "limestone": {
+        "name": "",
+        "description": ""
+      },
+      "sand": {
+        "name": "",
+        "description": ""
+      },
+      "tar": {
+        "name": "",
+        "description": ""
+      },
+      "water": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "unit": {}
+  }
+}

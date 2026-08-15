@@ -1,0 +1,368 @@
+{
+  "name": "Wingsik",
+  "map": {
+    "building": {
+      "farm": {
+        "name": "granja",
+        "description": ""
+      }
+    },
+    "feature": {
+      "tree": {
+        "name": "árbol",
+        "description": ""
+      }
+    },
+    "good": {
+      "aluminum": {
+        "name": "aluminio",
+        "description": ""
+      },
+      "coal": {
+        "name": "carbón",
+        "description": ""
+      },
+      "copper": {
+        "name": "cobre",
+        "description": ""
+      },
+      "gold": {
+        "name": "oro",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "",
+        "description": ""
+      },
+      "iron": {
+        "name": "hierro",
+        "description": ""
+      },
+      "lead": {
+        "name": "plomo",
+        "description": ""
+      },
+      "mercury": {
+        "name": "mercurio",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "petróleo",
+        "description": ""
+      },
+      "salt": {
+        "name": "sal",
+        "description": ""
+      },
+      "silver": {
+        "name": "plata",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "azufre",
+        "description": ""
+      },
+      "tin": {
+        "name": "estaño",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "wolframio",
+        "description": ""
+      }
+    },
+    "occupation": {
+      "actor": {
+        "name": "actor",
+        "plural": "actores",
+        "description": ""
+      },
+      "artist": {
+        "name": "artista",
+        "plural": "artistas",
+        "description": ""
+      },
+      "athlete": {
+        "name": "atleta",
+        "plural": "atletas",
+        "description": ""
+      },
+      "attendant": {
+        "name": "atendiente",
+        "plural": "atendientes",
+        "description": ""
+      },
+      "banker": {
+        "name": "banquero",
+        "plural": "banqueros",
+        "description": ""
+      },
+      "builder": {
+        "name": "constructor",
+        "plural": "constructores",
+        "description": ""
+      },
+      "chemist": {
+        "name": "químico",
+        "plural": "químicos",
+        "description": ""
+      },
+      "engineer": {
+        "name": "ingeniero",
+        "plural": "ingenieros",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "fabricante",
+        "plural": "fabricantes",
+        "description": ""
+      },
+      "farmer": {
+        "name": "granjero",
+        "plural": "granjeros",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "bombero",
+        "plural": "bomberos",
+        "description": ""
+      },
+      "journalist": {
+        "name": "periodista",
+        "plural": "periodistas",
+        "description": ""
+      },
+      "lumberjack": {
+        "name": "leñador",
+        "plural": "leñadores",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "cartero",
+        "plural": "carteros",
+        "description": ""
+      },
+      "miner": {
+        "name": "minero",
+        "plural": "mineros",
+        "description": ""
+      },
+      "musician": {
+        "name": "músico",
+        "plural": "músicos",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "oficinista",
+        "plural": "oficinistas",
+        "description": ""
+      },
+      "physician": {
+        "name": "médico",
+        "plural": "médicos",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "policía",
+        "plural": "policías",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "agente secreto",
+        "plural": "agentes secretos",
+        "description": ""
+      },
+      "soldier": {
+        "name": "soldado",
+        "plural": "soldados",
+        "description": ""
+      },
+      "teacher": {
+        "name": "profesor",
+        "plural": "profesores",
+        "description": ""
+      },
+      "teamster": {
+        "name": "transportista",
+        "plural": "transportistas",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "desempleado",
+        "plural": "desempleados",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "meteorólogo",
+        "plural": "meteorólogos",
+        "description": ""
+      }
+    },
+    "polity": {
+      "crystalEmpire": {
+        "name": "Imperio de Cristal",
+        "demonym": "cristalino",
+        "description": ""
+      },
+      "deerConfederacy": {
+        "name": "Confederación Cérvida",
+        "demonym": "cérvido",
+        "description": ""
+      },
+      "dragonLands": {
+        "name": "Tierras Dragonas",
+        "demonym": "dracónico",
+        "description": ""
+      },
+      "equestria": {
+        "name": "Ecuestria",
+        "demonym": "ecuestriano",
+        "description": ""
+      },
+      "farasi": {
+        "name": "Farasi",
+        "demonym": "farasí",
+        "description": ""
+      },
+      "griffonstone": {
+        "name": "Griffonstone",
+        "demonym": "grifoniano",
+        "description": ""
+      },
+      "qilinia": {
+        "name": "Chilinia",
+        "demonym": "chilino",
+        "description": ""
+      },
+      "yakyakistan": {
+        "name": "Yakyakistán",
+        "demonym": "yakyakistaní",
+        "description": ""
+      }
+    },
+    "race": {
+      "buffalo": {
+        "name": "Búfalo",
+        "plural": "Búfalos",
+        "description": ""
+      },
+      "caribou": {
+        "name": "Reno",
+        "plural": "Renos",
+        "description": ""
+      },
+      "cattle": {
+        "name": "Res",
+        "plural": "Reses",
+        "description": ""
+      },
+      "changeling": {
+        "name": "Cambiante",
+        "plural": "Cambiantes",
+        "description": ""
+      },
+      "deer": {
+        "name": "Ciervo",
+        "plural": "Ciervos",
+        "description": ""
+      },
+      "donkey": {
+        "name": "Burro",
+        "plural": "Burros",
+        "description": ""
+      },
+      "dragon": {
+        "name": "Dragón",
+        "plural": "Dragones",
+        "description": ""
+      },
+      "earthPony": {
+        "name": "Poni de Tierra",
+        "plural": "Ponis de Tierra",
+        "description": ""
+      },
+      "griffon": {
+        "name": "Grifo",
+        "plural": "Grifos",
+        "description": ""
+      },
+      "kirin": {
+        "name": "Kirin",
+        "plural": "Kirins",
+        "description": ""
+      },
+      "lamia": {
+        "name": "Lamia",
+        "plural": "Lamias",
+        "description": ""
+      },
+      "llama": {
+        "name": "Llama",
+        "plural": "Llamas",
+        "description": ""
+      },
+      "pegasus": {
+        "name": "Pegaso",
+        "plural": "Pegasos",
+        "description": ""
+      },
+      "seapony": {
+        "name": "Poni de Mar",
+        "plural": "Ponis de Mar",
+        "description": ""
+      },
+      "sphinx": {
+        "name": "Esfinge",
+        "plural": "Esfinges",
+        "description": ""
+      },
+      "unicorn": {
+        "name": "Unicornio",
+        "plural": "Unicornios",
+        "description": ""
+      },
+      "yak": {
+        "name": "Yak",
+        "plural": "Yaks",
+        "description": ""
+      },
+      "zebra": {
+        "name": "Cebra",
+        "plural": "Cebras",
+        "description": ""
+      }
+    },
+    "technology": {
+      "electricity": {
+        "name": "electricidad"
+      }
+    },
+    "terrain": {
+      "clay": {
+        "name": "arcilla",
+        "description": ""
+      },
+      "grass": {
+        "name": "hierba",
+        "description": ""
+      },
+      "limestone": {
+        "name": "caliza",
+        "description": ""
+      },
+      "sand": {
+        "name": "arena",
+        "description": ""
+      },
+      "tar": {
+        "name": "brea",
+        "description": ""
+      },
+      "water": {
+        "name": "agua",
+        "description": ""
+      }
+    },
+    "unit": {}
+  }
+}

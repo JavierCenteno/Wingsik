@@ -1,0 +1,368 @@
+{
+  "name": "Wingsik",
+  "map": {
+    "building": {
+      "farm": {
+        "name": "farm",
+        "description": ""
+      }
+    },
+    "feature": {
+      "tree": {
+        "name": "tree",
+        "description": ""
+      }
+    },
+    "good": {
+      "aluminum": {
+        "name": "aluminum",
+        "description": ""
+      },
+      "coal": {
+        "name": "coal",
+        "description": ""
+      },
+      "copper": {
+        "name": "copper",
+        "description": ""
+      },
+      "gold": {
+        "name": "gold",
+        "description": ""
+      },
+      "goldenpitch": {
+        "name": "goldenpitch",
+        "description": ""
+      },
+      "iron": {
+        "name": "iron",
+        "description": ""
+      },
+      "lead": {
+        "name": "lead",
+        "description": ""
+      },
+      "mercury": {
+        "name": "mercury",
+        "description": ""
+      },
+      "petroleum": {
+        "name": "stone oil",
+        "description": ""
+      },
+      "salt": {
+        "name": "salt",
+        "description": ""
+      },
+      "silver": {
+        "name": "silver",
+        "description": ""
+      },
+      "sulfur": {
+        "name": "sulfur",
+        "description": ""
+      },
+      "tin": {
+        "name": "tin",
+        "description": ""
+      },
+      "tungsten": {
+        "name": "tungsten",
+        "description": ""
+      }
+    },
+    "occupation": {
+      "actor": {
+        "name": "actor",
+        "plural": "actors",
+        "description": ""
+      },
+      "artist": {
+        "name": "artist",
+        "plural": "artists",
+        "description": ""
+      },
+      "athlete": {
+        "name": "athlete",
+        "plural": "athletes",
+        "description": ""
+      },
+      "attendant": {
+        "name": "attendant",
+        "plural": "attendants",
+        "description": ""
+      },
+      "banker": {
+        "name": "banker",
+        "plural": "bankers",
+        "description": ""
+      },
+      "builder": {
+        "name": "builder",
+        "plural": "builders",
+        "description": ""
+      },
+      "chemist": {
+        "name": "chemist",
+        "plural": "chemists",
+        "description": ""
+      },
+      "engineer": {
+        "name": "engineer",
+        "plural": "engineers",
+        "description": ""
+      },
+      "factoryWorker": {
+        "name": "factory worker",
+        "plural": "factory workers",
+        "description": ""
+      },
+      "farmer": {
+        "name": "farmer",
+        "plural": "farmers",
+        "description": ""
+      },
+      "firefighter": {
+        "name": "firefighter",
+        "plural": "firefighters",
+        "description": ""
+      },
+      "journalist": {
+        "name": "journalist",
+        "plural": "journalists",
+        "description": ""
+      },
+      "lumberjack": {
+        "name": "lumberjack",
+        "plural": "lumberjacks",
+        "description": ""
+      },
+      "mailCarrier": {
+        "name": "mail carrier",
+        "plural": "mail carriers",
+        "description": ""
+      },
+      "miner": {
+        "name": "miner",
+        "plural": "miner",
+        "description": ""
+      },
+      "musician": {
+        "name": "musician",
+        "plural": "musicians",
+        "description": ""
+      },
+      "officeWorker": {
+        "name": "office worker",
+        "plural": "office workers",
+        "description": ""
+      },
+      "physician": {
+        "name": "physician",
+        "plural": "physicians",
+        "description": ""
+      },
+      "policeOfficer": {
+        "name": "police officer",
+        "plural": "police officers",
+        "description": ""
+      },
+      "secretAgent": {
+        "name": "secret agent",
+        "plural": "secret agents",
+        "description": ""
+      },
+      "soldier": {
+        "name": "soldier",
+        "plural": "soldiers",
+        "description": ""
+      },
+      "teacher": {
+        "name": "teacher",
+        "plural": "teachers",
+        "description": ""
+      },
+      "teamster": {
+        "name": "teamster",
+        "plural": "teamsters",
+        "description": ""
+      },
+      "unemployed": {
+        "name": "unemployed",
+        "plural": "unemployeds",
+        "description": ""
+      },
+      "weatherController": {
+        "name": "weather controller",
+        "plural": "weather controllers",
+        "description": ""
+      }
+    },
+    "polity": {
+      "crystalEmpire": {
+        "name": "Crystal Empire",
+        "demonym": "Crystalline",
+        "description": ""
+      },
+      "deerConfederacy": {
+        "name": "Deer Confederacy",
+        "demonym": "",
+        "description": ""
+      },
+      "dragonLands": {
+        "name": "Dragon Lands",
+        "demonym": "Draconic",
+        "description": ""
+      },
+      "equestria": {
+        "name": "Equestria",
+        "demonym": "Equestrian",
+        "description": ""
+      },
+      "farasi": {
+        "name": "Farasi",
+        "demonym": "",
+        "description": ""
+      },
+      "griffonstone": {
+        "name": "Griffonstone",
+        "demonym": "Griffonstonian",
+        "description": ""
+      },
+      "qilinia": {
+        "name": "Qilinia",
+        "demonym": "Qilinian",
+        "description": ""
+      },
+      "yakyakistan": {
+        "name": "Yakyakistan",
+        "demonym": "Yakyakistani",
+        "description": ""
+      }
+    },
+    "race": {
+      "buffalo": {
+        "name": "Buffalo",
+        "plural": "Buffalo",
+        "description": "Strong and nature-bound, Buffalo will do whatever it takes to protect their land."
+      },
+      "caribou": {
+        "name": "Caribou",
+        "plural": "Caribou",
+        "description": "Not even the bitter cold can stop the Caribou from thriving, protected by the souls of their ancestors which dance in the polar sky."
+      },
+      "cattle": {
+        "name": "Cattle",
+        "plural": "Cattle",
+        "description": "Worshippers of the sacred soil and waters, even a desert can turn lush under the hooves of the Cattle."
+      },
+      "changeling": {
+        "name": "Changeling",
+        "plural": "Changelings",
+        "description": "With strong illusion magic, Changelings wander from their hives and among society and no secrets can be kept from them."
+      },
+      "deer": {
+        "name": "Deer",
+        "plural": "Deer",
+        "description": "Perfectly attuned to nature, Deer can hold down even an industralized army with just what the forest provides."
+      },
+      "donkey": {
+        "name": "Donkey",
+        "plural": "Donkeys",
+        "description": "Hard-working and religious, Donkeys toil away in farms and workshops."
+      },
+      "dragon": {
+        "name": "Dragon",
+        "plural": "Dragons",
+        "description": "With breath of fire that melts even the hardest metals, tools forged by Dragons last as long as the universe itself."
+      },
+      "earthPony": {
+        "name": "Earth Pony",
+        "plural": "Earth Ponies",
+        "description": "Earth Ponies are the masters of infrastructure and their cities are well oiled machines capable of producing wealth beyond belief."
+      },
+      "griffon": {
+        "name": "Griffon",
+        "plural": "Griffons",
+        "description": "Tough and ingenious, Griffons make up for the lack of resources of their land with inventions that amaze and astonish all other creatures."
+      },
+      "kirin": {
+        "name": "Kirin",
+        "plural": "Kirins",
+        "description": "Commanding powerful fire magic, an army of Kirins can stand tall against even mighty Dragons."
+      },
+      "lamia": {
+        "name": "Lamia",
+        "plural": "Lamias",
+        "description": "Defended by strong mind magic, any army that tries to conquer the lamias will find itself turning around for reasons unknown."
+      },
+      "llama": {
+        "name": "Llama",
+        "plural": "Llamas",
+        "description": "Llamas thrive among mountain peaks in altitudes that even Pegasi struggle to breathe in."
+      },
+      "pegasus": {
+        "name": "Pegasus",
+        "plural": "Pegasi",
+        "description": "The pegasi rule the skies and can alter the weather to what convenes them, wrecking aerial devastation on their enemies."
+      },
+      "seapony": {
+        "name": "Seapony",
+        "plural": "Seaponies",
+        "description": "Seaponies are unrivaled in the endless expanse of the seas and are no match for any navy."
+      },
+      "sphinx": {
+        "name": "Sphinx",
+        "plural": "Sphinxes",
+        "description": "The knowledge of geometry and architecture of the Sphinxes make them a must-have for the construction of any monument."
+      },
+      "unicorn": {
+        "name": "Unicorn",
+        "plural": "Unicorns",
+        "description": "Unicorns possess a knowledge of magic that no species can rival and their wizards are prepared for any possible threat."
+      },
+      "yak": {
+        "name": "Yak",
+        "plural": "Yak",
+        "description": "Perhaps the strongest ungulate that exists, Yaks can smash through rocks and fear not the wrath of the earth."
+      },
+      "zebra": {
+        "name": "Zebra",
+        "plural": "Zebras",
+        "description": "With knowledge of botany and alchemy, there is no disease that can't be cured by the zebras."
+      }
+    },
+    "technology": {
+      "electricity": {
+        "name": "electricity"
+      }
+    },
+    "terrain": {
+      "clay": {
+        "name": "clay",
+        "description": ""
+      },
+      "grass": {
+        "name": "",
+        "description": ""
+      },
+      "limestone": {
+        "name": "limestone",
+        "description": ""
+      },
+      "sand": {
+        "name": "sand",
+        "description": ""
+      },
+      "tar": {
+        "name": "tar",
+        "description": ""
+      },
+      "water": {
+        "name": "water",
+        "description": ""
+      }
+    },
+    "unit": {}
+  }
+}
