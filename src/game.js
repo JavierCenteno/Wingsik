@@ -3,7 +3,7 @@ import { TestDiceFeature } from './map/feature.js';
 import { GRANULAR_ORIENTATION, ORIENTATION } from "./map/orientation.js";
 import { Pop, RACES } from './map/pop.js';
 import { RESOURCES } from './map/resource.js';
-import { TERRAIN_TYPES } from './map/terrain-type.js';
+import { TERRAIN_TYPES } from './map/terrain.js';
 import { CargoShipUnit, InfantryUnit } from './map/unit.js';
 import { updateKeyboardEvents } from './views/events/game-keyboard-event.js';
 import { updateMouseEvents } from './views/events/game-mouse-event.js';
@@ -68,6 +68,28 @@ for (let j = 1; j < 6; ++j) {
         view.map.resources[j][i] = RESOURCES.coal;
     }
 }
+
+view.map.terrain[2][20] = TERRAIN_TYPES.water;
+view.map.terrain[2][21] = TERRAIN_TYPES.water;
+view.map.terrain[3][21] = TERRAIN_TYPES.water;
+view.map.terrain[3][22] = TERRAIN_TYPES.water;
+view.map.terrain[4][22] = TERRAIN_TYPES.water;
+view.map.terrain[4][23] = TERRAIN_TYPES.water;
+view.map.terrain[5][23] = TERRAIN_TYPES.water;
+view.map.terrain[5][24] = TERRAIN_TYPES.water;
+
+view.map.terrain[2][23] = TERRAIN_TYPES.water;
+view.map.terrain[3][24] = TERRAIN_TYPES.water;
+view.map.terrain[4][25] = TERRAIN_TYPES.water;
+view.map.terrain[5][26] = TERRAIN_TYPES.water;
+
+view.map.terrain[5][27] = TERRAIN_TYPES.water;
+view.map.terrain[4][27] = TERRAIN_TYPES.water;
+view.map.terrain[4][28] = TERRAIN_TYPES.water;
+view.map.terrain[3][28] = TERRAIN_TYPES.water;
+view.map.terrain[3][29] = TERRAIN_TYPES.water;
+view.map.terrain[2][29] = TERRAIN_TYPES.water;
+view.map.terrain[2][30] = TERRAIN_TYPES.water;
 
 view.map.addFeature(new TestDiceFeature(view.map, 2, 2, ORIENTATION.NORTH_EAST, 0));
 view.map.addFeature(new TestDiceFeature(view.map, 2, 6, ORIENTATION.SOUTH_EAST, 1));

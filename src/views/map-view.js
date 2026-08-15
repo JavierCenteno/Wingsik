@@ -471,16 +471,34 @@ export class MapView extends GameView {
                             break;
                     }
                     let spriteIndex;
-                    if (adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
-                        spriteIndex = 0;
-                    } else if (!adjacencyLeft && adjacencyDownLeft && adjacencyUpLeft) {
-                        spriteIndex = 1;
-                    } else if (adjacencyDownLeft && !adjacencyUpLeft) {
-                        spriteIndex = 2;
-                    } else if (!adjacencyDownLeft && adjacencyUpLeft) {
-                        spriteIndex = 3;
+                    if(!adjacencyUpRight) {
+                        if(!adjacencyUp) {
+                            if(!adjacencyUpLeft) {
+                                spriteIndex = 0;
+                            } else {
+                                spriteIndex = 1;
+                            }
+                        } else {
+                            if(!adjacencyUpLeft) {
+                                spriteIndex = 2;
+                            } else {
+                                spriteIndex = 3;
+                            }
+                        }
                     } else {
-                        spriteIndex = 4;
+                        if(!adjacencyUp) {
+                            if(!adjacencyUpLeft) {
+                                spriteIndex = 4;
+                            } else {
+                                spriteIndex = 5;
+                            }
+                        } else {
+                            if(!adjacencyUpLeft) {
+                                spriteIndex = 6;
+                            } else {
+                                spriteIndex = 7;
+                            }
+                        }
                     }
                     drawSprite(
                         terrainSprites,
@@ -508,16 +526,34 @@ export class MapView extends GameView {
                         }
                     }
                     );
-                    if (adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
-                        spriteIndex = 5;
-                    } else if (!adjacencyUp && adjacencyUpLeft && adjacencyUpRight) {
-                        spriteIndex = 6;
-                    } else if (adjacencyUpLeft && !adjacencyUpRight) {
-                        spriteIndex = 7;
-                    } else if (!adjacencyUpLeft && adjacencyUpRight) {
-                        spriteIndex = 8;
+                    if(!adjacencyDownRight) {
+                        if(!adjacencyRight) {
+                            if(!adjacencyUpRight) {
+                                spriteIndex = 8;
+                            } else {
+                                spriteIndex = 9;
+                            }
+                        } else {
+                            if(!adjacencyUpRight) {
+                                spriteIndex = 10;
+                            } else {
+                                spriteIndex = 11;
+                            }
+                        }
                     } else {
-                        spriteIndex = 9;
+                        if(!adjacencyRight) {
+                            if(!adjacencyUpRight) {
+                                spriteIndex = 12;
+                            } else {
+                                spriteIndex = 13;
+                            }
+                        } else {
+                            if(!adjacencyUpRight) {
+                                spriteIndex = 14;
+                            } else {
+                                spriteIndex = 15;
+                            }
+                        }
                     }
                     drawSprite(
                         terrainSprites,
@@ -545,16 +581,34 @@ export class MapView extends GameView {
                             }
                         }
                     );
-                    if (adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
-                        spriteIndex = 10;
-                    } else if (!adjacencyRight && adjacencyUpRight && adjacencyDownRight) {
-                        spriteIndex = 11;
-                    } else if (adjacencyUpRight && !adjacencyDownRight) {
-                        spriteIndex = 12;
-                    } else if (!adjacencyUpRight && adjacencyDownRight) {
-                        spriteIndex = 13;
+                    if(!adjacencyDownLeft) {
+                        if(!adjacencyDown) {
+                            if(!adjacencyDownRight) {
+                                spriteIndex = 16;
+                            } else {
+                                spriteIndex = 17;
+                            }
+                        } else {
+                            if(!adjacencyDownRight) {
+                                spriteIndex = 18;
+                            } else {
+                                spriteIndex = 19;
+                            }
+                        }
                     } else {
-                        spriteIndex = 14;
+                        if(!adjacencyDown) {
+                            if(!adjacencyDownRight) {
+                                spriteIndex = 20;
+                            } else {
+                                spriteIndex = 21;
+                            }
+                        } else {
+                            if(!adjacencyDownRight) {
+                                spriteIndex = 22;
+                            } else {
+                                spriteIndex = 23;
+                            }
+                        }
                     }
                     drawSprite(
                         terrainSprites,
@@ -582,16 +636,34 @@ export class MapView extends GameView {
                             }
                         }
                     );
-                    if (adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
-                        spriteIndex = 15;
-                    } else if (!adjacencyDown && adjacencyDownRight && adjacencyDownLeft) {
-                        spriteIndex = 16;
-                    } else if (adjacencyDownRight && !adjacencyDownLeft) {
-                        spriteIndex = 17;
-                    } else if (!adjacencyDownRight && adjacencyDownLeft) {
-                        spriteIndex = 18;
+                    if(!adjacencyUpLeft) {
+                        if(!adjacencyLeft) {
+                            if(!adjacencyDownLeft) {
+                                spriteIndex = 24;
+                            } else {
+                                spriteIndex = 25;
+                            }
+                        } else {
+                            if(!adjacencyDownLeft) {
+                                spriteIndex = 26;
+                            } else {
+                                spriteIndex = 27;
+                            }
+                        }
                     } else {
-                        spriteIndex = 19;
+                        if(!adjacencyLeft) {
+                            if(!adjacencyDownLeft) {
+                                spriteIndex = 28;
+                            } else {
+                                spriteIndex = 29;
+                            }
+                        } else {
+                            if(!adjacencyDownLeft) {
+                                spriteIndex = 30;
+                            } else {
+                                spriteIndex = 31;
+                            }
+                        }
                     }
                     drawSprite(
                         terrainSprites,
